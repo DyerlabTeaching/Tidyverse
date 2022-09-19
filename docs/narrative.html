@@ -2506,11 +2506,12 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#verbs-of-analysis" id="toc-verbs-of-analysis" class="nav-link" data-scroll-target="#verbs-of-analysis">Verbs of Analysis</a>
   <ul class="collapse">
+  <li><a href="#the-output" id="toc-the-output" class="nav-link" data-scroll-target="#the-output">The Output</a></li>
   <li><a href="#select-operator" id="toc-select-operator" class="nav-link" data-scroll-target="#select-operator">Select Operator</a></li>
   <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter">Filter</a></li>
   <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate">Mutate</a></li>
   <li><a href="#arragne" id="toc-arragne" class="nav-link" data-scroll-target="#arragne">Arragne</a></li>
-  <li><a href="#summarize" id="toc-summarize" class="nav-link" data-scroll-target="#summarize">Summarize</a></li>
+  <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise">Summarise</a></li>
   <li><a href="#group-summarize" id="toc-group-summarize" class="nav-link" data-scroll-target="#group-summarize">Group &amp; Summarize</a></li>
   </ul></li>
   <li><a href="#flows" id="toc-flows" class="nav-link" data-scroll-target="#flows">Flows</a></li>
@@ -2626,6 +2627,10 @@ vertical-align: -.125em;
 <li><em>Summarize:</em> Extract summaries of data (or grouped data) based upon some defined criteria.</li>
 </ul>
 <p>In the following examples, we’ll be using the rice data above. For each verb, I’m going to use the pipe operator (<code>%&gt;%</code>) to send the data into the example functions and then assign the result to a dummy <code>data.frame</code> named <code>df</code>. The arguments passed to each of the verbs are where the magic happens.</p>
+<section id="the-output" class="level3">
+<h3 class="anchored" data-anchor-id="the-output">The Output</h3>
+<p>The key to these activities is that every one of these functions takes a <code>data.frame</code> as input, does its operations on it, then return a <code>data.frame</code> object as output. The <code>data.frame</code> is the core data container for all of these actions.</p>
+</section>
 <section id="select-operator" class="level3">
 <h3 class="anchored" data-anchor-id="select-operator">Select Operator</h3>
 <p>The <code>select()</code> function allows you to choose which columns of data to work with.</p>
@@ -2702,7 +2707,7 @@ vertical-align: -.125em;
 <pre><code>[1]  3.749 31.990</code></pre>
 </div>
 </div>
-<p>Just like <code>select()</code>, it is possible to have several conditions, that are compounded (using a logical <code>AND</code> operator) by adding them to the <code>filter()</code> function. Here I also split the conditionals onto their own lines and auto-indent does a great job of making it reasonably readable.</p>
+<p>Just like <code>select()</code>, it is possible to have several conditions, that are compounded (using a logical <code>AND</code> operator) by adding them to the <code>filter()</code> function. Here I also split the conditionals requiring the data to be above freezing air temperatures, not missing data from the PH meter, and water turbidity &lt; 15 ntu’s. I also put each of these onto their own lines and auto-indent does a great job of making it reasonably readable.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&gt;</span> <span class="dv">32</span>, </span>
@@ -2716,19 +2721,119 @@ vertical-align: -.125em;
 </section>
 <section id="mutate" class="level3">
 <h3 class="anchored" data-anchor-id="mutate">Mutate</h3>
+<p>The <code>mutate()</code> function changes values in the table and is quite versatile. Here I will jump back to our old friend <code>mdy_hms()</code> from <code>lubridate</code> and convert the <code>DateTime</code> column, which is</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>( rice<span class="sc">$</span>DateTime )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;character&quot;</code></pre>
+</div>
+</div>
+<p>and convert it into a real date and time object</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">&quot;EST&quot;</span>) ) <span class="ot">-&gt;</span> df</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>( df<span class="sc">$</span>Date )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;POSIXct&quot; &quot;POSIXt&quot; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( df<span class="sc">$</span>Date )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 Min.               1st Qu.                Median 
+&quot;2014-01-01 00:00:00&quot; &quot;2014-01-22 08:22:30&quot; &quot;2014-02-12 16:45:00&quot; 
+                 Mean               3rd Qu.                  Max. 
+&quot;2014-02-12 16:45:00&quot; &quot;2014-03-06 01:07:30&quot; &quot;2014-03-27 09:30:00&quot; </code></pre>
+</div>
+</div>
+<p>You can also create several mutations in one mutation step.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">&quot;EST&quot;</span>), </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>(Date, <span class="at">label =</span> <span class="cn">TRUE</span>) ) <span class="ot">-&gt;</span> df</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( df<span class="sc">$</span>Month )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec 
+2976 2688 2535    0    0    0    0    0    0    0    0    0 </code></pre>
+</div>
+</div>
 </section>
 <section id="arragne" class="level3">
 <h3 class="anchored" data-anchor-id="arragne">Arragne</h3>
+<p>We can sort entire <code>data.frame</code> objects based upon the values in one or more of the columns using the <code>arragne()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>By default, it is in ascending order, to reverse it, use the negative operator on the column name object in the function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30.65</code></pre>
+</div>
+</div>
+<p>As above, it is possible to combine many columns of data as criteria for sorting by adding more arguments to the function call.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph, WindDir ) <span class="ot">-&gt;</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="summarize" class="level3">
-<h3 class="anchored" data-anchor-id="summarize">Summarize</h3>
+<section id="summarise" class="level3">
+<h3 class="anchored" data-anchor-id="summarise">Summarise</h3>
+<p>This function is the first one that does not return some version of the original data that was passed to it. Rather, this performs operations on the data and makes a brand new data.frame object.</p>
+<p>Each argument you give to the function performs one or more operations on the data and returns a brand new <code>data.frame</code> object with only the the values specified.</p>
+<p>Here is an example where I am taking the mean air and water temperature (n.b., one is in °F and the other is in °C). Notice the result is a new <code>data.frame</code> object with one row and two new columns defined by how I asked for the summary in the first place. I used single tick notation so I can have a space in the column names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF), </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(H2O_TempC, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  `Air Temp` `Water Temp`
+       &lt;dbl&gt;        &lt;dbl&gt;
+1       38.8         5.53</code></pre>
+</div>
+</div>
 </section>
 <section id="group-summarize" class="level3">
 <h3 class="anchored" data-anchor-id="group-summarize">Group &amp; Summarize</h3>
+<p>To get more than one row in the resulting <code>data.frame</code> from <code>summary()</code>, we need to group the data in some way. The function <code>group_by()</code> does this and is used prior to <code>summary()</code>. Let’s take a look at how we can get the average air and water temp by month. To do this, I’m going to have to do several steps. I’m just going to chain them together using the <code>%&gt;%</code> operator.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">tz=</span><span class="st">&quot;EST&quot;</span>),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">abbr =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label=</span><span class="cn">TRUE</span>) ) <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">%&gt;%</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF), </span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, </span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">na.rm=</span><span class="cn">TRUE</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  Month    `Air Temp` `Water Temp`
+  &lt;ord&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+1 January        34.7         3.68
+2 February       39.7         5.29
+3 March          42.6         7.96</code></pre>
+</div>
+</div>
+<p>As you read the code, notice how easy it is to understand what is going on because of both the pipes <strong>and</strong> because of the way I am formatting the code itself.</p>
 </section>
 </section>
 <section id="flows" class="level2">
 <h2 class="anchored" data-anchor-id="flows">Flows</h2>
+<p>This last part really showed off the process of multi-step data manipulations using the pipe operator and the several verbs we introduced. These are both efficient in terms of typing as well as efficient in the way of producing research that makes sense to look at.</p>
+<p>Here are some strategies that I use when building up these manipulation workflows.</p>
+<ol type="1">
+<li><p>Do not think that you have to do the whole thing at once. I typically build up the workflow, one line at a time. Make sure the output from the previous line is what you think it should be then add the next one.</p></li>
+<li><p>Keep your code open and airy, it makes it easier to read and to catch any logical errors that may arrise.</p></li>
+<li><p>You can pipe into a lot of different functions. In fact, any function that takes a data frame can be the recipient of a pipe. While developing a workflow, I will often pipe into things like <code>head()</code>, <code>summary()</code>, or <code>View()</code> to take a look at what is coming out of my workflow to make sure it resembles what I think it should look like.</p></li>
+</ol>
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>

@@ -49,6 +49,12 @@ When we perform any type of data manipulation, we use specific verbs.  There is 
 
 In the following examples, we'll be using the rice data above.  For each verb, I'm going to use the pipe operator (`%>%`) to send the data into the example functions and then assign the result to a dummy `data.frame` named `df`.  The arguments passed to each of the verbs are where the magic happens.
 
+
+### The Output
+
+The key to these activities is that every one of these functions takes a `data.frame` as input, does its operations on it, then return a `data.frame` object as output.  The `data.frame` is the core data container for all of these actions.
+
+
 ### Select Operator
 
 The `select()` function allows you to choose which columns of data to work with.
@@ -135,18 +141,79 @@ summary( df$Month )
 ```
 
 
-
 ### Arragne
 
-### Summarize
+We can sort entire `data.frame` objects based upon the values in one or more of the columns using the `arragne()` function.
+
+```{r}
+rice %>%
+  arrange( WindSpeed_mph ) -> df 
+df$WindSpeed_mph[1]
+```
+
+By default, it is in ascending order, to reverse it, use the negative operator on the column name object in the function.
+
+```{r}
+rice %>%
+  arrange( -WindSpeed_mph ) -> df 
+df$WindSpeed_mph[1]
+```
+
+As above, it is possible to combine many columns of data as criteria for sorting by adding more arguments to the function call.
+
+```{r}
+rice %>%
+  arrange( -WindSpeed_mph, WindDir ) -> df
+```
+
+
+### Summarise
+
+This function is the first one that does not return some version of the original data that was passed to it. Rather, this performs operations on the data and makes a brand new data.frame object.
+
+Each argument you give to the function performs one or more operations on the data and returns a brand new `data.frame` object with only the the values specified.   
+
+Here is an example where I am taking the mean air and water temperature (n.b., one is in °F and the other is in °C).  Notice the result is a new `data.frame` object with one row and two new columns defined by how I asked for the summary in the first place.  I used single tick notation so I can have a space in the column names.
+
+```{r}
+rice %>%
+  summarize( `Air Temp` = mean( AirTempF), 
+             `Water Temp` = mean(H2O_TempC, na.rm=TRUE))
+```
+
 
 
 ### Group & Summarize
 
+To get more than one row in the resulting `data.frame` from `summary()`, we need to group the data in some way.  The function `group_by()` does this and is used prior to `summary()`.  Let's take a look at how we can get the average air and water temp by month.  To do this, I'm going to have to do several steps.  I'm just going to chain them together using the `%>%` operator.
+
+```{r}
+rice %>%
+  mutate( Date = mdy_hms( DateTime, 
+                          tz="EST"),
+          Month = month( Date, 
+                         abbr = FALSE, 
+                         label=TRUE) ) %>%
+  group_by( Month ) %>%
+  summarize( `Air Temp` = mean( AirTempF), 
+             `Water Temp` = mean( H2O_TempC, 
+                                  na.rm=TRUE) )
+```
+
+As you read the code, notice how easy it is to understand what is going on because of both the pipes **and** because of the way I am formatting the code itself.
+
 
 ## Flows
 
+This last part really showed off the process of multi-step data manipulations using the pipe operator and the several verbs we introduced.  These are both efficient in terms of typing as well as efficient in the way of producing research that makes sense to look at.
 
+Here are some strategies that I use when building up these manipulation workflows.
+
+1. Do not think that you have to do the whole thing at once.  I typically build up the workflow, one line at a time.  Make sure the output from the previous line is what you think it should be then add the next one.
+
+2. Keep your code open and airy, it makes it easier to read and to catch any logical errors that may arrise.
+
+3. You can pipe into a lot of different functions.  In fact, any function that takes a data frame can be the recipient of a pipe.  While developing a workflow, I will often pipe into things like `head()`, `summary()`, or `View()` to take a look at what is coming out of my workflow to make sure it resembles what I think it should look like.
 
 
 ## Questions
