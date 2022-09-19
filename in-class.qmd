@@ -1,9 +1,6 @@
 ---
 title: "In Class Activity"
-format: 
-  html:
-    code-tools: true
-    toc: false
+format: html
 ---
 
 ## Examples
