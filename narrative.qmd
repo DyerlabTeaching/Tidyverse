@@ -1,20 +1,153 @@
 ---
 title: "Narrative Title"
 format: html
+description: |
+  The ability to quickly and easily manipulate and rework data is the base foundation for all the work you will be doing in `R`.  There is no more fundamental (and important) skill required than being able to quickly and easily take raw data and reconfigure it properly for inclusion into an analysis, summary, graphic, or table.  Using features of the `tidyverse` library are key.
 ---
 
-## Topic
+## The Tidyverse Approach
 
-Insert rationale for topic here.
+This is the first introduction to tidyverse and is the key skill necessary to become proficient at data analysis.  
 
-## Data Types
+
 
 ```{r}
-x <- rnorm(100)
-hist(x)
+library( tidyverse )
+library( lubridate )
 ```
 
-`This section is where you fill in all the information`
+
+
+### The Data
+
+For this topic we will use some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu).  These data represent both atmospheric and water data collected from instrumentation on-site.  I have stored these data in a spreadsheet that is shared on Google Drive as a CSV file.  
+
+```{r}
+url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
+rice <- read_csv( url )
+summary( rice )
+```
+
+These data represent measurements taken every 15 minutes, 24 hours a day, 7 days a week, 365 days a year.  For brevity, this file contains measurements starting at `r rice$DateTime[1]` and ending at `r rev(rice$DateTime)[1]` (only `r nrow(rice)` records here...).
+
+If you look at the summary of the data above, you will see several things, including:
+
+- Date and time objects are `character`
+- Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches.  In fact, there are duplication of data columns in different units (guess what kind of correlation they might have...)
+
+
+## Verbs of Analysis
+
+When we perform any type of data manipulation, we use specific verbs.  There is a limited lexicon for us to use, but the key here is how we perform these actions, and in which order they are deployed for a huge diversity in outcomes.  For now, these basic verbs include:
+
+- *Select:* Used to grab or reorder columns of data.
+- *Filter:* Used to grab subsets of records (rows) based upon some criteria.
+- *Mutate:* Create new columns of data based upon manipulations of existing columns.
+- *Arrange:* Order the records (rows) based upon some criteria. 
+- *Group:* Gather records together to perform operations on chunks of them similar to `by()`.
+- *Summarize:* Extract summaries of data (or grouped data) based upon some defined criteria.
+
+In the following examples, we'll be using the rice data above.  For each verb, I'm going to use the pipe operator (`%>%`) to send the data into the example functions and then assign the result to a dummy `data.frame` named `df`.  The arguments passed to each of the verbs are where the magic happens.
+
+### Select Operator
+
+The `select()` function allows you to choose which columns of data to work with.
+
+
+```{r}
+rice %>%
+  select( DateTime, AirTempF ) -> df 
+head(df)
+```
+
+
+
+Select can also be used to reorder the columns in a `data.frame` object.  Here are the names of the data columns as initially loaded.
+
+```{r}
+names( rice )
+```
+
+Let's say that you wanted to reorder the columns as `RecordID`, `ODO_mgl` and `PH` as the first three columns and leave everything else as is.  There is this cool function `everthying()` that helps out. 
+
+
+```{r}
+rice %>%
+  select( RecordID, ODO_mgl, PH, everything() ) -> df
+names( df )
+```
+
+
+
+### Filter
+
+The function `filter()` works to select records (rows) based upon some criteria.  So for example, if I am interested in just records when the airtemp was freezing (and the raw data are in °F).  The range of values in the original data was:
+
+```{r}
+range( rice$AirTempF )
+```
+
+but after filtering using the name of the variable and a logical operator.
+
+```{r}
+rice %>%
+  filter( AirTempF < 32 ) -> df
+range( df$AirTempF )
+```
+
+Just like `select()`, it is possible to have several conditions, that are compounded (using a logical `AND` operator) by adding them to the `filter()` function.  Here I also split the conditionals requiring the data to be above freezing air temperatures, not missing data from the PH meter, and water turbidity < 15 ntu's.  I also put each of these onto their own lines and auto-indent does a great job of making it reasonably readable.
+
+```{r}
+rice %>%
+  filter( AirTempF > 32, 
+          !is.na(PH), 
+          Turbidity_ntu < 15) -> df
+nrow(df)
+```
+
+
+
+
+### Mutate
+
+The `mutate()` function changes values in the table and is quite versatile.  Here I will jump back to our old friend `mdy_hms()` from `lubridate` and convert the `DateTime` column, which is 
+
+```{r}
+class( rice$DateTime )
+```
+
+and convert it into a real date and time object 
+
+```{r}
+rice %>%
+  mutate( Date = mdy_hms(DateTime, tz = "EST") ) -> df
+class( df$Date )
+summary( df$Date )
+```
+
+You can also create several mutations in one mutation step.
+
+```{r}
+rice %>%
+  mutate( Date = mdy_hms(DateTime, tz = "EST"), 
+          Month = month(Date, label = TRUE) ) -> df
+summary( df$Month )
+```
+
+
+
+### Arragne
+
+### Summarize
+
+
+### Group & Summarize
+
+
+## Flows
+
+
+
 
 ## Questions
 

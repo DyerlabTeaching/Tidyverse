@@ -13,6 +13,9 @@ format:
     citations-hover: true
     footnotes-hover: true
     link-external-icon: true
+    execute: 
+      message: false
+      warning: false
   revealjs:
     self-contained: true
     code-fold: false
