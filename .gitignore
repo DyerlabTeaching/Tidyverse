@@ -41,3 +41,5 @@ vignettes/*.pdf
 *.icloud
 
 /.quarto/
+README.html
+README_files/*
