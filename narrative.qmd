@@ -141,9 +141,9 @@ summary( df$Month )
 ```
 
 
-### Arragne
+### Arrange
 
-We can sort entire `data.frame` objects based upon the values in one or more of the columns using the `arragne()` function.
+We can sort entire `data.frame` objects based upon the values in one or more of the columns using the `arrange()` function.
 
 ```{r}
 rice %>%
