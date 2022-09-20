@@ -296,7 +296,6 @@ data %>%
 The data we will be working with consist of data from the [Rice Rivers Center](https://ricerivers.vcu.edu).
 
 ```{r}
-library( readr )
 url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
 rice <- read_csv( url )
 names( rice )
@@ -331,6 +330,20 @@ summary( df )
 :::
 :::
 
+::::
+
+## Data Pliars
+
+::::{.columns}
+:::{.column width="30%"}
+![](media/dplyr.png)
+:::
+
+:::{.column width="70%"}
+The `dplyr` library defines a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges using `select`, `filter`, `arrange`, `mutate`, `group_by`, and `summarise` functionality.
+
+It is part of `tidyverse`
+:::
 ::::
 
 
