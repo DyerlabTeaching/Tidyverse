@@ -1,9 +1,11 @@
 ---
-title: "Narrative Title"
+title: "Tidyverse"
 format: html
 description: |
   The ability to quickly and easily manipulate and rework data is the base foundation for all the work you will be doing in `R`.  There is no more fundamental (and important) skill required than being able to quickly and easily take raw data and reconfigure it properly for inclusion into an analysis, summary, graphic, or table.  Using features of the `tidyverse` library are key.
 ---
+
+![](media/dplyr.png)
 
 ## The Tidyverse Approach
 
@@ -16,11 +18,15 @@ library( tidyverse )
 library( lubridate )
 ```
 
-
-
 ### The Data
 
 For this topic we will use some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu).  These data represent both atmospheric and water data collected from instrumentation on-site.  I have stored these data in a spreadsheet that is shared on Google Drive as a CSV file.  
+
+You can look at it [here](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s).
+
+### The Data in `R`
+
+So let's load it into memory and take a look at it.
 
 ```{r}
 url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"

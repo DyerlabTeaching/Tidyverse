@@ -3,6 +3,10 @@ title: "Tidyverse"
 subtitle: "&nbsp;"
 format: revealjs
 author: Rodney Dyer, PhD
+title-slide-attributes: 
+  data-background-image: "media/Tidyverse.png"
+  data-background-position: "right 0em top 0em"
+  data-background-size: initial
 execute: 
   echo: true
 ---
@@ -294,6 +298,20 @@ data %>%
 ## The Data
 
 The data we will be working with consist of data from the [Rice Rivers Center](https://ricerivers.vcu.edu).
+
+![](media/RiceRiverCenter.png)
+
+## The Raw Data
+
+The raw data are retained in a single Google Spreadsheet that is published as a CSV file and can be found  [here](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s).
+
+::: {.fragment}
+![](media/Selfie_GoogleSheets.png)
+:::
+
+## The Data in `R`
+
+So, let us load it in here.
 
 ```{r}
 url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
