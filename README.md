@@ -28,7 +28,7 @@ Content for this topic include the following resources.
 This activity has both in-class and homework activities.
 
 - An [in class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) document that we will work through in person to learn about tabular output.
-- A take-heme [homework](https://dyerlabteaching.github.io/Tidyverse/homework.html) document where you'll be gathering your own data and providing a prublished summary of it, following the [online homework](https://dyerlabteaching.github.io/ENVS543-Fall_2023/homework_rubric.html) rubric.
+- A take-heme [homework](https://dyerlabteaching.github.io/Tidyverse/homework.html) document where you'll be gathering your own data and providing a prublished summary of it, following the [online homework](https://dyerlabteaching.github.io/ENVS-543/homework_rubric.html) rubric.
 
 ## Contact Information
 
