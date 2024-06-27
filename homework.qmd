@@ -1,0 +1,36 @@
+---
+title: "Summary Tabular Data"
+editor: visual
+---
+
+## Learning Objectives
+
+By the end of this activity, you should be able to demonstrate mastery in the following general areas:  
+
+- Describe, identify, and utilize the basic data tidyverse verbs commonly used in the analysis of environmental data.                       
+
+- Develop approaches to acquire, manipulate, and format data output in tabular format sufficient for inclusion in a scientific publication.   
+
+## Overview
+
+The fundamental workflow for data analytics is summarized in this courses canonical image below.
+
+<center>
+![The basic workflow schematic for data analysis.](media/workflow.png)
+</center>
+
+This activity will be a first step for you to develop the skills necessary for to perform these activities.  To date, we've used some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu) but in this exercise, I want you to go out and try to find some a public dataset related to something you are interested in (e.g., something realted to your work).  
+
+## Tasks
+
+You are going to produce a document that summarizes an external data set.  This dataset is one that you. will have to go find on your own.  The document will have the following components (in addition to the normal required materials for any online homework).  This work will be evaluated using the [Online Homework Rubric](https://dyerlabteaching.github.io/ENVS-543/homework_rubric.html) document.   
+
+The result should have the following components:
+
+1. Header contents and summary of the data.  You should have a brief summary of what is in the document as an abstract.  
+2. A section (with header) providing a brief summary, `Introduction`, of the data, where you get collected it from, and what kind of data are being used.    
+3. A section (with header) with a short overview of the `Methods` you used to produce the summaries.  
+4. A section (with header) providing the `Results` of the data as tabular summary of the data using using the `knitr` and `kableExtra` libraries to create tables suitable for publication quality.  
+
+
+
