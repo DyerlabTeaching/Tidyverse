@@ -36,42 +36,7 @@ library( DiagrammeR )
 :::{.fragment}
 To do this, we have the following general workflow.
 
-
-```{r out.width='90%', out.height='40%', fig.align='center'}
-#| echo: false
-graph <-
-  create_graph() %>%
-  add_path(
-    n = 5,
-    type = "step",
-    label = c(
-      "Load\\nData",
-      "Make\\nDates",
-      "Select\\nColumns",
-      "Filter\\nRows",
-      "Summarize\\nSomehow"
-    ),
-    node_aes = node_aes(
-      shape = c("square", "circle", "circle", "circle", "rectangle"),
-      width = c(0.75, 0.75, 0.75, 0.75, 0.75),
-      color = "#3C3C3C",
-      fontcolor = "black",
-      fillcolor = c("#61acf0", "#f0a561", "#f0a561", "#f0a561", "#cbd20a"),
-      fontname = "Lato"
-    ),
-    edge_aes = edge_aes(# set edge aesthetics
-      color = "#3C3C3C")
-  ) %>%
-  add_global_graph_attrs(attr = "layout",
-                         value = "dot",
-                         attr_type = "graph") %>%
-  add_global_graph_attrs(attr = "rankdir",
-                         value = "LR",
-                         attr_type = "graph")
-# View the graph in the Viewer
-graph %>% render_graph()
-#widgetframe::frameableWidget( graph )
-```
+![](media/workflow0.png)
 
 
 :::
@@ -182,83 +147,13 @@ Partition the data set into groups based upon some taxonomy of categorization.
 
 The manner in which we organize these action verbs yields an infinite number of combinations.
 
-```{r out.width='75%', out.height='30%', fig.align='center'}
-#| echo: false
-graph <-
-  create_graph() %>%
-  add_path(
-    n = 5,
-    type = "step",
-    label = c(
-      "Load\\nData",
-      "Select\\nColumns",
-      "Overlay\\nPoints",
-      "Overlay\\nTrend",
-      "Show Plot"
-    ),
-    node_aes = node_aes(
-      shape = c("square", "circle", "circle", "circle", "rectangle"),
-      width = c(0.75, 0.75, 0.75, 0.75, 0.75),
-      color = "#3C3C3C",
-      fontcolor = "black",
-      fillcolor = c("#61acf0", "#f0a561", "#f0a561", "#f0a561", "#cbd20a"),
-      fontname = "Lato"
-    ),
-    edge_aes = edge_aes(# set edge aesthetics
-      color = "#3C3C3C")
-  ) %>%
-  add_global_graph_attrs(attr = "layout",
-                         value = "dot",
-                         attr_type = "graph") %>%
-  add_global_graph_attrs(attr = "rankdir",
-                         value = "LR",
-                         attr_type = "graph")
-# View the graph in the Viewer
-graph %>% render_graph()
-```
-
-
-
+![](media/workflow2.png){ width=100% }
 
 :::{.fragment}
 
 &nbsp;
 
-```{r out.width='100%', out.height='20%', fig.align='center'}
-#| echo: false
-summary <- create_graph() %>%
-  add_path(
-    n = 6,
-    type = "step",
-    label = c(
-      "Load\\nData",
-      "Group\\nSpecies",
-      "Select\\nColumn",
-      "Estimate\\nMean",
-      "Estimate\\nVariance",
-      "Make Table"
-    ),
-    node_aes = node_aes(
-      shape = c("square", "circle", "circle", "circle", "circle", "rectangle"),
-      width = c(0.75, 0.75, 0.75, 0.75, 0.75, 1.0),
-      color = "#3C3C3C",
-      fontcolor = "black",
-      fillcolor = c("#61acf0", "#f0a561", "#f0a561", "#f0a561", "#f0a561", "#cbd20a"),
-      fontname = "Lato"
-    ),
-    edge_aes = edge_aes(# set edge aesthetics
-      color = "#3C3C3C")
-  ) %>%
-  add_global_graph_attrs(attr = "layout",
-                         value = "dot",
-                         attr_type = "graph") %>%
-  add_global_graph_attrs(attr = "rankdir",
-                         value = "LR",
-                         attr_type = "graph")
-# View the graph in the Viewer
-summary %>% render_graph()
-```
-
+![](media/workflow1.png){ width=100% }
 
 :::
 
@@ -277,19 +172,28 @@ In `R` we use this grammar.
 data %>% Y()
 ```
 
+It is also possible to use this pipe character:
+
+```{r}
+#| eval: false 
+data |> Y()
+```
+
+
+
 To take the values in `data` and pass them **as if you entered the data as the first argument** to the function `Y()`.
 
-:::{.fragment}
-These pipes can be chained together into a single operation.
+## Chain-pipe
+
+Pipes can be chained together into a single operation (you can mix and match pipe types but I find myself basically using the shorter one because I'm a lazy programmer).
+
 ```{r}
 #| eval: false
-data %>%
-  func1() %>%
+data |>
+  func1() |>
   func2() %>%
   func3() -> newData
 ```
-:::
-
 
 
 # Examples {background-color="black" background-image="media/contour.png" background-size="initial" background-position="right"}
@@ -299,15 +203,18 @@ data %>%
 
 The data we will be working with consist of data from the [Rice Rivers Center](https://ricerivers.vcu.edu).
 
-![](media/RiceRiverCenter.png)
+<center>
+![](media/RiceRiversCenter.png)
+</center>
+
 
 ## The Raw Data
 
-The raw data are retained in a single Google Spreadsheet that is published as a CSV file and can be found  [here](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s).
+The raw data are published from a [Google Spreadsheet ](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s).
 
-::: {.fragment}
+<center>
 ![](media/Selfie_GoogleSheets.png)
-:::
+</center>
 
 ## The Data in `R`
 
@@ -371,7 +278,7 @@ It is part of `tidyverse`
 In `tidyverse` we can use the column names and do not need to be quoted.
 
 ```{r}
-rice %>%
+rice |>
   select( DateTime ) -> df
 head( df )
 ```
@@ -402,7 +309,7 @@ names( rice )
 Love the `everything()` function.
 
 ```{r}
-rice %>%
+rice |>
   select( RecordID, ODO_mgl, PH, everything() ) -> df
 names( df )
 ```
@@ -423,7 +330,7 @@ range( rice$AirTempF )
 
 
 ```{r}
-rice %>%
+rice |>
   filter( AirTempF < 32 ) -> df
 range( df$AirTempF )
 ```
@@ -442,7 +349,7 @@ nrow( rice )
 &nbsp;
 
 ```{r}
-rice %>%
+rice |>
   filter( AirTempF > 32, 
           !is.na(PH), 
           Turbidity_ntu < 15) -> df
@@ -467,7 +374,7 @@ rice$WindSpeed_mph[1]
 &nbsp;
 
 ```{r}
-rice %>%
+rice |>
   arrange( WindSpeed_mph ) -> df 
 df$WindSpeed_mph[1]
 ```
@@ -479,7 +386,7 @@ df$WindSpeed_mph[1]
 To reverse the order, use the negative operator on the column name object in the function.
 
 ```{r}
-rice %>%
+rice |>
   arrange( -WindSpeed_mph ) -> df 
 df$WindSpeed_mph[1]
 ```
@@ -490,7 +397,7 @@ df$WindSpeed_mph[1]
 You can also sort using several criteria.
 
 ```{r}
-rice %>%
+rice |>
   arrange( -WindSpeed_mph, WindDir ) -> df
 ```
 
@@ -511,7 +418,7 @@ class( rice$DateTime )
 
 ```{r}
 library( lubridate )
-rice %>%
+rice |>
   mutate( Date = mdy_hms(DateTime, tz = "EST") ) -> df
 class( df$Date )
 ```
@@ -529,7 +436,7 @@ summary( df$Date )
 You can make several mutations in one call *or* you can pipe several mutation events at one time.
 
 ```{r}
-rice %>%
+rice |>
   mutate( Date = mdy_hms(DateTime, tz = "EST"), 
           Month = month(Date, label = TRUE) ) -> df
 summary( df$Month )
@@ -541,7 +448,7 @@ summary( df$Month )
 The `summarize()` function derives inferences from the current `data.frame` and produces a new one.
 
 ```{r}
-rice %>%
+rice |>
   summarize( `Air Temp` = mean( AirTempF), 
              `Water Temp` = mean(H2O_TempC, na.rm=TRUE))
 ```
@@ -553,13 +460,13 @@ rice %>%
 The `group_by()` function allows you to arbitrarily pull together subset of data and prepare them to be worked on by something like `summary()`.
 
 ```{r}
-rice %>%
+rice |>
   mutate( Date = mdy_hms( DateTime, 
                           tz="EST"),
           Month = month( Date, 
                          abbr = FALSE, 
-                         label=TRUE) ) %>%
-  group_by( Month ) %>%
+                         label=TRUE) ) |>
+  group_by( Month ) |>
   summarize( `Air Temp` = mean( AirTempF), 
              `Water Temp` = mean( H2O_TempC, 
                                   na.rm=TRUE) ) 
@@ -598,14 +505,14 @@ names( rice )
 If the names are set reasonably in the workflow, then they will be piped directly into tables and figures correctly.  Here is a fully formed output from `R`.
 
 ```{r}
-rice %>%
+rice |>
   mutate( Date = mdy_hms( DateTime, 
                           tz="EST"),
           Month = month( Date, 
                          abbr = FALSE, 
                          label=TRUE),
-          AirTemp = (AirTempF-32) * 5/9 ) %>%
-  group_by( Month ) %>%
+          AirTemp = (AirTempF-32) * 5/9 ) |>
+  group_by( Month ) |>
   summarize( `Ambient Air` = mean( AirTemp), 
              `Water Surface` = mean( H2O_TempC, 
                                   na.rm=TRUE) ) -> df 
@@ -628,13 +535,13 @@ Simply pipe the data into the `kable()` function.
 ```{r}
 library( knitr )
 
-df %>%
+df |>
   kable()
 ```
 ## Options to `kable` {.smaller}
 
 ```{r}
-df %>%
+df |>
   kable( digits = 2, 
          caption = "Air and water temperatures measured at the Rice Rivers Center.") -> kbl
 
@@ -656,7 +563,7 @@ There is a second package, `kableExtra`, that adds a lot more functionality to t
 ```{r}
 library( kableExtra )
 
-kbl %>% 
+kbl |> 
   kable_styling()
 ```
 
@@ -664,7 +571,7 @@ kbl %>%
 ## Paper Style {.smaller}
 
 ```{r}
-kbl %>% 
+kbl |> 
   kable_paper()
 ```
 
@@ -672,7 +579,7 @@ kbl %>%
 ## Classic Style {.smaller}
 
 ```{r}
-kbl %>% 
+kbl |> 
   kable_classic( full_width = FALSE )
 ```
 
@@ -680,7 +587,7 @@ kbl %>%
 ## Fancy Material Styles {.smaller}
 
 ```{r}
-kbl %>% 
+kbl |> 
   kable_material( c("striped", "hover"), 
                   full_width = FALSE )
 ```
@@ -691,8 +598,8 @@ kbl %>%
 ## Quoted Names & More Fancy Headings {.smaller}
 
 ```{r}
-kbl %>% 
-  kable_paper( full_width=FALSE) %>%
+kbl |> 
+  kable_paper( full_width=FALSE) |>
   add_header_above( c(" "=1, "Temperature (°C)" = 2))
 ```
 
