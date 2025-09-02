@@ -3050,7 +3050,10 @@ vertical-align: -.125em;
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#apply-and-create-tidy-data-workflows" id="toc-apply-and-create-tidy-data-workflows" class="nav-link" data-scroll-target="#apply-and-create-tidy-data-workflows">Apply and create tidy data workflows</a></li>
+  </ul></li>
   <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
   </ul>
@@ -3079,11 +3082,15 @@ vertical-align: -.125em;
 
 <section id="learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this activity, you should be able to demonstrate mastery in the following general areas:</p>
+<section id="apply-and-create-tidy-data-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="apply-and-create-tidy-data-workflows">Apply and create tidy data workflows</h3>
+<blockquote class="blockquote">
+<p>Learners will use the core Tidyverse “verbs” (e.g., select, filter, mutate, summarize, group_by) to manipulate data frames, and will design reproducible workflows that transform raw datasets into clear, analysis-ready tabular summaries.</p>
+</blockquote>
 <ul>
-<li><p>Describe, identify, and utilize the basic data tidyverse verbs commonly used in the analysis of environmental data.</p></li>
-<li><p>Develop approaches to acquire, manipulate, and format data output in tabular format sufficient for inclusion in a scientific publication.</p></li>
+<li>Bloom’s Levels: <em>Apply</em> (use Tidyverse verbs to manipulate data), <em>Create</em> (design reproducible workflows, produce summaries).</li>
 </ul>
+</section>
 </section>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
@@ -3096,22 +3103,37 @@ vertical-align: -.125em;
 </figure>
 </div>
 </center>
-<p>This activity will be a first step for you to develop the skills necessary for to perform these activities. To date, we’ve used some example data from the <a href="https://ricerivers.vcu.edu">Rice Rivers Center</a> but in this exercise, I want you to go out and try to find some a public dataset related to something you are interested in (e.g., something realted to your work).</p>
+<p>This activity will be a first step for you to develop the skills necessary for to perform these activities. To date, we’ve used some example data from the <a href="https://ricerivers.vcu.edu">Rice Rivers Center</a> but in this exercise, I want you to go out and try to find a public data set related to something you are interested in (e.g., something related to your own work).</p>
 </section>
 <section id="tasks" class="level2">
 <h2 class="anchored" data-anchor-id="tasks">Tasks</h2>
-<p>You are going to produce a document that summarizes an external data set. This dataset is one that you. will have to go find on your own. The document will have the following components (in addition to the normal required materials for any online homework). This work will be evaluated using the <em>Online Homework Rubric</em> on the Canvas site.</p>
+<p>You are going to produce a document that summarizes an external data set. This data set is one that you will have to go find on your own. The document will have the following components (in addition to the normal required materials for any online homework). This work will be evaluated using the <em>Markdown Document Grading Rubric</em> on the Canvas site.</p>
 <p>Your document should have the following components:</p>
 <ol type="1">
-<li>Header contents and summary of the data. You should have a brief summary of what is in the document as an abstract.<br>
+<li>Create a folder in your course RStudio Project folder. Call this one <code>TidyVerse</code>.<br>
 </li>
-<li>A section (with header) providing a brief summary, <code>Introduction</code>, of the data, where you get collected it from, and what kind of data are being used.<br>
+<li>Create a new Quarto document in this folder and name it TidyverseHomeWork.qmd.<br>
 </li>
-<li>A section (with header) with a short overview of the <code>Methods</code> you used to produce the summaries.<br>
+<li>Find your data set and either:<br>
+
+<ol type="a">
+<li>Upload it to GoogleDocs and put its published CSV url in here, or<br>
 </li>
-<li>A section (with header) providing the <code>Results</code> of the data as tabular summary of the data using using the <code>knitr</code> and <code>kableExtra</code> libraries to create tables suitable for publication quality.</li>
+<li>Download the data set and put it in the same directory as your Quarto document.<br>
+</li>
+</ol></li>
+<li>Create the skeleton of a reserach document usiung headers to include:<br>
+
+<ol type="a">
+<li><code>Abstract</code>: A brief summary of the data set you have found and its properties.<br>
+</li>
+<li><code>Methods</code>: A description of how you loaded in and configured the data.<br>
+</li>
+<li><code>Results</code>: A summary of the data to include some tabular output using the <code>knitr</code> and <code>kableExtra</code> libraries to create tables suitable for publication quality. For the data tables, summarize by including the name of the variable, its minimimum, mean, and maximum values.<br>
+</li>
+</ol></li>
+<li>Render this document and submit it on Canvas.</li>
 </ol>
-<p>Submit the document URL (served from your GitHub site) in canvas.</p>
 </section>
 
 </main>

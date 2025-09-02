@@ -7,12 +7,15 @@
 
 The tidyverse is a constellation of libraries that have been created to make data maniupulation easier and your research generaly more reliable and repeatable.  The `tidy` movement has really gone a long way in creating tools that make data analysis much more enjoyable and accessable.
 
-## Student Learning Objectives
+## Module Learning Objectives
 
-At the end of this topic, you should be able to:  
- - Understand the basic *verbs* of data manipulation.
- - Create *de novo* workflows to manipulate data frames
- - Produce summary tabular output.
+This module has the following learning objective.
+
+### Apply and create tidy data workflows
+
+> Learners will use the core Tidyverse “verbs” (e.g., select, filter, mutate, summarize, group_by) to manipulate data frames, and will design reproducible workflows that transform raw datasets into clear, analysis-ready tabular summaries.
+
+  - Bloom’s Levels: *Apply* (use Tidyverse verbs to manipulate data), *Create* (design reproducible workflows, produce summaries).
 
 ## Content
 

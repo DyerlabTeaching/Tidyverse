@@ -5,33 +5,38 @@ format: html
 
 ## Learning Objectives
 
-By the end of this activity, you should be able to demonstrate mastery in the following general areas:
+### Apply and create tidy data workflows
 
--   Describe, identify, and utilize the basic data tidyverse verbs commonly used in the analysis of environmental data.
+> Learners will use the core Tidyverse “verbs” (e.g., select, filter, mutate, summarize, group_by) to manipulate data frames, and will design reproducible workflows that transform raw datasets into clear, analysis-ready tabular summaries.
 
--   Develop approaches to acquire, manipulate, and format data output in tabular format sufficient for inclusion in a scientific publication.
+  - Bloom’s Levels: *Apply* (use Tidyverse verbs to manipulate data), *Create* (design reproducible workflows, produce summaries).
+  
 
 ## Overview
 
 The fundamental workflow for data analytics is summarized in this courses canonical image below.
 
 <center>
-
 ![The basic workflow schematic for data analysis.](media/workflow.png)
-
 </center>
 
-This activity will be a first step for you to develop the skills necessary for to perform these activities. To date, we've used some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu) but in this exercise, I want you to go out and try to find some a public dataset related to something you are interested in (e.g., something realted to your work).
+This activity will be a first step for you to develop the skills necessary for to perform these activities. To date, we've used some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu) but in this exercise, I want you to go out and try to find a public data set related to something you are interested in (e.g., something related to your own work).
 
 ## Tasks
 
-You are going to produce a document that summarizes an external data set. This dataset is one that you. will have to go find on your own. The document will have the following components (in addition to the normal required materials for any online homework). This work will be evaluated using the *Online Homework Rubric* on the Canvas site.
+You are going to produce a document that summarizes an external data set. This data set is one that you will have to go find on your own. The document will have the following components (in addition to the normal required materials for any online homework). This work will be evaluated using the *Markdown Document Grading Rubric* on the Canvas site.
 
 Your document should have the following components:
 
-1.  Header contents and summary of the data. You should have a brief summary of what is in the document as an abstract.\
-2.  A section (with header) providing a brief summary, `Introduction`, of the data, where you get collected it from, and what kind of data are being used.\
-3.  A section (with header) with a short overview of the `Methods` you used to produce the summaries.\
-4.  A section (with header) providing the `Results` of the data as tabular summary of the data using using the `knitr` and `kableExtra` libraries to create tables suitable for publication quality.
+1. Create a folder in your course RStudio Project folder.  Call this one `TidyVerse`.\
+2. Create a new Quarto document in this folder and name it TidyverseHomeWork.qmd. \
+3. Find your data set and either:\
+    a) Upload it to GoogleDocs and put its published CSV url in here, or\
+    b) Download the data set and put it in the same directory as your Quarto document.\
+4. Create the skeleton of a reserach document usiung headers to include:\
+    a) `Abstract`: A brief summary of the data set you have found and its properties.\
+    c) `Methods`: A description of how you loaded in and configured the data.\
+    d) `Results`: A summary of the data to include some tabular output using the `knitr` and `kableExtra` libraries to create tables suitable for publication quality.  For the data tables, summarize by including the name of the variable, its minimimum, mean, and maximum values.\
+5. Render this document and submit it on Canvas.
 
-Submit the document URL (served from your GitHub site) in canvas.
+
