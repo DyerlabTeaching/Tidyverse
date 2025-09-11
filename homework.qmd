@@ -3,7 +3,7 @@ title: "Summary Tabular Data Homework"
 auhtor: "YOUR NAME HERE"
 format: 
   html:
-    code-tools: true 
+    code-tools: false 
 ---
   
 
