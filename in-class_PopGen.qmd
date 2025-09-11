@@ -1,0 +1,55 @@
+---
+title: "Tidyverse"
+subtitle: "In-Class Activity"
+author: "Dyer"
+format: 
+  html:
+    echo: true 
+    code-tools: true
+abstract: This in-class activity will be used in the lecture to facilitate the use of several aspects relevant to applying the 'verbs' of data manipulation using the `tidyverse` library.
+---
+
+
+## The Question
+
+> Load in the provided data set to answer the following questions.  In the space below create a table of the following data and in-text references to the table.   
+>
+>  1. Make a table showing minimum, mean, and maximum water turbidity for each month in the dataset, and     
+>  2. Describe the daytime air temperatures at the Rice Rivers Center for February, 2014 by day of the week
+
+
+
+## The Data
+
+For this topic we will use some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu).  These data represent both atmospheric and water data collected from instrumentation on-site.  I have stored these data in a spreadsheet that is shared on Google Drive as a CSV file.
+
+```{r}
+url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
+```
+
+These data represent measurements taken every 15 minutes, 24 hours a day, 7 days a week, 365 days a year.  If you look at the summary of the data above, you will see several things, including:
+
+- Date and time objects are `character`
+- Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches.  In fact, there are duplication of data columns in different units (guess what kind of correlation they might have...)
+
+## The Results
+
+The data from the Rice Rivers Center was evaluated for water turbidity and daily air temperature.
+
+### Turbidity 
+
+```{r}
+# Get water turbidity by month.
+
+```
+
+
+
+### Daily Air Temperature
+
+```{r}
+# Get day-of-the-week air temperature
+
+```
+
+
