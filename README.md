@@ -10,23 +10,23 @@ The tidyverse is a constellation of libraries that have been created to make dat
 
 ### Apply Tidyverse verbs to manipulate and transform data frames
 
-> Learners will use core functions (select, filter, arrange, mutate, summarize, group_by) with the pipe operator to clean, restructure, and summarize ecological datasets.
+> Learners will use core functions (select, filter, arrange, mutate, summarize, group_by) with the pipe operator to clean, restructure, and summarize datasets.
 
 **Bloom’s Levels:** Apply, Analyze
 
 **Reinforces:** Developing fluency with the “grammar of data manipulation,” seeing data wrangling as a logical, repeatable process rather than ad-hoc coding.
 
-**Notes:** Emphasizes building comfort with select, filter, arrange, mutate, summarize, and group_by as core building blocks in all future workflows.
+**Notes:** Emphasizes building comfort with select, filter, arrange, mutate, summarize, and group_by as core building blocks in future workflows.
 
 ### Create reproducible workflows that yield analysis-ready outputs 
 
-Learners will chain Tidyverse operations into readable, reproducible workflows that produce tabular and graphical summaries suitable for interpretation in population genetic analyses.
+> Learners will chain Tidyverse operations into readable, reproducible workflows that produce tabular and graphical summaries suitable for interpretation in data analyses.
 
 **Bloom’s Levels:** Apply, Create
 
 **Reinforces:** Reproducibility and clarity in coding, aligning data work with transparent scientific practice.
 
-**Notes:** Highlights chaining operations with pipes to create workflows that are readable, testable, and directly useful for population genetic analyses.
+**Notes:** Highlights chaining operations with pipes to create workflows that are readable, testable, and directly useful for data analyses.
 
 ## Content
 
