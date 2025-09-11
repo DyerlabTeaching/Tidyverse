@@ -1,15 +1,10 @@
 ---
 title: "Summary Tabular Data Homework"
-format: html
+auhtor: "YOUR NAME HERE"
+format: 
+  html:
+    code-tools: true 
 ---
-
-## Learning Objectives
-
-### Apply and create tidy data workflows
-
-> Learners will use the core Tidyverse “verbs” (e.g., select, filter, mutate, summarize, group_by) to manipulate data frames, and will design reproducible workflows that transform raw datasets into clear, analysis-ready tabular summaries.
-
-  - Bloom’s Levels: *Apply* (use Tidyverse verbs to manipulate data), *Create* (design reproducible workflows, produce summaries).
   
 
 ## Overview
