@@ -24,7 +24,34 @@ abstract: This in-class activity will be used in the lecture to facilitate the u
 For this topic we will use some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu).  These data represent both atmospheric and water data collected from instrumentation on-site.  I have stored these data in a spreadsheet that is shared on Google Drive as a CSV file.
 
 ```{r}
+library( tidyverse )
+library( lubridate )
+library( knitr )
+
 url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
+
+rice <- read_csv( url )
+
+# This is a summary 
+```
+
+
+```{r}
+rice |>
+  select( DateTime, AirTempF, Turbidity_ntu ) |>  # select datetime, temp, turbidity 
+  mutate( Date = mdy_hms( DateTime ) )  |>  # make date
+  mutate( Month = month( Date, label=TRUE, abbr = FALSE ) ) |>
+  droplevels() |>
+  select( -DateTime )  |>
+  mutate( Weekday = wday( Date, label=TRUE, abbr = FALSE ) ) |>  # make month &  weekday 
+  select( -Date ) |>   # get rid of the datetime & date 
+  mutate( `Air Temperature (°C)` = (AirTempF - 32) * 5/9 ) |> 
+  select( Month, 
+          Weekday, 
+          `Air Temperature (°C)`, 
+          Turbidity = Turbidity_ntu ) -> data 
+
+# select to reorder (month, weekday, temp, turb )
 ```
 
 These data represent measurements taken every 15 minutes, 24 hours a day, 7 days a week, 365 days a year.  If you look at the summary of the data above, you will see several things, including:
@@ -39,7 +66,22 @@ The data from the Rice Rivers Center was evaluated for water turbidity and daily
 ### Turbidity 
 
 ```{r}
+#| echo: FALSE 
+#| label: "tab-turbidity"
+
 # Get water turbidity by month.
+library(kableExtra)
+
+data |>
+  group_by( Month ) |>
+  summarize( Minimum = min(Turbidity, na.rm=TRUE ),
+             Mean = mean( Turbidity, na.rm=TRUE ), 
+             Maximum = max( Turbidity, na.rm = TRUE)) |>
+  kable(digits=1, 
+        caption = "This is the real table caption" ) |>
+  kable_styling(bootstrap_options = "striped", 
+                full_width = FALSE, 
+                position = "left")
 
 ```
 

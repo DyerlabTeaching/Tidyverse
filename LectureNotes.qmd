@@ -1,0 +1,14 @@
+---
+title: "Teaching Log"
+editor: visual
+---
+
+## Population Genetics
+
+-   9-11: Got through the lecture component and started on the in-class activity
+
+-   9-16: Finished up on In-Class Activity, went over the rubric, and turned them loose on the homework.
+
+## Data Literacy
+
+-   9-16: Lecture slides.
