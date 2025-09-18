@@ -23,11 +23,22 @@ For this topic we will use some example data from the [Rice Rivers Center](https
 ```{r}
 library( tidyverse )
 library( lubridate )
+library( knitr )
+library( kableExtra )
 
 url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
 rice <- read_csv( url )
 summary( rice )
 ```
+
+
+```{r}
+rice |> 
+  select( AirTempF, RecordID, everything()  )
+```
+
+
+
 
 These data represent measurements taken every 15 minutes, 24 hours a day, 7 days a week, 365 days a year. If you look at the summary of the data above, you will see several things, including:
 
@@ -51,16 +62,44 @@ rice |>
 
 ```
 
+
+### Examples 
+
+HEre are some examples 
+
+
+
 ```{r}
+#| label: tbl-turbidity
+#| echo: false
+#| warning: false
+#| tbl-cap: Minimum, mean, and maximum turbidity sampled from the pier at the Rice Rivers Center in 202alkdasfj;lakdjfg;alskfj
+
+# this is a comment
 
 data |>
-  filter( `Air Temperature (°C)` > 0,
-          !is.na( Turbidity ) ) |> 
+  filter( `Air Temperature (°C)` > 0 ) |>
+  filter( !is.na( Turbidity ) ) |> 
   filter( Month == 2 ) |> 
-  summary()
+  group_by( Weekday ) |> 
+  summarize( Minimum = min( Turbidity ), 
+             Average = mean( Turbidity ),
+             Maximum = max( Turbidity ) ) |> 
+  kable() 
 
 
 ```
+
+
+
+There are several cool things to see in what ialksdajf; lkjasdf;kj a;sldfj ;asldkfj;asdlfk ja; ; see @tbl-turbidity.
+
+
+
+
+
+
+
 
 ## The Results
 
@@ -69,10 +108,15 @@ The data from the Rice Rivers Center was evaluated for water turbidity and daily
 ### Turbidity
 
 ```{r}
-# Get water turbidity by month.
 
-# make table
-# make it look good 
+data |>
+  group_by( Month ) |>
+  summarize( Minimum = min( Turbidity, na.rm=TRUE ),
+             Mean = mean( Turbidity, na.rm=TRUE), 
+             Maximum = max( Turbidity, na.rm=TRUE ) ) |>
+  kable( digits = 1 ) |>
+  kable_paper() 
+
 
 ```
 
@@ -81,16 +125,9 @@ The data from the Rice Rivers Center was evaluated for water turbidity and daily
 ```{r}
 # Get day-of-the-week air temperature
 
-# make table
-# make it look good 
+
 
 ```
-
-
-
-Weekday | Min | Mean | Max 
-------- |-----|------|----
-Mon   | 345 | 34   | 34 
 
 
 
