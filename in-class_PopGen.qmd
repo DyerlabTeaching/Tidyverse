@@ -65,9 +65,14 @@ The data from the Rice Rivers Center was evaluated for water turbidity and daily
 
 ### Turbidity 
 
+
+We examined the turbididy for the months of data (@tbl-turbidity).
+
+
 ```{r}
 #| echo: FALSE 
-#| label: "tab-turbidity"
+#| label: "tbl-turbidity"
+#| tbl-cap: "This is the real table caption that will be put above the actual table."
 
 # Get water turbidity by month.
 library(kableExtra)
@@ -77,8 +82,7 @@ data |>
   summarize( Minimum = min(Turbidity, na.rm=TRUE ),
              Mean = mean( Turbidity, na.rm=TRUE ), 
              Maximum = max( Turbidity, na.rm = TRUE)) |>
-  kable(digits=1, 
-        caption = "This is the real table caption" ) |>
+  kable(digits=1 ) |>
   kable_styling(bootstrap_options = "striped", 
                 full_width = FALSE, 
                 position = "left")
@@ -89,8 +93,26 @@ data |>
 
 ### Daily Air Temperature
 
+We measured daily air temperature and found deviations across days of the week (@tbl-airtemp).
+
+
 ```{r}
+#| label: "tbl-airtemp"
+#| tbl-cap: "This is the average air temperature for the Rice Rivers Center in the first few months of 2014 by day of the week."
+#| echo: false 
+
 # Get day-of-the-week air temperature
+
+data |>
+  filter( Month == "February" ) |> 
+  group_by( Weekday ) |> 
+  summarize( Temperature = mean(`Air Temperature (°C)`) ) |>
+  kable()
+
+
+
+
+
 
 ```
 

@@ -85,3 +85,29 @@ The data from the Rice Rivers Center was evaluated for water turbidity and daily
 # make it look good 
 
 ```
+
+
+
+Weekday | Min | Mean | Max 
+------- |-----|------|----
+Mon   | 345 | 34   | 34 
+
+
+
+
+
+
+```{r}
+library( tidyr )
+
+data |>
+  select( -Month, -Weekday ) |> 
+  pivot_longer( 
+    cols = c(Turbidity, `Air Temperature (°C)`) 
+    ) |> 
+  group_by( name ) |> 
+  summarize( Minimum = min( value, na.rm=TRUE ),
+             Mean = mean( value, na.rm=TRUE ), 
+             Maximum = max( value, na.rm=TRUE ) )
+
+```
