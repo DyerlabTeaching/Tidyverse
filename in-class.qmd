@@ -31,14 +31,10 @@ rice <- read_csv( url )
 summary( rice )
 ```
 
-
 ```{r}
 rice |> 
   select( AirTempF, RecordID, everything()  )
 ```
-
-
-
 
 These data represent measurements taken every 15 minutes, 24 hours a day, 7 days a week, 365 days a year. If you look at the summary of the data above, you will see several things, including:
 
@@ -62,12 +58,9 @@ rice |>
 
 ```
 
+### Examples
 
-### Examples 
-
-HEre are some examples 
-
-
+HEre are some examples
 
 ```{r}
 #| label: tbl-turbidity
@@ -90,16 +83,7 @@ data |>
 
 ```
 
-
-
 There are several cool things to see in what ialksdajf; lkjasdf;kj a;sldfj ;asldkfj;asdlfk ja; ; see @tbl-turbidity.
-
-
-
-
-
-
-
 
 ## The Results
 
@@ -128,11 +112,6 @@ data |>
 
 
 ```
-
-
-
-
-
 
 ```{r}
 library( tidyr )
