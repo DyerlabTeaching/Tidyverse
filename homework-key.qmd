@@ -1,0 +1,62 @@
+---
+title: "Tidyverse Homework Key"
+author: "Rodney J. Dyer"
+date: today
+editor: visual
+format: 
+  html: 
+    code-tools: true 
+abstract:  \ 
+  This document summarizes the results of a plant growth experiement.  Ten replicate plants were submitted randomly to a control and two different growth treatments.  The treatments had alterate impacts on growth with one producing lighter plants and another heaver, when compared to the control.  Data are summarized in tabular format.
+---
+
+```{r}
+#| echo: true
+#| warning: false
+#| message: false 
+
+# I load in the libraries and the data in this chunk.
+library( knitr )
+library( tidyverse )
+library( kableExtra )
+
+# These data are a default data set in R
+data( PlantGrowth )
+```
+
+## Methods
+
+The data were retrieved from the built-in `datasets` in R and were originally presented by Dobson (1983). Data labels were formatted for legibility and grouped by treatment level (`ctrl`, `trt1`, and `trt2`). Differences in treatments were summarized by comparing minimum, mean, and maximum and presented in tabular format.
+
+```{r}
+
+# Here I 
+PlantGrowth |>
+  select( Weight = weight, 
+          Treatment = group ) |>
+  group_by( Treatment ) |>
+  summarize( Minimum = min( Weight ), 
+             Average = mean( Weight ),
+             Maximum = max( Weight ) ) -> plantWeights
+```
+
+## Results
+
+The results of this experiment (\@tbl-dryWeight) show divergent responses for each of the two treatments, when compared to the control. The `trt1` treatment resulted in less accumulated dry weight for all estimates compared to the `ctrl` plants, whereas `trt1` produced heavier plants for all quantitative measurements.
+
+```{r}
+#| label: tbl-dryWeight
+#| tbl-cap: "A summary of dry plant weights for the control (ctrl) and two alternative growth treatments (trt1 & trt2) from Dobson (1983)."
+
+
+plantWeights |> 
+  kable() |>
+  kable_paper( "striped", 
+               full_width = FALSE ) |>
+  add_header_above( c( " " = 1, "Plant Dry Weight" = 3))
+
+```
+
+## Citations
+
+Dobson, A. J. (1983) *An Introduction to Statistical Modelling*. London: Chapman and Hall. [doi](https://doi.org/10.24097/wolfram.98364.data).
