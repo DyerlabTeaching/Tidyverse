@@ -39,7 +39,7 @@ These data represent measurements taken every 15 minutes, 24 hours a day, 7 days
 If you look at the summary of the data above, you will see several things, including:
 
 - Date and time objects are `character`
-- Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches.  In fact, there are duplication of data columns in different units (guess what kind of correlation they might have...)
+- <mark>Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches.</mark>  In fact, there is duplication of data columns in different units (guess what kind of correlation they might have...)
 
 
 ## Verbs of Analysis
@@ -58,7 +58,7 @@ In the following examples, we'll be using the rice data above.  For each verb, I
 
 ### The Output
 
-The key to these activities is that every one of these functions takes a `data.frame` as input, does its operations on it, then return a `data.frame` object as output.  The `data.frame` is the core data container for all of these actions.
+The key to these activities is that every one of these functions takes a `data.frame` as input, does its operations on it, then returns a `data.frame` object as output.  The `data.frame` is the core data container for all of these actions.
 
 
 ### Select Operator
@@ -80,7 +80,7 @@ Select can also be used to reorder the columns in a `data.frame` object.  Here a
 names( rice )
 ```
 
-Let's say that you wanted to reorder the columns as `RecordID`, `ODO_mgl` and `PH` as the first three columns and leave everything else as is.  There is this cool function `everthying()` that helps out. 
+Let's say that you wanted to reorder the columns as `RecordID`, `ODO_mgl` and `PH` as the first three columns and leave everything else as is.  There is this cool function `everything()` that helps out. 
 
 
 ```{r}
@@ -93,7 +93,7 @@ names( df )
 
 ### Filter
 
-The function `filter()` works to select records (rows) based upon some criteria.  So for example, if I am interested in just records when the airtemp was freezing (and the raw data are in °F).  The range of values in the original data was:
+The function `filter()` works to select records (rows) based upon some criteria.  <mark>So for example, if I am interested in just records when the airtemp was freezing (and the raw data are in °F).</mark>  The range of values in the original data was:
 
 ```{r}
 range( rice$AirTempF )
@@ -173,11 +173,11 @@ rice %>%
 ```
 
 
-### Summarise
+### Summarize
 
 This function is the first one that does not return some version of the original data that was passed to it. Rather, this performs operations on the data and makes a brand new data.frame object.
 
-Each argument you give to the function performs one or more operations on the data and returns a brand new `data.frame` object with only the the values specified.   
+Each argument you give to the function performs one or more operations on the data and returns a brand new `data.frame` object with only the values specified.   
 
 Here is an example where I am taking the mean air and water temperature (n.b., one is in °F and the other is in °C).  Notice the result is a new `data.frame` object with one row and two new columns defined by how I asked for the summary in the first place.  I used single tick notation so I can have a space in the column names.
 
@@ -217,6 +217,6 @@ Here are some strategies that I use when building up these manipulation workflow
 
 1. Do not think that you have to do the whole thing at once.  I typically build up the workflow, one line at a time.  Make sure the output from the previous line is what you think it should be then add the next one.
 
-2. Keep your code open and airy, it makes it easier to read and to catch any logical errors that may arrise.
+2. Keep your code open and airy, it makes it easier to read and to catch any logical errors that may arise.
 
 3. You can pipe into a lot of different functions.  In fact, any function that takes a data frame can be the recipient of a pipe.  While developing a workflow, I will often pipe into things like `head()`, `summary()`, or `View()` to take a look at what is coming out of my workflow to make sure it resembles what I think it should look like.

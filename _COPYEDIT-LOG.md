@@ -1,0 +1,26 @@
+# Copy-Edit Log — Tidyverse
+
+Tracks copy-editing passes over this module's `.qmd` documents. Clear-cut
+typos/grammar/spelling errors are corrected directly in the source. Items
+that need an author decision are left in place but wrapped in
+`<mark>...</mark>` so they show up highlighted in the rendered HTML.
+
+## narrative.qmd — 2026-08-15
+
+### Fixed directly (typos, spelling, grammar)
+
+| Line | Issue | Fix |
+|---|---|---|
+| 42 | "there are duplication of data columns" (agreement) | "there is duplication of data columns" |
+| 61 | "then return a `data.frame` object" (agreement) | "then returns a `data.frame` object" |
+| 83 | "`everthying()`" — not a real function name, referring to the `dplyr` helper | "`everything()`" |
+| 176 | "### Summarise" — British spelling, inconsistent with the rest of the doc and the `summarize()` function used throughout | "### Summarize" |
+| 180 | "only the the values specified" (duplicate word) | "only the values specified" |
+| 220 | "logical errors that may arrise" | "arise" |
+
+### Flagged for your review (highlighted with `<mark>` in the source)
+
+| Line | Text | Why it's flagged |
+|---|---|---|
+| ~42 | "Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches." | Sentence doesn't parse ("with units in the same file include" has no clean grammatical role) and "Standard" reads oddly opposite "Imperial" — possibly meant "Metric." Needs a rewrite rather than a word swap. |
+| ~96 | "So for example, if I am interested in just records when the airtemp was freezing (and the raw data are in °F)." | The "if" clause has no main clause — it trails off before saying what happens when you're interested in those records. Needs the intended completion. |

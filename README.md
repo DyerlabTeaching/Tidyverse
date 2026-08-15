@@ -4,7 +4,7 @@
 
 ## Impetus
 
-The tidyverse is a constellation of libraries that have been created to make data manipulation easier and your research generaly more reliable and repeatable. The `tidy` movement has really gone a long way in creating tools that make data analysis much more enjoyable and accessible.
+The tidyverse is a constellation of libraries that have been created to make data manipulation easier and your research generally more reliable and repeatable. The `tidy` movement has really gone a long way in creating tools that make data analysis much more enjoyable and accessible.
 
 ## Module Learning Objectives
 
@@ -30,7 +30,7 @@ The tidyverse is a constellation of libraries that have been created to make dat
 
 ## Content
 
-Content for this topic include the following resources.
+Content for this topic includes the following resources.
 
 -   The [slides](https://dyerlabteaching.github.io/Tidyverse/slides.html) on basic tidyverse use.
 -   A larger [narrative](https://dyerlabteaching.github.io/Tidyverse/narrative.html) going into more depth on the specifics of the topic.
@@ -42,7 +42,7 @@ Content for this topic include the following resources.
 This activity has both in-class and homework activities.
 
 -   An [in class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) document that we will work through in person to learn about tabular output.
--   A take-heme [homework](https://dyerlabteaching.github.io/Tidyverse/homework.html) document where you'll be gathering your own data and providing a published summary of it, following the published rubric.
+-   A take-home [homework](https://dyerlabteaching.github.io/Tidyverse/homework.html) document where you'll be gathering your own data and providing a published summary of it, following the published rubric.
 
 ## Contact Information
 
