@@ -1,6 +1,5 @@
 ---
-title: "Tidyverse"
-subtitle: "In-Class Activity"
+title: "In Class Activity - Tidyverse"
 author: "Dyer"
 format: html
 execute:

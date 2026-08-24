@@ -1,6 +1,6 @@
 ---
 title: "Summary Tabular Data Homework"
-auhtor: "YOUR NAME HERE"
+author: "YOUR NAME HERE"
 format: html
 ---
   
