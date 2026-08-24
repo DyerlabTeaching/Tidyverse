@@ -73,8 +73,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="in-class_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="in-class_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="in-class_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="in-class_files/libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="in-class_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -223,195 +221,24 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
                                                                </code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( AirTempF, RecordID, <span class="fu">everything</span>()  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8,199 × 23
-   AirTempF RecordID DateTime        PAR WindSpeed_mph WindDir RelHumidity BP_HG
-      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
- 1     31.0    43816 1/1/2014 12:…     0          3.87    14.6        80.5  30.3
- 2     30.7    43817 1/1/2014 12:…     0          4.79    18.5        82.1  30.3
- 3     31.2    43818 1/1/2014 12:…     0          3.61    16.2        81.9  30.3
- 4     30.5    43819 1/1/2014 12:…     0          2.99    11.5        83    30.3
- 5     30.9    43820 1/1/2014 1:0…     0          3.52    11.3        81.8  30.3
- 6     30.6    43821 1/1/2014 1:1…     0          3.83    20.0        82.8  30.3
- 7     30.2    43822 1/1/2014 1:3…     0          4.23    12.5        82.2  30.3
- 8     30.3    43823 1/1/2014 1:4…     0          4.38    16.3        81.1  30.3
- 9     30.9    43824 1/1/2014 2:0…     0          4.04    19.0        76    30.3
-10     31.9    43825 1/1/2014 2:1…     0          3.64    29.4        70.0  30.3
-# ℹ 8,189 more rows
-# ℹ 15 more variables: Rain_in &lt;dbl&gt;, H2O_TempC &lt;dbl&gt;, SpCond_mScm &lt;dbl&gt;,
-#   Salinity_ppt &lt;dbl&gt;, PH &lt;dbl&gt;, PH_mv &lt;dbl&gt;, Turbidity_ntu &lt;dbl&gt;,
-#   Chla_ugl &lt;dbl&gt;, BGAPC_CML &lt;dbl&gt;, BGAPC_rfu &lt;dbl&gt;, ODO_sat &lt;dbl&gt;,
-#   ODO_mgl &lt;dbl&gt;, Depth_ft &lt;dbl&gt;, Depth_m &lt;dbl&gt;,
-#   SurfaceWaterElev_m_levelNad83m &lt;dbl&gt;</code></pre>
-</div>
-</div>
 <p>These data represent measurements taken every 15 minutes, 24 hours a day, 7 days a week, 365 days a year. If you look at the summary of the data above, you will see several things, including:</p>
 <ul>
 <li>Date and time objects are <code>character</code></li>
 <li>Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches. In fact, there are duplication of data columns in different units (guess what kind of correlation they might have…)</li>
 </ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( DateTime, AirTempF, Turbidity_ntu ) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime ) ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="sc">-</span>DateTime ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Month =</span> <span class="fu">month</span>( Date ) ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Weekday =</span> <span class="fu">wday</span>( Date, </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">label =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">abbr =</span> <span class="cn">FALSE</span> ) ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Temp =</span> (AirTempF <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span> ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( Month, </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>          Weekday,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">Turbidity =</span> Turbidity_ntu,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Air Temperature (°C)</span><span class="st">`</span> <span class="ot">=</span> Temp ) <span class="ot">-&gt;</span> data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="examples" class="level3">
-<h3 class="anchored" data-anchor-id="examples">Examples</h3>
-<p>HEre are some examples</p>
-<div class="cell">
-<div id="tbl-turbidity" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-turbidity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Minimum, mean, and maximum turbidity sampled from the pier at the Rice Rivers Center in 202alkdasfj;lakdjfg;alskfj
-</figcaption>
-<div aria-describedby="tbl-turbidity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Weekday</th>
-<th style="text-align: right;">Minimum</th>
-<th style="text-align: right;">Average</th>
-<th style="text-align: right;">Maximum</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Sunday</td>
-<td style="text-align: right;">9.8</td>
-<td style="text-align: right;">24.98494</td>
-<td style="text-align: right;">94.7</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Monday</td>
-<td style="text-align: right;">13.2</td>
-<td style="text-align: right;">30.83234</td>
-<td style="text-align: right;">63.8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Tuesday</td>
-<td style="text-align: right;">15.6</td>
-<td style="text-align: right;">28.84094</td>
-<td style="text-align: right;">117.3</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Wednesday</td>
-<td style="text-align: right;">11.6</td>
-<td style="text-align: right;">28.50165</td>
-<td style="text-align: right;">77.6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Thursday</td>
-<td style="text-align: right;">13.9</td>
-<td style="text-align: right;">24.84766</td>
-<td style="text-align: right;">52.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Friday</td>
-<td style="text-align: right;">16.3</td>
-<td style="text-align: right;">39.86920</td>
-<td style="text-align: right;">187.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Saturday</td>
-<td style="text-align: right;">9.3</td>
-<td style="text-align: right;">26.79613</td>
-<td style="text-align: right;">102.8</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>There are several cool things to see in what ialksdajf; lkjasdf;kj a;sldfj ;asldkfj;asdlfk ja; ; see <a href="#tbl-turbidity" class="quarto-xref">Table&nbsp;1</a>.</p>
-</section>
 </section>
 <section id="the-results" class="level2">
 <h2 class="anchored" data-anchor-id="the-results">The Results</h2>
-<p>The data from the Rice Rivers Center was evaluated for water turbidity and daily air temperature.</p>
 <section id="turbidity" class="level3">
 <h3 class="anchored" data-anchor-id="turbidity">Turbidity</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="at">Minimum =</span> <span class="fu">min</span>( Turbidity, <span class="at">na.rm=</span><span class="cn">TRUE</span> ),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">Mean =</span> <span class="fu">mean</span>( Turbidity, <span class="at">na.rm=</span><span class="cn">TRUE</span>), </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">Maximum =</span> <span class="fu">max</span>( Turbidity, <span class="at">na.rm=</span><span class="cn">TRUE</span> ) ) <span class="sc">|&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="lightable-paper caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: right;" data-quarto-table-cell-role="th">Month</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Minimum</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Mean</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Maximum</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: right;">27.3</td>
-<td style="text-align: right;">184.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">9.3</td>
-<td style="text-align: right;">28.7</td>
-<td style="text-align: right;">187.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">6.2</td>
-<td style="text-align: right;">16.9</td>
-<td style="text-align: right;">139.0</td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="daily-air-temperature" class="level3">
 <h3 class="anchored" data-anchor-id="daily-air-temperature">Daily Air Temperature</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get day-of-the-week air temperature</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidyr )</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="sc">-</span>Month, <span class="sc">-</span>Weekday ) <span class="sc">|&gt;</span> </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>( </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(Turbidity, <span class="st">`</span><span class="at">Air Temperature (°C)</span><span class="st">`</span>) </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span> </span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( name ) <span class="sc">|&gt;</span> </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="at">Minimum =</span> <span class="fu">min</span>( value, <span class="at">na.rm=</span><span class="cn">TRUE</span> ),</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">Mean =</span> <span class="fu">mean</span>( value, <span class="at">na.rm=</span><span class="cn">TRUE</span> ), </span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">Maximum =</span> <span class="fu">max</span>( value, <span class="at">na.rm=</span><span class="cn">TRUE</span> ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-  name                 Minimum  Mean Maximum
-  &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1 Air Temperature (°C)   -15.7  3.78    23.8
-2 Turbidity                6.2 24.5    188. </code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>

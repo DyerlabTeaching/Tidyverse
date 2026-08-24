@@ -30,99 +30,23 @@ rice <- read_csv( url )
 summary( rice )
 ```
 
-```{r}
-rice |> 
-  select( AirTempF, RecordID, everything()  )
-```
-
 These data represent measurements taken every 15 minutes, 24 hours a day, 7 days a week, 365 days a year. If you look at the summary of the data above, you will see several things, including:
 
 -   Date and time objects are `character`
 -   Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches. In fact, there are duplication of data columns in different units (guess what kind of correlation they might have...)
 
-```{r}
-rice |>
-  select( DateTime, AirTempF, Turbidity_ntu ) |>
-  mutate( Date = mdy_hms( DateTime ) ) |> 
-  select( -DateTime ) |> 
-  mutate( Month = month( Date ) ) |> 
-  mutate( Weekday = wday( Date, 
-                          label = TRUE,
-                          abbr = FALSE ) ) |> 
-  mutate( Temp = (AirTempF - 32) * 5/9 ) |> 
-  select( Month, 
-          Weekday,
-          Turbidity = Turbidity_ntu,
-          `Air Temperature (°C)` = Temp ) -> data
-
-```
-
-### Examples
-
-HEre are some examples
-
-```{r}
-#| label: tbl-turbidity
-#| echo: false
-#| warning: false
-#| tbl-cap: Minimum, mean, and maximum turbidity sampled from the pier at the Rice Rivers Center in 202alkdasfj;lakdjfg;alskfj
-
-# this is a comment
-
-data |>
-  filter( `Air Temperature (°C)` > 0 ) |>
-  filter( !is.na( Turbidity ) ) |> 
-  filter( Month == 2 ) |> 
-  group_by( Weekday ) |> 
-  summarize( Minimum = min( Turbidity ), 
-             Average = mean( Turbidity ),
-             Maximum = max( Turbidity ) ) |> 
-  kable() 
-
-
-```
-
-There are several cool things to see in what ialksdajf; lkjasdf;kj a;sldfj ;asldkfj;asdlfk ja; ; see @tbl-turbidity.
-
 ## The Results
-
-The data from the Rice Rivers Center was evaluated for water turbidity and daily air temperature.
 
 ### Turbidity
 
 ```{r}
-
-data |>
-  group_by( Month ) |>
-  summarize( Minimum = min( Turbidity, na.rm=TRUE ),
-             Mean = mean( Turbidity, na.rm=TRUE), 
-             Maximum = max( Turbidity, na.rm=TRUE ) ) |>
-  kable( digits = 1 ) |>
-  kable_paper() 
-
+# Your code here
 
 ```
 
 ### Daily Air Temperature
 
 ```{r}
-# Get day-of-the-week air temperature
-
-
-
-```
-
-```{r}
-library( tidyr )
-
-data |>
-  select( -Month, -Weekday ) |> 
-  pivot_longer( 
-    cols = c(Turbidity, `Air Temperature (°C)`) 
-    ) |> 
-  group_by( name ) |> 
-  summarize( Minimum = min( value, na.rm=TRUE ),
-             Mean = mean( value, na.rm=TRUE ), 
-             Maximum = max( value, na.rm=TRUE ) )
+# Your code here
 
 ```
