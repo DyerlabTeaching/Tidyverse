@@ -30,11 +30,15 @@ The tidyverse is a constellation of libraries that have been created to make dat
 - A larger [narrative](https://dyerlabteaching.github.io/Tidyverse/narrative.html) going into more depth on the specifics of the topic.
 - The data set we will use for this is the Rice Rivers Center data set (from 2014). You can see it here as its normal [Google Sheets](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/edit?usp=sharing) or as a [CSV](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv) file.
 - A [cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf) going over the basic analysis verb functions from `dplyr`.
+- An [in class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) document that we will work through in person to learn about tabular output.
 
 ## Assessment
 
-- An [in class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) document that we will work through in person to learn about tabular output.
 - A take-home [homework](https://dyerlabteaching.github.io/Tidyverse/homework.html) document where you'll be gathering your own data and providing a published summary of it, following the published rubric.
+
+## Logistics
+
+- A [Teaching Log](https://dyerlabteaching.github.io/Tidyverse/log.html) record of delivery and notes.
 
 ## Contact Information
 
