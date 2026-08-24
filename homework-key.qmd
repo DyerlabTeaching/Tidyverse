@@ -2,11 +2,8 @@
 title: "Tidyverse Homework Key"
 author: "Rodney J. Dyer"
 date: today
-editor: visual
-format: 
-  html: 
-    code-tools: true 
-abstract:  \ 
+format: html
+abstract:  \
   This document summarizes the results of a plant growth experiement.  Ten replicate plants were submitted randomly to a control and two different growth treatments.  The treatments had alterate impacts on growth with one producing lighter plants and another heaver, when compared to the control.  Data are summarized in tabular format.
 ---
 
