@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Dyer">
 
-<title>Tidyverse</title>
+<title>Teaching Log</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,57 +23,20 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="in-class_PopGen_files/libs/clipboard/clipboard.min.js"></script>
-<script src="in-class_PopGen_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="in-class_PopGen_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="in-class_PopGen_files/libs/quarto-html/popper.min.js"></script>
-<script src="in-class_PopGen_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="in-class_PopGen_files/libs/quarto-html/anchor.min.js"></script>
-<link href="in-class_PopGen_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="in-class_PopGen_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="in-class_PopGen_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="in-class_PopGen_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="in-class_PopGen_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="in-class_PopGen_files/libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="in-class_PopGen_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="log_files/libs/clipboard/clipboard.min.js"></script>
+<script src="log_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="log_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="log_files/libs/quarto-html/popper.min.js"></script>
+<script src="log_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="log_files/libs/quarto-html/anchor.min.js"></script>
+<link href="log_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="log_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="log_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="log_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="log_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -87,221 +49,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tidyverse</h1>
-<p class="subtitle lead">In-Class Activity</p>
+<h1 class="title">Teaching Log</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Dyer </p>
-          </div>
-  </div>
     
   
     
   </div>
   
-<div>
-  <div class="abstract">
-    <div class="block-title">Abstract</div>
-    This in-class activity will be used in the lecture to facilitate the use of several aspects relevant to applying the ‘verbs’ of data manipulation using the <code>tidyverse</code> library.
-  </div>
-</div>
 
 
 </header>
 
 
-<section id="the-question" class="level2">
-<h2 class="anchored" data-anchor-id="the-question">The Question</h2>
 <blockquote class="blockquote">
-<p>Load in the provided data set to answer the following questions. In the space below create a table of the following data and in-text references to the table.</p>
-<ol type="1">
-<li>Make a table showing minimum, mean, and maximum water turbidity for each month in the dataset, and<br>
-</li>
-<li>Describe the daytime air temperatures at the Rice Rivers Center for February, 2014 by day of the week</li>
-</ol>
+<p>Daily updates on progress for the course in each section.</p>
 </blockquote>
-</section>
-<section id="the-data" class="level2">
-<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
-<p>For this topic we will use some example data from the <a href="https://ricerivers.vcu.edu">Rice Rivers Center</a>. These data represent both atmospheric and water data collected from instrumentation on-site. I have stored these data in a spreadsheet that is shared on Google Drive as a CSV file.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidyverse )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.2.1     ✔ readr     2.2.0
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.3     ✔ tibble    3.3.1
-✔ lubridate 1.9.5     ✔ tidyr     1.3.2
-✔ purrr     1.2.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( lubridate )</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( knitr )</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&amp;single=true&amp;output=csv"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>rice <span class="ot">&lt;-</span> <span class="fu">read_csv</span>( url )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 8199 Columns: 23
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (1): DateTime
-dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a summary </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( DateTime, AirTempF, Turbidity_ntu ) <span class="sc">|&gt;</span>  <span class="co"># select datetime, temp, turbidity </span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime ) )  <span class="sc">|&gt;</span>  <span class="co"># make date</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Month =</span> <span class="fu">month</span>( Date, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span> ) ) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">droplevels</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="sc">-</span>DateTime )  <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Weekday =</span> <span class="fu">wday</span>( Date, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span> ) ) <span class="sc">|&gt;</span>  <span class="co"># make month &amp;  weekday </span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="sc">-</span>Date ) <span class="sc">|&gt;</span>   <span class="co"># get rid of the datetime &amp; date </span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="st">`</span><span class="at">Air Temperature (°C)</span><span class="st">`</span> <span class="ot">=</span> (AirTempF <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span> ) <span class="sc">|&gt;</span> </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( Month, </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>          Weekday, </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Air Temperature (°C)</span><span class="st">`</span>, </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">Turbidity =</span> Turbidity_ntu ) <span class="ot">-&gt;</span> data </span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># select to reorder (month, weekday, temp, turb )</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>These data represent measurements taken every 15 minutes, 24 hours a day, 7 days a week, 365 days a year. If you look at the summary of the data above, you will see several things, including:</p>
-<ul>
-<li>Date and time objects are <code>character</code></li>
-<li>Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches. In fact, there are duplication of data columns in different units (guess what kind of correlation they might have…)</li>
-</ul>
-</section>
-<section id="the-results" class="level2">
-<h2 class="anchored" data-anchor-id="the-results">The Results</h2>
-<p>The data from the Rice Rivers Center was evaluated for water turbidity and daily air temperature.</p>
-<section id="turbidity" class="level3">
-<h3 class="anchored" data-anchor-id="turbidity">Turbidity</h3>
-<p>We examined the turbididy for the months of data (<a href="#tbl-turbidity" class="quarto-xref">Table&nbsp;1</a>).</p>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'kableExtra' was built under R version 4.6.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'kableExtra'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:dplyr':
-
-    group_rows</code></pre>
-</div>
-<div id="tbl-turbidity" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-turbidity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: This is the real table caption that will be put above the actual table.
-</figcaption>
-<div aria-describedby="tbl-turbidity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="table table-striped cell caption-top table-sm small">
+<section id="copy-edit-log-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="copy-edit-log-tidyverse">Copy-Edit Log — Tidyverse</h2>
+<p>Tracks copy-editing passes over this module’s <code>.qmd</code> documents. Clear-cut typos/grammar/spelling errors are corrected directly in the source. Items that need an author decision are left in place but wrapped in <code>&lt;mark&gt;...&lt;/mark&gt;</code> so they show up highlighted in the rendered HTML.</p>
+<section id="narrative.qmd-2026-08-15" class="level3">
+<h3 class="anchored" data-anchor-id="narrative.qmd-2026-08-15">narrative.qmd — 2026-08-15</h3>
+<section id="fixed-directly-typos-spelling-grammar" class="level4">
+<h4 class="anchored" data-anchor-id="fixed-directly-typos-spelling-grammar">Fixed directly (typos, spelling, grammar)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Month</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Minimum</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Mean</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Maximum</th>
+<th>Line</th>
+<th>Issue</th>
+<th>Fix</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">January</td>
-<td style="text-align: right;">9.5</td>
-<td style="text-align: right;">27.3</td>
-<td style="text-align: right;">184.5</td>
+<td>42</td>
+<td>“there are duplication of data columns” (agreement)</td>
+<td>“there is duplication of data columns”</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">February</td>
-<td style="text-align: right;">9.3</td>
-<td style="text-align: right;">28.7</td>
-<td style="text-align: right;">187.7</td>
+<td>61</td>
+<td>“then return a <code>data.frame</code> object” (agreement)</td>
+<td>“then returns a <code>data.frame</code> object”</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">March</td>
-<td style="text-align: right;">6.2</td>
-<td style="text-align: right;">16.9</td>
-<td style="text-align: right;">139.0</td>
+<td>83</td>
+<td>“<code>everthying()</code>” — not a real function name, referring to the <code>dplyr</code> helper</td>
+<td>“<code>everything()</code>”</td>
+</tr>
+<tr class="even">
+<td>176</td>
+<td>“### Summarise” — British spelling, inconsistent with the rest of the doc and the <code>summarize()</code> function used throughout</td>
+<td>“### Summarize”</td>
+</tr>
+<tr class="odd">
+<td>180</td>
+<td>“only the the values specified” (duplicate word)</td>
+<td>“only the values specified”</td>
+</tr>
+<tr class="even">
+<td>220</td>
+<td>“logical errors that may arrise”</td>
+<td>“arise”</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</figure>
-</div>
-</div>
 </section>
-<section id="daily-air-temperature" class="level3">
-<h3 class="anchored" data-anchor-id="daily-air-temperature">Daily Air Temperature</h3>
-<p>We measured daily air temperature and found deviations across days of the week (<a href="#tbl-airtemp" class="quarto-xref">Table&nbsp;2</a>).</p>
-<div class="cell">
-<div id="tbl-airtemp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-airtemp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: This is the average air temperature for the Rice Rivers Center in the first few months of 2014 by day of the week.
-</figcaption>
-<div aria-describedby="tbl-airtemp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
+<section id="flagged-for-your-review-highlighted-with-mark-in-the-source" class="level4">
+<h4 class="anchored" data-anchor-id="flagged-for-your-review-highlighted-with-mark-in-the-source">Flagged for your review (highlighted with <code>&lt;mark&gt;</code> in the source)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Weekday</th>
-<th style="text-align: right;">Temperature</th>
+<th>Line</th>
+<th>Text</th>
+<th>Why it’s flagged</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Sunday</td>
-<td style="text-align: right;">6.608073</td>
+<td>~42</td>
+<td>“Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches.”</td>
+<td>Sentence doesn’t parse (“with units in the same file include” has no clean grammatical role) and “Standard” reads oddly opposite “Imperial” — possibly meant “Metric.” Needs a rewrite rather than a word swap.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Monday</td>
-<td style="text-align: right;">4.080237</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Tuesday</td>
-<td style="text-align: right;">2.211878</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Wednesday</td>
-<td style="text-align: right;">3.410359</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Thursday</td>
-<td style="text-align: right;">3.928704</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Friday</td>
-<td style="text-align: right;">5.168880</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Saturday</td>
-<td style="text-align: right;">4.707552</td>
+<td>~96</td>
+<td>“So for example, if I am interested in just records when the airtemp was freezing (and the raw data are in °F).”</td>
+<td>The “if” clause has no main clause — it trails off before saying what happens when you’re interested in those records. Needs the intended completion.</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</figure>
-</div>
-</div>
+</section>
 </section>
 </section>
 
