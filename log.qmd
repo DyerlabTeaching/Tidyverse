@@ -3,7 +3,12 @@ title: "Teaching Log"
 format: html
 ---
 
-> Daily updates on progress for the course in each section.
+
+
+## 2026.09.03
+- BIOL516: Started on Tidyverse and got to [here](https://dyerlabteaching.github.io/Tidyverse/slides.html#/group-summarize)
+
+
 
 
 ## Copy-Edit Log — Tidyverse
