@@ -3,6 +3,12 @@ title: "Teaching Log"
 format: html
 ---
 
+## 2026.09.10
+- BIOL516: remember to give them the homework for the data-containers.
+
+## 2026.09.08
+- BIOL516: Finished slides and started on the in-class activity.  Got to the first question, next session, I'll turn them loose on the second section.
+- ENVS543: Got to [here](https://dyerlabteaching.github.io/Tidyverse/slides.html#/mutate)
 
 
 ## 2026.09.03
