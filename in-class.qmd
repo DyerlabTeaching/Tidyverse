@@ -1,7 +1,10 @@
 ---
 title: "In Class Activity - Tidyverse"
 author: "Dyer"
-format: html
+format: 
+  html:
+    self-contained: true
+    code-tools: true
 execute:
   echo: true
 abstract: This in-class activity will be used in the lecture to facilitate the use of several aspects relevant to applying the 'verbs' of data manipulation using the `tidyverse` library.
