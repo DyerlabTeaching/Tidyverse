@@ -10,7 +10,7 @@ format: html
 
 ## 2026.09.10
 - BIOL516: Give them the homework for the data-containers.  Finished the in-class activity. 
-- ENVS543: 
+- ENVS543: We finished up to [here](https://dyerlabteaching.github.io/Tidyverse/slides.html#/stratgies)
 
 ## 2026.09.08
 - BIOL516: Finished slides and started on the in-class activity.  Got to the first question, next session, I'll turn them loose on the second section.
