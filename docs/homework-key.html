@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rodney J. Dyer">
-<meta name="dcterms.date" content="2026-09-08">
+<meta name="dcterms.date" content="2026-09-10">
 
 <title>Tidyverse Homework Key</title>
 <style>
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 8, 2026</p>
+      <p class="date">September 10, 2026</p>
     </div>
   </div>
   
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    &nbsp;This document summarizes the results of a plant growth experiement. Ten replicate plants were submitted randomly to a control and two different growth treatments. The treatments had alterate impacts on growth with one producing lighter plants and another heaver, when compared to the control. Data are summarized in tabular format.
+    <p>A worked answer to the Tidyverse homework. Using the <code>mtcars</code> data distributed with <code>readr</code> as a stand-in for a data set a student would find, we parse the file, derive fuel economy in metric units with <code>mutate()</code>, and summarize fuel use and power by cylinder count in a publication-quality table.</p>
   </div>
 </div>
 
@@ -124,83 +124,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I load in the libraries and the data in this chunk.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidyverse )</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( knitr )</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidyverse )</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( kableExtra )</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># These data are a default data set in R</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>( PlantGrowth )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( kableExtra )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<blockquote class="blockquote">
+<p>This key uses <code>mtcars.csv</code>, which ships with the <code>readr</code> package, in place of a data set the student would go and find. <code>readr_example()</code> returns a path to the file on disk, so reading it models the “download it into your project folder” option. Any found data set meeting the assignment’s five conditions would be handled the same way.</p>
+</blockquote>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>The data were retrieved from the built-in <code>datasets</code> in R and were originally presented by Dobson (1983). Data labels were formatted for legibility and grouped by treatment level (<code>ctrl</code>, <code>trt1</code>, and <code>trt2</code>). Differences in treatments were summarized by comparing minimum, mean, and maximum and presented in tabular format.</p>
+<p><strong>Data.</strong> We used the 1974 <em>Motor Trend</em> road-test data distributed as <code>mtcars.csv</code> with the <code>readr</code> package (Henderson &amp; Velleman 1981): 32 car models, each a row, with fuel economy (<code>mpg</code>), engine displacement, gross horsepower, weight, and number of cylinders (<code>cyl</code>), among other fields. We read the file and selected the four columns we needed, renaming as we went.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here I </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>PlantGrowth <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="at">Weight =</span> weight, </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">Treatment =</span> group ) <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Treatment ) <span class="sc">|&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="at">Minimum =</span> <span class="fu">min</span>( Weight ), </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">Average =</span> <span class="fu">mean</span>( Weight ),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">Maximum =</span> <span class="fu">max</span>( Weight ) ) <span class="ot">-&gt;</span> plantWeights</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>( <span class="fu">readr_example</span>( <span class="st">"mtcars.csv"</span> ) ) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="at">Cylinders =</span> cyl,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">MPG =</span> mpg,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">Horsepower =</span> hp,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">Weight =</span> wt ) <span class="ot">-&gt;</span> cars</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 32 Columns: 11
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (11): mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
+</div>
+<p><strong>Analysis.</strong> Fuel economy was recorded as miles per US gallon, which is awkward for a metric summary and, being a ratio, does not average sensibly. We used <code>mutate()</code> to convert it to litres per 100 km (<code>235.215 / MPG</code>); this is the variable that needed a transformation before use. We then grouped the cars by cylinder count and summarized fuel use and horsepower by their minimum, mean, and maximum.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="st">`</span><span class="at">L/100km</span><span class="st">`</span> <span class="ot">=</span> <span class="fl">235.215</span> <span class="sc">/</span> MPG ) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Cylinders ) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Fuel Min</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>( <span class="st">`</span><span class="at">L/100km</span><span class="st">`</span> ),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Fuel Mean</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( <span class="st">`</span><span class="at">L/100km</span><span class="st">`</span> ),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Fuel Max</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>( <span class="st">`</span><span class="at">L/100km</span><span class="st">`</span> ),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">HP Min</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>( Horsepower ),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">HP Mean</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( Horsepower ),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">HP Max</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>( Horsepower ) ) <span class="ot">-&gt;</span> by_cyl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="reporting-values" class="level3">
+<h3 class="anchored" data-anchor-id="reporting-values">Reporting values</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>thirsty <span class="ot">&lt;-</span> <span class="fu">format</span>( <span class="fu">max</span>( by_cyl<span class="sc">$</span><span class="st">`</span><span class="at">Fuel Mean</span><span class="st">`</span> ), <span class="at">digits =</span> <span class="dv">3</span> )</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>frugal  <span class="ot">&lt;-</span> <span class="fu">format</span>( <span class="fu">min</span>( by_cyl<span class="sc">$</span><span class="st">`</span><span class="at">Fuel Mean</span><span class="st">`</span> ), <span class="at">digits =</span> <span class="dv">3</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-<p>The results of this experiment (@tbl-dryWeight) show divergent responses for each of the two treatments, when compared to the control. The <code>trt1</code> treatment resulted in less accumulated dry weight for all estimates compared to the <code>ctrl</code> plants, whereas <code>trt1</code> produced heavier plants for all quantitative measurements.</p>
+<p>Mean fuel use rose steadily with cylinder count, from 9.05 L/100 km for the four-cylinder cars to 16.1 L/100 km for the eight-cylinder cars, and mean horsepower rose with it (<a href="#tbl-bycyl" class="quarto-xref">Table&nbsp;1</a>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plantWeights <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>( <span class="st">"striped"</span>, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">full_width =</span> <span class="cn">FALSE</span> ) <span class="sc">|&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>( <span class="fu">c</span>( <span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Plant Dry Weight"</span> <span class="ot">=</span> <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-dryWeight" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>by_cyl <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>( <span class="st">"striped"</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>( <span class="fu">c</span>( <span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Fuel use (L/100km)"</span> <span class="ot">=</span> <span class="dv">3</span>, <span class="st">"Horsepower"</span> <span class="ot">=</span> <span class="dv">3</span> ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-bycyl" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dryWeight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: A summary of dry plant weights for the control (ctrl) and two alternative growth treatments (trt1 &amp; trt2) from Dobson (1983).
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bycyl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Minimum, mean, and maximum fuel use (L/100 km) and gross horsepower for the <code>mtcars</code> road-test cars, grouped by number of cylinders.
 </figcaption>
-<div aria-describedby="tbl-dryWeight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-bycyl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="lightable-paper lightable-striped cell caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: right; empty-cells: hide;"></th>
 <th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="TRUE">
-Plant Dry Weight
+Fuel use (L/100km)
+</div></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="TRUE">
+Horsepower
 </div></th>
 </tr>
 <tr class="even">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Treatment</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Minimum</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Average</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Maximum</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cylinders</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fuel Min</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fuel Mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Fuel Max</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">HP Min</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">HP Mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">HP Max</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ctrl</td>
-<td style="text-align: right;">4.17</td>
-<td style="text-align: right;">5.032</td>
-<td style="text-align: right;">6.11</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">82.6</td>
+<td style="text-align: right;">113</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">trt1</td>
-<td style="text-align: right;">3.59</td>
-<td style="text-align: right;">4.661</td>
-<td style="text-align: right;">6.03</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">13.2</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">122.3</td>
+<td style="text-align: right;">175</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">trt2</td>
-<td style="text-align: right;">4.92</td>
-<td style="text-align: right;">5.526</td>
-<td style="text-align: right;">6.31</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">12.3</td>
+<td style="text-align: right;">16.1</td>
+<td style="text-align: right;">22.6</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">209.2</td>
+<td style="text-align: right;">335</td>
 </tr>
 </tbody>
 </table>
@@ -210,9 +251,14 @@ Plant Dry Weight
 </div>
 </div>
 </section>
+<section id="answers" class="level2">
+<h2 class="anchored" data-anchor-id="answers">Answers</h2>
+<p><strong>Five of the six verbs return the same rows; one does not.</strong> <code>summarize()</code> is the exception. <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, <code>mutate()</code>, and <code>group_by()</code> all hand back a data frame with the same rows they received (reordered, subset, or with columns added). <code>summarize()</code> collapses each group down to a single row of computed values, so the output has one row per group (or one row total with no grouping) rather than one row per original observation.</p>
+<p><strong>Deleting the <code>group_by()</code> line.</strong> The same <code>summarize()</code> call would return a single row: the minimum, mean, and maximum of fuel use and horsepower computed over all 32 cars at once. <code>group_by()</code> is what tells <code>summarize()</code> to run that calculation separately within each cylinder class and stack the results.</p>
+</section>
 <section id="citations" class="level2">
 <h2 class="anchored" data-anchor-id="citations">Citations</h2>
-<p>Dobson, A. J. (1983) <em>An Introduction to Statistical Modelling</em>. London: Chapman and Hall. <a href="https://doi.org/10.24097/wolfram.98364.data">doi</a>.</p>
+<p>Henderson, H. V. and Velleman, P. J. (1981) Building multiple regression models interactively. <em>Biometrics</em> <strong>37</strong>, 391–411.</p>
 </section>
 
 </main>

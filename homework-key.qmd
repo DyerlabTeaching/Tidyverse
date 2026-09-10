@@ -2,58 +2,74 @@
 title: "Tidyverse Homework Key"
 author: "Rodney J. Dyer"
 date: today
+abstract: |
+  A worked answer to the Tidyverse homework. Using the `mtcars` data distributed with `readr` as a stand-in for a data set a student would find, we parse the file, derive fuel economy in metric units with `mutate()`, and summarize fuel use and power by cylinder count in a publication-quality table.
 format: html
-abstract:  \
-  This document summarizes the results of a plant growth experiement.  Ten replicate plants were submitted randomly to a control and two different growth treatments.  The treatments had alterate impacts on growth with one producing lighter plants and another heaver, when compared to the control.  Data are summarized in tabular format.
 ---
 
 ```{r}
-#| echo: true
+#| message: false
 #| warning: false
-#| message: false 
-
-# I load in the libraries and the data in this chunk.
-library( knitr )
 library( tidyverse )
+library( knitr )
 library( kableExtra )
-
-# These data are a default data set in R
-data( PlantGrowth )
 ```
+
+> This key uses `mtcars.csv`, which ships with the `readr` package, in place of a data set the student would go and find. `readr_example()` returns a path to the file on disk, so reading it models the "download it into your project folder" option. Any found data set meeting the assignment's five conditions would be handled the same way.
 
 ## Methods
 
-The data were retrieved from the built-in `datasets` in R and were originally presented by Dobson (1983). Data labels were formatted for legibility and grouped by treatment level (`ctrl`, `trt1`, and `trt2`). Differences in treatments were summarized by comparing minimum, mean, and maximum and presented in tabular format.
+**Data.** We used the 1974 *Motor Trend* road-test data distributed as `mtcars.csv` with the `readr` package (Henderson & Velleman 1981): 32 car models, each a row, with fuel economy (`mpg`), engine displacement, gross horsepower, weight, and number of cylinders (`cyl`), among other fields. We read the file and selected the four columns we needed, renaming as we went.
 
 ```{r}
+read_csv( readr_example( "mtcars.csv" ) ) |>
+  select( Cylinders = cyl,
+          MPG = mpg,
+          Horsepower = hp,
+          Weight = wt ) -> cars
+```
 
-# Here I 
-PlantGrowth |>
-  select( Weight = weight, 
-          Treatment = group ) |>
-  group_by( Treatment ) |>
-  summarize( Minimum = min( Weight ), 
-             Average = mean( Weight ),
-             Maximum = max( Weight ) ) -> plantWeights
+**Analysis.** Fuel economy was recorded as miles per US gallon, which is awkward for a metric summary and, being a ratio, does not average sensibly. We used `mutate()` to convert it to litres per 100 km (`235.215 / MPG`); this is the variable that needed a transformation before use. We then grouped the cars by cylinder count and summarized fuel use and horsepower by their minimum, mean, and maximum.
+
+```{r}
+cars |>
+  mutate( `L/100km` = 235.215 / MPG ) |>
+  group_by( Cylinders ) |>
+  summarize( `Fuel Min` = min( `L/100km` ),
+             `Fuel Mean` = mean( `L/100km` ),
+             `Fuel Max` = max( `L/100km` ),
+             `HP Min` = min( Horsepower ),
+             `HP Mean` = mean( Horsepower ),
+             `HP Max` = max( Horsepower ) ) -> by_cyl
+```
+
+### Reporting values
+
+```{r}
+thirsty <- format( max( by_cyl$`Fuel Mean` ), digits = 3 )
+frugal  <- format( min( by_cyl$`Fuel Mean` ), digits = 3 )
 ```
 
 ## Results
 
-The results of this experiment (\@tbl-dryWeight) show divergent responses for each of the two treatments, when compared to the control. The `trt1` treatment resulted in less accumulated dry weight for all estimates compared to the `ctrl` plants, whereas `trt1` produced heavier plants for all quantitative measurements.
+Mean fuel use rose steadily with cylinder count, from `r frugal` L/100 km for the four-cylinder cars to `r thirsty` L/100 km for the eight-cylinder cars, and mean horsepower rose with it (@tbl-bycyl).
 
 ```{r}
-#| label: tbl-dryWeight
-#| tbl-cap: "A summary of dry plant weights for the control (ctrl) and two alternative growth treatments (trt1 & trt2) from Dobson (1983)."
+#| label: tbl-bycyl
+#| tbl-cap: "Minimum, mean, and maximum fuel use (L/100 km) and gross horsepower for the `mtcars` road-test cars, grouped by number of cylinders."
 
-
-plantWeights |> 
-  kable() |>
-  kable_paper( "striped", 
-               full_width = FALSE ) |>
-  add_header_above( c( " " = 1, "Plant Dry Weight" = 3))
-
+by_cyl |>
+  kable( digits = 1 ) |>
+  kable_paper( "striped", full_width = FALSE ) |>
+  add_header_above( c( " " = 1, "Fuel use (L/100km)" = 3, "Horsepower" = 3 ) )
 ```
+
+## Answers
+
+**Five of the six verbs return the same rows; one does not.** `summarize()` is the exception. `select()`, `filter()`, `arrange()`, `mutate()`, and `group_by()` all hand back a data frame with the same rows they received (reordered, subset, or with columns added). `summarize()` collapses each group down to a single row of computed values, so the output has one row per group (or one row total with no grouping) rather than one row per original observation.
+
+**Deleting the `group_by()` line.** The same `summarize()` call would return a single row: the minimum, mean, and maximum of fuel use and horsepower computed over all 32 cars at once. `group_by()` is what tells `summarize()` to run that calculation separately within each cylinder class and stack the results.
 
 ## Citations
 
-Dobson, A. J. (1983) *An Introduction to Statistical Modelling*. London: Chapman and Hall. [doi](https://doi.org/10.24097/wolfram.98364.data).
+Henderson, H. V. and Velleman, P. J. (1981) Building multiple regression models interactively. *Biometrics* **37**, 391–411.

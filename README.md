@@ -4,7 +4,7 @@
 
 ## Impetus
 
-The tidyverse is a constellation of libraries that have been created to make data manipulation easier and your research generally more reliable and repeatable. The `tidy` movement has really gone a long way in creating tools that make data analysis much more enjoyable and accessible.
+The tidyverse is a constellation of libraries created to make data manipulation easier and your research more reliable and repeatable. The `tidy` movement has really gone a long way in creating tools that make data analysis much more enjoyable and accessible.
 
 ## Module Learning Objectives
 
@@ -18,7 +18,7 @@ The tidyverse is a constellation of libraries that have been created to make dat
 
 ### Create Reproducible Workflows that Yield Analysis-Ready Outputs
 
-> Learners will chain Tidyverse operations into readable, reproducible workflows that produce tabular and graphical summaries suitable for interpretation in data analyses.
+> Learners will chain Tidyverse operations into readable, reproducible workflows that produce tabular summaries suitable for interpretation in data analyses.
 
 - **Bloom's Levels:** Apply, Create
 - **Reinforces:** Reproducibility and clarity in coding, aligning data work with transparent scientific practice.
@@ -28,9 +28,9 @@ The tidyverse is a constellation of libraries that have been created to make dat
 
 - The [slides](https://dyerlabteaching.github.io/Tidyverse/slides.html) on basic tidyverse use.
 - A larger [narrative](https://dyerlabteaching.github.io/Tidyverse/narrative.html) going into more depth on the specifics of the topic.
-- The data set we will use for this is the Rice Rivers Center data set (from 2014). You can see it here as its normal [Google Sheets](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/edit?usp=sharing) or as a [CSV](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv) file.
+- The data set we will use for this is the Rice Rivers Center data set (from 2014). You can see it here as a normal [Google Sheets](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/edit?usp=sharing) or as a [CSV](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv) file.
 - A [cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf) going over the basic analysis verb functions from `dplyr`.
-- An [in class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) document that we will work through in person to learn about tabular output.
+- An [in-class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) document that we will work through in person to learn about tabular output.
 
 ## Assessment
 

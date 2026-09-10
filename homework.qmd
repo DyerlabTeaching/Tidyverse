@@ -1,39 +1,160 @@
 ---
-title: "Summary Tabular Data Homework"
+title: "Tidyverse Homework"
+subtitle: "Turning a raw data set into an analysis-ready summary"
 author: "YOUR NAME HERE"
-format: html
+date: today
+abstract: |
+  A sentence or two saying what the document does: the data set you found, the grouped summary you built with the tidyverse verbs, and what it shows.
+format:
+  html:
+    self-contained: true
+    code-tools: true
 ---
-  
 
-## Overview
+## The Idea
 
-The fundamental workflow for data analytics is summarized in this courses canonical image below.
+One of the central habits of reproducible research is that the **words and the code that produce them are written together**.[^ref-flows] A paragraph of *Methods* is followed immediately by the chunk that carries out what it describes. A sentence in *Results* is backed by a table generated in the chunk beside it, and every number that appears in the running text is read straight from a variable in memory with an inline `` `r ` `` expression --- never typed by hand.
 
-<center>
-![The basic workflow schematic for data analysis.](media/workflow.png)
-</center>
+[^ref-flows]: For more on building a manipulation workflow one line at a time, see the narrative section [Flows](https://dyerlabteaching.github.io/Tidyverse/narrative.html#flows).
 
-This activity will be a first step for you to develop the skills necessary for to perform these activities. To date, we've used some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu) but in this exercise, I want you to go out and try to find a public data set related to something you are interested in (e.g., something related to your own work).
+This assignment has you practice that habit while you exercise the verbs of data manipulation --- `select()`, `filter()`, `arrange()`, `mutate()`, `group_by()`, and `summarize()` --- chained together with the pipe. Read the worked example on the Rice Rivers Center data, then reproduce its structure on a data set you find yourself.
 
-## Tasks
+## A Worked Example
 
-You are going to produce a document that summarizes an external data set. This data set is one that you will have to go find on your own. The document will have the following components (in addition to the normal required materials for any online homework). This work will be evaluated using the *Markdown Document Grading Rubric* on the Canvas site.
+### Methods
 
-Your document should have the following components:
+> **Data.** We used the atmospheric and water-quality record from the [Rice Rivers Center](https://ricerivers.vcu.edu), published as a CSV from a Google Sheet. Each row is one set of instrument readings taken at a 15-minute interval through 2014. We pulled three columns --- the timestamp, air temperature (°F), and water temperature (°C) --- renaming them to something readable as we selected.
 
-1. Create a folder in your course RStudio Project folder.  Call this one `TidyVerse`.\
-2. Create a new Quarto document in this folder and name it TidyverseHomeWork.qmd. \
-3. Find your data set and either:\
-    a) Upload it to GoogleDocs and put its published CSV url in here, or\
-    b) Download the data set and put it in the same directory as your Quarto document.\
-4. Create the skeleton of a reserach document usiung headers to include:\
-    a) `Abstract`: A brief summary of the data set you have found and its properties.\
-    c) `Methods`: A description of how you loaded in and configured the data.\
-    d) `Results`: A summary of the data to include some tabular output using the `knitr` and `kableExtra` libraries to create tables suitable for publication quality.  For the data tables, summarize by including the name of the variable, its minimimum, mean, and maximum values.\
-5. Render this document and submit it on Canvas.
+```{r}
+#| message: false
+#| warning: false
+library( tidyverse )
+library( lubridate )
+library( knitr )
+library( kableExtra )
 
+url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
 
+read_csv( url ) |>
+  select( Time = DateTime,
+          AirTempF,
+          `Water Temp` = H2O_TempC ) -> rice
+```
 
+> **Analysis.** The timestamp arrived as text, so we parsed it into a real date-time with `mdy_hms()` and derived the calendar month from it. Air temperature was recorded in °F while water temperature was in °C, so we converted air temperature to °C to put both on the same scale. We then grouped the records by month and summarized each temperature by its minimum, mean, and maximum.
 
+```{r}
+rice |>
+  mutate( Time = mdy_hms( Time, tz = "EST" ),
+          Month = month( Time, label = TRUE, abbr = FALSE ),
+          `Air Temp` = (AirTempF - 32) * 5 / 9 ) |>
+  group_by( Month ) |>
+  summarize( `Air Min` = min( `Air Temp` ),
+             `Air Mean` = mean( `Air Temp` ),
+             `Air Max` = max( `Air Temp` ),
+             `Water Min` = min( `Water Temp`, na.rm = TRUE ),
+             `Water Mean` = mean( `Water Temp`, na.rm = TRUE ),
+             `Water Max` = max( `Water Temp`, na.rm = TRUE ) ) -> monthly
+```
 
+### Preparing the reporting values
 
+Before writing the Results, pull the handful of numbers you are going to quote out of the summary and format them here, giving each a short name. Naming them in one place keeps the Results prose clean --- the sentence carries a short word like `warmest_air` rather than a `format(..., digits = 3)` call wedged into the middle of it --- and when the data change you edit only this chunk, never the prose.
+
+```{r}
+n_months    <- nrow( monthly )
+warmest_air <- format( max( monthly$`Air Mean` ), digits = 3 )
+coldest_air <- format( min( monthly$`Air Mean` ), digits = 3 )
+```
+
+### Results
+
+> Over the `r n_months` months represented in the data, mean monthly air temperature at the Rice Rivers Center ranged from `r coldest_air` °C in the coldest month to `r warmest_air` °C in the warmest (@tbl-monthly). Water temperature climbed across the same months but over a narrower range, as the full monthly summary shows.
+
+```{r}
+#| label: tbl-monthly
+#| tbl-cap: "Minimum, mean, and maximum monthly air and water temperature (°C) at the Rice Rivers Center, 2014."
+
+monthly |>
+  kable( digits = 1 ) |>
+  kable_paper( "striped", full_width = FALSE ) |>
+  add_header_above( c( " " = 1, "Air Temp (°C)" = 3, "Water Temp (°C)" = 3 ) )
+```
+
+Here is the literal source of that Results paragraph --- note that every number is an inline expression:
+
+```{verbatim}
+Over the `r n_months` months represented in the data, mean monthly air temperature at the Rice Rivers Center ranged from `r coldest_air` °C in the coldest month to `r warmest_air` °C in the warmest (@tbl-monthly). Water temperature climbed across the same months but over a narrower range.
+```
+
+## Your Assignment
+
+Find your own data set and build the same kind of grouped summary from it.[^ref-verbs]
+
+### The data set you find must
+
+1. be a single **rectangular CSV** --- one observation (a measurement, a site visit, a specimen, a record) per row, holding raw values, not a table someone has already summarized;
+2. have **at least four variables**, and among them at least one **categorical variable** you can group by (a site, species, treatment, year, month, land-cover class, sampling gear, ...), at least two **quantitative variables** worth summarizing, and at least one variable that **needs a `mutate()` before it is usable** --- a date or time stored as text that you parse with `lubridate`, a measurement in the wrong unit that you convert, or a value you derive from other columns;
+3. have **at least 30 rows**, so the group summaries mean something;
+4. be about something connected to your own research or interests;
+5. be **public and citable**. Good places to look: [data.gov](https://data.gov), the USGS [Water Data](https://waterdata.usgs.gov) portal, NOAA's [Climate Data Online](https://www.ncei.noaa.gov/cdo-web/), the [EPA](https://www.epa.gov/data), [GBIF](https://www.gbif.org), the [Dryad](https://datadryad.org) and [ESA](https://esapubs.org/archive/) data archives, [TidyTuesday](https://github.com/rfordatascience/tidytuesday), or your state or VCU open-data portal.
+
+Load it reproducibly --- either upload it to Google Sheets and read the published CSV URL, or download it into your course project folder and read it from there. Do not read it from your Downloads folder or your Desktop.
+
+### Your document must have
+
+1. **Methods** --- a *Data* paragraph followed by the chunk that reads the CSV and `select()`s (and renames) the columns you will use, then an *Analysis* paragraph followed by the chunk that does the work. The Analysis chunk must be a single piped workflow using **at least `select()`, `mutate()`, `group_by()`, and `summarize()`**, and the *Analysis* paragraph must say which variable needed the `mutate()` and why.
+2. **A reporting-values chunk** --- `format()` the two or three numbers you quote in the Results, and give each a short name.
+3. **Results** --- one paragraph that reports those numbers as bare inline `` `r ` `` values (no `format()` in the prose) and that points the reader to your table **using Quarto's chunk-label cross-reference system**: a `#| label: tbl-...` and a `#| tbl-cap:` in the table chunk, and `@tbl-...` in the sentence. Do not write "the table below" or type the table number by hand.[^ref-tables]
+4. **One publication-quality table**, built with `kable()` and `kableExtra`, giving --- for each quantitative variable --- its **minimum, mean, and maximum**, with one row per level of your categorical variable.
+
+Then answer briefly, a sentence or two each:
+
+- Five of the six manipulation verbs hand back a data frame with the same rows they were given; one does not. Which one, and what does it return instead?
+- Your table has one row per group because of `group_by()`. What would the same `summarize()` call produce if you deleted the `group_by()` line, and why?
+
+[^ref-verbs]: The mechanics --- renaming inside `select()`, parsing dates with `mutate()`, `group_by() |> summarize()`, and formatting tables with `kableExtra` --- are all in the module [narrative](https://dyerlabteaching.github.io/Tidyverse/narrative.html) and [slides](https://dyerlabteaching.github.io/Tidyverse/slides.html).
+
+[^ref-tables]: The label / caption / `@tbl-` cross-reference system is explained in the narrative section [Cross-Referencing Tables in Text](https://dyerlabteaching.github.io/Tidyverse/narrative.html#cross-referencing-tables-in-text). It is **not** in the slides --- you will need to read the narrative for it.
+
+## What You Turn In
+
+**One file: the rendered, self-contained `.html`.** Not the `.qmd`, and not a copy of this page. Make a *new* Quarto document that contains only your own work --- your Methods and Results sections with their chunks, the reporting-values chunk, your table, and your brief answers to the two questions.
+
+The worked example above is a model to imitate, not text to paste into your document.
+
+### Making the document
+
+1. In RStudio: **File ▸ New File ▸ Quarto Document…**
+2. In the dialog, enter a title and your name, leave the engine set to **Knitr**, and click **Create**.
+3. Delete everything RStudio puts below the header (the "Quarto" boilerplate and its example chunk).
+4. Replace the header it generated with the one below.
+5. Save the file into your course project folder as `Tidyverse-Homework.qmd`.
+6. Write your content, then click **Render** to produce the `.html`. That HTML file is what you submit.
+
+### The full YAML header
+
+```yaml
+---
+title: "Tidyverse Homework"
+author: "Your Name"
+date: today
+abstract: |
+  A sentence or two saying what the document does: the data, the grouped summary, and what you found.
+format:
+  html:
+    self-contained: true
+    code-tools: true
+---
+```
+
+- **`title` / `author` / `date` / `abstract`** --- complete front matter, including a short summary where a scientific paper would put its abstract. `date: today` fills itself in at render time.
+- **`format: html`** --- render to a single web page I can open in any browser.
+- **`self-contained: true`** --- bundle every image, style, and script *into* that one `.html` file. Without it the file depends on a sibling `*_files/` folder that never makes it into the upload, and your figures and formatting arrive broken.
+- **`code-tools: true`** --- adds the "</> Code" button in the top-right that lets a reader view the full source. **This is not optional.** If I cannot see the code behind a wrong answer, I cannot tell whether you were one typo away or lost the plot entirely --- which means I cannot give partial credit, point out where it went sideways, or help you fix it.
+
+Use this same header layout for every document you turn in this course.
+
+## How This Is Graded
+
+This assignment is scored with the **Online Homework Rubric** on the Canvas site --- the same rubric used for every online homework in this course. It covers online access to the published document, front matter, formatting, and whether the document stands on its own; the remaining points come from the assignment-specific work above.

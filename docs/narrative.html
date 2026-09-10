@@ -73,6 +73,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="narrative_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="narrative_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="narrative_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="narrative_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="narrative_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -150,14 +152,14 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   DateTime            RecordID          PAR           WindSpeed_mph   
- Length:8199        Min.   :43816   Min.   :   0.000   Min.   : 0.000  
- Class :character   1st Qu.:45866   1st Qu.:   0.000   1st Qu.: 2.467  
- Mode  :character   Median :47915   Median :   0.046   Median : 4.090  
-                    Mean   :47915   Mean   : 241.984   Mean   : 5.446  
-                    3rd Qu.:49964   3rd Qu.: 337.900   3rd Qu.: 7.292  
-                    Max.   :52014   Max.   :1957.000   Max.   :30.650  
-                                                                       
+<pre><code>      DateTime       RecordID          PAR           WindSpeed_mph   
+ Length   :8199   Min.   :43816   Min.   :   0.000   Min.   : 0.000  
+ N.unique :8199   1st Qu.:45866   1st Qu.:   0.000   1st Qu.: 2.467  
+ N.blank  :   0   Median :47915   Median :   0.046   Median : 4.090  
+ Min.nchar:  19   Mean   :47915   Mean   : 241.984   Mean   : 5.446  
+ Max.nchar:  21   3rd Qu.:49964   3rd Qu.: 337.900   3rd Qu.: 7.292  
+                  Max.   :52014   Max.   :1957.000   Max.   :30.650  
+                                                                     
     WindDir          AirTempF       RelHumidity        BP_HG      
  Min.   :  0.00   Min.   : 3.749   Min.   :15.37   Min.   :29.11  
  1st Qu.: 37.31   1st Qu.:31.545   1st Qu.:42.25   1st Qu.:29.87  
@@ -173,7 +175,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
  Mean   :0.0008412   Mean   : 5.529   Mean   :0.1611   Mean   :0.0759  
  3rd Qu.:0.0000000   3rd Qu.: 7.410   3rd Qu.:0.1760   3rd Qu.:0.0800  
  Max.   :0.3470000   Max.   :13.300   Max.   :0.2110   Max.   :0.1000  
-                     NA's   :1        NA's   :1        NA's   :1       
+                     NAs    :1        NAs    :1        NAs    :1       
        PH           PH_mv        Turbidity_ntu       Chla_ugl    
  Min.   :6.43   Min.   :-113.8   Min.   :  6.20   Min.   :  1.3  
  1st Qu.:7.50   1st Qu.: -47.8   1st Qu.: 15.50   1st Qu.:  3.7  
@@ -181,7 +183,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
  Mean   :7.60   Mean   : -44.5   Mean   : 24.54   Mean   :137.3  
  3rd Qu.:7.69   3rd Qu.: -38.9   3rd Qu.: 30.30   3rd Qu.:302.6  
  Max.   :9.00   Max.   :  28.5   Max.   :187.70   Max.   :330.1  
- NA's   :1      NA's   :1        NA's   :1        NA's   :1      
+ NAs    :1      NAs    :1        NAs    :1        NAs    :1      
    BGAPC_CML        BGAPC_rfu         ODO_sat         ODO_mgl     
  Min.   :   188   Min.   :  0.10   Min.   : 87.5   Min.   :10.34  
  1st Qu.:   971   1st Qu.:  0.50   1st Qu.: 99.2   1st Qu.:12.34  
@@ -189,7 +191,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
  Mean   :153571   Mean   : 72.91   Mean   :102.0   Mean   :12.88  
  3rd Qu.:345211   3rd Qu.:163.60   3rd Qu.:104.1   3rd Qu.:13.34  
  Max.   :345471   Max.   :163.70   Max.   :120.8   Max.   :14.99  
- NA's   :1        NA's   :1        NA's   :1       NA's   :1      
+ NAs    :1        NAs    :1        NAs    :1       NAs    :1      
     Depth_ft        Depth_m      SurfaceWaterElev_m_levelNad83m
  Min.   :12.15   Min.   :3.705   Min.   :-32.53                
  1st Qu.:14.60   1st Qu.:4.451   1st Qu.:-31.78                
@@ -219,7 +221,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 <li><em>Group:</em> Gather records together to perform operations on chunks of them similar to <code>by()</code>.</li>
 <li><em>Summarize:</em> Extract summaries of data (or grouped data) based upon some defined criteria.</li>
 </ul>
-<p>In the following examples, we’ll be using the rice data above. For each verb, I’m going to use the pipe operator (<code>%&gt;%</code>) to send the data into the example functions and then assign the result to a dummy <code>data.frame</code> named <code>df</code>. The arguments passed to each of the verbs are where the magic happens.</p>
+<p>In the following examples, we’ll be using the rice data above. For each verb, I’m going to use the native pipe operator (<code>|&gt;</code>) to send the data into the example functions and then assign the result to a dummy <code>data.frame</code> named <code>df</code>. The arguments passed to each of the verbs are where the magic happens.</p>
 <section id="the-output" class="level3">
 <h3 class="anchored" data-anchor-id="the-output">The Output</h3>
 <p>The key to these activities is that every one of these functions takes a <code>data.frame</code> as input, does its operations on it, then returns a <code>data.frame</code> object as output. The <code>data.frame</code> is the core data container for all of these actions.</p>
@@ -228,7 +230,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 <h3 class="anchored" data-anchor-id="select-operator">Select Operator</h3>
 <p>The <code>select()</code> function allows you to choose which columns of data to work with.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( DateTime, AirTempF ) <span class="ot">-&gt;</span> df </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -263,7 +265,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 </div>
 <p>Let’s say that you wanted to reorder the columns as <code>RecordID</code>, <code>ODO_mgl</code> and <code>PH</code> as the first three columns and leave everything else as is. There is this cool function <code>everything()</code> that helps out.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( RecordID, ODO_mgl, PH, <span class="fu">everything</span>() ) <span class="ot">-&gt;</span> df</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>( df )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -281,32 +283,52 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 [23] "SurfaceWaterElev_m_levelNad83m"</code></pre>
 </div>
 </div>
+<p>Finally, <code>select()</code> can rename columns as it grabs them, using the form <code>NewName = OldName</code>. This is handy when the raw data use terse or inconsistent column names and you want something readable to carry through into tables and figures.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="at">Time =</span> DateTime,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> AirTempF,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> H2O_TempC ) <span class="ot">-&gt;</span> df</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>( df )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Time"       "Air Temp"   "Water Temp"</code></pre>
+</div>
+</div>
+<p>If you want to rename a column but keep every other column as-is, combine this with <code>everything()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="at">Time =</span> DateTime, <span class="fu">everything</span>() ) <span class="ot">-&gt;</span> df</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>( df )[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Time"          "RecordID"      "PAR"           "WindSpeed_mph"</code></pre>
+</div>
+</div>
 </section>
 <section id="filter" class="level3">
 <h3 class="anchored" data-anchor-id="filter">Filter</h3>
 <p>The function <code>filter()</code> works to select records (rows) based upon some criteria. <mark>So for example, if I am interested in just records when the airtemp was freezing (and the raw data are in °F).</mark> The range of values in the original data was:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>( rice<span class="sc">$</span>AirTempF )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>( rice<span class="sc">$</span>AirTempF )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  3.749 74.870</code></pre>
 </div>
 </div>
 <p>but after filtering using the name of the variable and a logical operator.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&lt;</span> <span class="dv">32</span> ) <span class="ot">-&gt;</span> df</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>( df<span class="sc">$</span>AirTempF )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&lt;</span> <span class="dv">32</span> ) <span class="ot">-&gt;</span> df</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>( df<span class="sc">$</span>AirTempF )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  3.749 31.990</code></pre>
 </div>
 </div>
 <p>Just like <code>select()</code>, it is possible to have several conditions, that are compounded (using a logical <code>AND</code> operator) by adding them to the <code>filter()</code> function. Here I also split the conditionals requiring the data to be above freezing air temperatures, not missing data from the PH meter, and water turbidity &lt; 15 ntu’s. I also put each of these onto their own lines and auto-indent does a great job of making it reasonably readable.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&gt;</span> <span class="dv">32</span>, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>          <span class="sc">!</span><span class="fu">is.na</span>(PH), </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>          Turbidity_ntu <span class="sc">&lt;</span> <span class="dv">15</span>) <span class="ot">-&gt;</span> df</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&gt;</span> <span class="dv">32</span>, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>          <span class="sc">!</span><span class="fu">is.na</span>(PH), </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>          Turbidity_ntu <span class="sc">&lt;</span> <span class="dv">15</span>) <span class="ot">-&gt;</span> df</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1449</code></pre>
 </div>
@@ -316,20 +338,20 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 <h3 class="anchored" data-anchor-id="mutate">Mutate</h3>
 <p>The <code>mutate()</code> function changes values in the table and is quite versatile. Here I will jump back to our old friend <code>mdy_hms()</code> from <code>lubridate</code> and convert the <code>DateTime</code> column, which is</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>( rice<span class="sc">$</span>DateTime )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>( rice<span class="sc">$</span>DateTime )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
 </div>
 <p>and convert it into a real date and time object</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">"EST"</span>) ) <span class="ot">-&gt;</span> df</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>( df<span class="sc">$</span>Date )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">"EST"</span>) ) <span class="ot">-&gt;</span> df</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>( df<span class="sc">$</span>Date )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "POSIXct" "POSIXt" </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( df<span class="sc">$</span>Date )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( df<span class="sc">$</span>Date )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Min.               1st Qu.                Median 
 "2014-01-01 00:00:00" "2014-01-22 08:22:30" "2014-02-12 16:45:00" 
@@ -339,10 +361,10 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 </div>
 <p>You can also create several mutations in one mutation step.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">"EST"</span>), </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>(Date, <span class="at">label =</span> <span class="cn">TRUE</span>) ) <span class="ot">-&gt;</span> df</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( df<span class="sc">$</span>Month )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">"EST"</span>), </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>(Date, <span class="at">label =</span> <span class="cn">TRUE</span>) ) <span class="ot">-&gt;</span> df</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( df<span class="sc">$</span>Month )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec 
 2976 2688 2535    0    0    0    0    0    0    0    0    0 </code></pre>
@@ -353,26 +375,26 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 <h3 class="anchored" data-anchor-id="arrange">Arrange</h3>
 <p>We can sort entire <code>data.frame</code> objects based upon the values in one or more of the columns using the <code>arrange()</code> function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
 </div>
 <p>By default, it is in ascending order, to reverse it, use the negative operator on the column name object in the function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 30.65</code></pre>
 </div>
 </div>
 <p>As above, it is possible to combine many columns of data as criteria for sorting by adding more arguments to the function call.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph, WindDir ) <span class="ot">-&gt;</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph, WindDir ) <span class="ot">-&gt;</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="summarize" class="level3">
@@ -381,9 +403,9 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 <p>Each argument you give to the function performs one or more operations on the data and returns a brand new <code>data.frame</code> object with only the values specified.</p>
 <p>Here is an example where I am taking the mean air and water temperature (n.b., one is in °F and the other is in °C). Notice the result is a new <code>data.frame</code> object with one row and two new columns defined by how I asked for the summary in the first place. I used single tick notation so I can have a space in the column names.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF), </span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(H2O_TempC, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF),</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(H2O_TempC, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   `Air Temp` `Water Temp`
@@ -391,21 +413,34 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 1       38.8         5.53</code></pre>
 </div>
 </div>
+<p>You are not limited to the mean. Any function that takes a vector of numbers and returns a single value can be used here, and you can ask for several summaries of the same column at once. Here I describe air temperature by its minimum, mean, and maximum.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="at">Minimum =</span> <span class="fu">min</span>( AirTempF ),</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">Mean =</span> <span class="fu">mean</span>( AirTempF ),</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">Maximum =</span> <span class="fu">max</span>( AirTempF ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  Minimum  Mean Maximum
+    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+1    3.75  38.8    74.9</code></pre>
+</div>
+</div>
 </section>
 <section id="group-summarize" class="level3">
 <h3 class="anchored" data-anchor-id="group-summarize">Group &amp; Summarize</h3>
-<p>To get more than one row in the resulting <code>data.frame</code> from <code>summary()</code>, we need to group the data in some way. The function <code>group_by()</code> does this and is used prior to <code>summary()</code>. Let’s take a look at how we can get the average air and water temp by month. To do this, I’m going to have to do several steps. I’m just going to chain them together using the <code>%&gt;%</code> operator.</p>
+<p>To get more than one row in the resulting <code>data.frame</code> from <code>summary()</code>, we need to group the data in some way. The function <code>group_by()</code> does this and is used prior to <code>summary()</code>. Let’s take a look at how we can get the average air and water temp by month. To do this, I’m going to have to do several steps. I’m just going to chain them together using the <code>|&gt;</code> operator.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, </span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">tz=</span><span class="st">"EST"</span>),</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, </span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">abbr =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label=</span><span class="cn">TRUE</span>) ) <span class="sc">%&gt;%</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">%&gt;%</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF), </span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, </span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">na.rm=</span><span class="cn">TRUE</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">tz=</span><span class="st">"EST"</span>),</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">abbr =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label=</span><span class="cn">TRUE</span>) ) <span class="sc">|&gt;</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF),</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, </span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">na.rm=</span><span class="cn">TRUE</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   Month    `Air Temp` `Water Temp`
@@ -416,6 +451,123 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 </div>
 </div>
 <p>As you read the code, notice how easy it is to understand what is going on because of both the pipes <strong>and</strong> because of the way I am formatting the code itself.</p>
+</section>
+</section>
+<section id="publication-quality-tables" class="level2">
+<h2 class="anchored" data-anchor-id="publication-quality-tables">Publication-Quality Tables</h2>
+<p>So far every result has come back as raw <code>R</code> console output. That is fine while you are building a workflow, but a document that someone is meant to <em>read</em> needs proper tables — captioned, numbered, and referred to <em>by number</em> in the running text, the way a table appears in a journal article.</p>
+<section id="from-a-data-frame-to-a-table" class="level3">
+<h3 class="anchored" data-anchor-id="from-a-data-frame-to-a-table">From a data frame to a table</h3>
+<p>The <code>kable()</code> function in the <code>knitr</code> package turns a <code>data.frame</code> into a formatted table. You pipe the data straight into it, usually as the last step of a workflow.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( knitr )</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( kableExtra )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'kableExtra' was built under R version 4.6.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'kableExtra'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    group_rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, <span class="at">tz =</span> <span class="st">"EST"</span> ),</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span> ) ) <span class="sc">|&gt;</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF ),</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ) ) <span class="ot">-&gt;</span> monthlyTemps</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>monthlyTemps <span class="sc">|&gt;</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Month</th>
+<th style="text-align: right;">Air Temp</th>
+<th style="text-align: right;">Water Temp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">January</td>
+<td style="text-align: right;">34.7</td>
+<td style="text-align: right;">3.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">February</td>
+<td style="text-align: right;">39.7</td>
+<td style="text-align: right;">5.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">March</td>
+<td style="text-align: right;">42.6</td>
+<td style="text-align: right;">8.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The <code>kableExtra</code> package adds styling on top of that — <code>kable_paper()</code>, <code>kable_styling()</code>, <code>add_header_above()</code>, and many more. The <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">kableExtra vignette</a> walks through the options, and the slides for this module show several of them side by side.</p>
+</section>
+<section id="cross-referencing-tables-in-text" class="level3">
+<h3 class="anchored" data-anchor-id="cross-referencing-tables-in-text">Cross-Referencing Tables in Text</h3>
+<p>A table is only useful if the reader knows which paragraph is talking about it. Quarto does the numbering for you, but you have to give it two pieces of information <em>in the chunk that makes the table</em>:</p>
+<ul>
+<li>a <strong>label</strong> that begins with <code>tbl-</code>, set with the <code>#| label:</code> chunk option. The <code>tbl-</code> prefix is what tells Quarto that the chunk produces a table.</li>
+<li>a <strong>caption</strong>, set with the <code>#| tbl-cap:</code> chunk option.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>monthlyTemps <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>( <span class="st">"striped"</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-monthly" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-monthly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Mean monthly air and water temperature at the Rice Rivers Center.
+</figcaption>
+<div aria-describedby="tbl-monthly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="lightable-paper lightable-striped cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Month</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Air Temp</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Water Temp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">January</td>
+<td style="text-align: right;">34.7</td>
+<td style="text-align: right;">3.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">February</td>
+<td style="text-align: right;">39.7</td>
+<td style="text-align: right;">5.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">March</td>
+<td style="text-align: right;">42.6</td>
+<td style="text-align: right;">8.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>With the label in place, you refer to the table anywhere in your prose by writing <code>@tbl-monthly</code>. Quarto replaces it with the table’s number — and keeps that number correct even if you add or reorder tables later. For example, this sentence was written with <code>@tbl-monthly</code> standing in for the number:</p>
+<blockquote class="blockquote">
+<p>Mean monthly water temperature rose steadily from January through March (<a href="#tbl-monthly" class="quarto-xref">Table&nbsp;1</a>).</p>
+</blockquote>
+<p>The same system works for figures (give the chunk a <code>fig-</code> label) and for equations, sections, and more. It is also the reason you should never write “see the table below”: position and hand-typed numbers both break the moment the document changes.</p>
 </section>
 </section>
 <section id="flows" class="level2">
