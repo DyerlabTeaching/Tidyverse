@@ -3,8 +3,13 @@ title: "Teaching Log"
 format: html
 ---
 
+## 2026.09.15
+- BIOL516: Go over homework and any questions. Move to gstudio lecture.
+- ENVS543:
+
+
 ## 2026.09.10
-- BIOL516: Give them the homework for the data-containers.
+- BIOL516: Give them the homework for the data-containers.  Finished the in-class activity. 
 - ENVS543: 
 
 ## 2026.09.08
