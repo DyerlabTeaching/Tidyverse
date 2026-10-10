@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="YOUR NAME HERE">
-<meta name="dcterms.date" content="2026-09-10">
+<meta name="dcterms.date" content="2026-10-10">
 
 <title>Tidyverse Homework</title>
 <style>
@@ -2451,7 +2451,7 @@ border: 0;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 10, 2026</p>
+      <p class="date">October 10, 2026</p>
     </div>
   </div>
   
@@ -2479,7 +2479,7 @@ border: 0;
 <section id="methods" class="level3">
 <h3 class="anchored" data-anchor-id="methods">Methods</h3>
 <blockquote class="blockquote">
-<p><strong>Data.</strong> We used the atmospheric and water-quality record from the <a href="https://ricerivers.vcu.edu">Rice Rivers Center</a>, published as a CSV from a Google Sheet. Each row is one set of instrument readings taken at a 15-minute interval through 2014. We pulled three columns — the timestamp, air temperature (°F), and water temperature (°C) — renaming them to something readable as we selected.</p>
+<p><strong>Data.</strong> We used the atmospheric and water-quality record from the <a href="https://ricerivers.vcu.edu">Rice Rivers Center</a>, stored as a CSV in the course data repository. Each row is one set of instrument readings taken at a 15-minute interval from January through March 2014. We pulled three columns — the timestamp, air temperature (°F), and water temperature (°C) — renaming them to something readable as we selected.</p>
 </blockquote>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidyverse )</span>
@@ -2487,7 +2487,7 @@ border: 0;
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( knitr )</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( kableExtra )</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&amp;single=true&amp;output=csv&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv&quot;</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>( url ) <span class="sc">|&gt;</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="at">Time =</span> DateTime,</span>
@@ -3147,159 +3147,156 @@ Water Temp (°C)
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="an">abstract:</span><span class="co"> |</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">  A sentence or two saying what the document does: the data set you found, the grouped summary you built with the tidyverse verbs, and what it shows.</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: true</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Idea</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>One of the central habits of reproducible research is that the **words and the code that produce them are written together**.<span class="ot">[^ref-flows]</span> A paragraph of *Methods* is followed immediately by the chunk that carries out what it describes. A sentence in *Results* is backed by a table generated in the chunk beside it, and every number that appears in the running text is read straight from a variable in memory with an inline `<span class="in">` `</span>r ` `` expression --- never typed by hand.</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ot">[^ref-flows]: </span>For more on building a manipulation workflow one line at a time, see the narrative section <span class="co">[</span><span class="ot">Flows</span><span class="co">](https://dyerlabteaching.github.io/Tidyverse/narrative.html#flows)</span>.</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>This assignment has you practice that habit while you exercise the verbs of data manipulation --- <span class="in">`select()`</span>, <span class="in">`filter()`</span>, <span class="in">`arrange()`</span>, <span class="in">`mutate()`</span>, <span class="in">`group_by()`</span>, and <span class="in">`summarize()`</span> --- chained together with the pipe. Read the worked example on the Rice Rivers Center data, then reproduce its structure on a data set you find yourself.</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## A Worked Example</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Methods</span></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Data.** We used the atmospheric and water-quality record from the </span><span class="co">[</span><span class="ot">Rice Rivers Center</span><span class="co">](https://ricerivers.vcu.edu)</span><span class="at">, published as a CSV from a Google Sheet. Each row is one set of instrument readings taken at a 15-minute interval through 2014. We pulled three columns --- the timestamp, air temperature (°F), and water temperature (°C) --- renaming them to something readable as we selected.</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidyverse )</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( lubridate )</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( knitr )</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( kableExtra )</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&amp;single=true&amp;output=csv&quot;</span></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>( url ) <span class="sc">|&gt;</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="at">Time =</span> DateTime,</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>          AirTempF,</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> H2O_TempC ) <span class="ot">-&gt;</span> rice</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Analysis.** The timestamp arrived as text, so we parsed it into a real date-time with </span><span class="in">`mdy_hms()`</span><span class="at"> and derived the calendar month from it. Air temperature was recorded in °F while water temperature was in °C, so we converted air temperature to °C to put both on the same scale. We then grouped the records by month and summarized each temperature by its minimum, mean, and maximum.</span></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Time =</span> <span class="fu">mdy_hms</span>( Time, <span class="at">tz =</span> <span class="st">&quot;EST&quot;</span> ),</span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>( Time, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span> ),</span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> (AirTempF <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span> ) <span class="sc">|&gt;</span></span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Min</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> ),</span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Air Mean</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> ),</span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Air Max</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> ),</span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Min</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>( <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ),</span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Mean</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ),</span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Max</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>( <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ) ) <span class="ot">-&gt;</span> monthly</span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preparing the reporting values</span></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>Before writing the Results, pull the handful of numbers you are going to quote out of the summary and format them here, giving each a short name. Naming them in one place keeps the Results prose clean --- the sentence carries a short word like <span class="in">`warmest_air`</span> rather than a <span class="in">`format(..., digits = 3)`</span> call wedged into the middle of it --- and when the data change you edit only this chunk, never the prose.</span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>n_months    <span class="ot">&lt;-</span> <span class="fu">nrow</span>( monthly )</span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>warmest_air <span class="ot">&lt;-</span> <span class="fu">format</span>( <span class="fu">max</span>( monthly<span class="sc">$</span><span class="st">`</span><span class="at">Air Mean</span><span class="st">`</span> ), <span class="at">digits =</span> <span class="dv">3</span> )</span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>coldest_air <span class="ot">&lt;-</span> <span class="fu">format</span>( <span class="fu">min</span>( monthly<span class="sc">$</span><span class="st">`</span><span class="at">Air Mean</span><span class="st">`</span> ), <span class="at">digits =</span> <span class="dv">3</span> )</span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="fu">### Results</span></span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Over the </span><span class="in">`r n_months`</span><span class="at"> months represented in the data, mean monthly air temperature at the Rice Rivers Center ranged from </span><span class="in">`r coldest_air`</span><span class="at"> °C in the coldest month to </span><span class="in">`r warmest_air`</span><span class="at"> °C in the warmest (@tbl-monthly). Water temperature climbed across the same months but over a narrower range, as the full monthly summary shows.</span></span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-monthly</span></span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: &quot;Minimum, mean, and maximum monthly air and water temperature (°C) at the Rice Rivers Center, 2014.&quot;</span></span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>monthly <span class="sc">|&gt;</span></span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span></span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>( <span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span> ) <span class="sc">|&gt;</span></span>
-<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>( <span class="fu">c</span>( <span class="st">&quot; &quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;Air Temp (°C)&quot;</span> <span class="ot">=</span> <span class="dv">3</span>, <span class="st">&quot;Water Temp (°C)&quot;</span> <span class="ot">=</span> <span class="dv">3</span> ) )</span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>Here is the literal source of that Results paragraph --- note that every number is an inline expression:</span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{verbatim}</span></span>
-<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="in">Over the `r n_months` months represented in the data, mean monthly air temperature at the Rice Rivers Center ranged from `r coldest_air` °C in the coldest month to `r warmest_air` °C in the warmest (@tbl-monthly). Water temperature climbed across the same months but over a narrower range.</span></span>
-<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Your Assignment</span></span>
-<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>Find your own data set and build the same kind of grouped summary from it.<span class="ot">[^ref-verbs]</span></span>
-<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="fu">### The data set you find must</span></span>
-<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>be a single **rectangular CSV** --- one observation (a measurement, a site visit, a specimen, a record) per row, holding raw values, not a table someone has already summarized;</span>
-<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>have **at least four variables**, and among them at least one **categorical variable** you can group by (a site, species, treatment, year, month, land-cover class, sampling gear, ...), at least two **quantitative variables** worth summarizing, and at least one variable that **needs a `mutate()` before it is usable** --- a date or time stored as text that you parse with <span class="in">`lubridate`</span>, a measurement in the wrong unit that you convert, or a value you derive from other columns;</span>
-<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>have **at least 30 rows**, so the group summaries mean something;</span>
-<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>be about something connected to your own research or interests;</span>
-<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>be **public and citable**. Good places to look: <span class="co">[</span><span class="ot">data.gov</span><span class="co">](https://data.gov)</span>, the USGS <span class="co">[</span><span class="ot">Water Data</span><span class="co">](https://waterdata.usgs.gov)</span> portal, NOAA&#39;s <span class="co">[</span><span class="ot">Climate Data Online</span><span class="co">](https://www.ncei.noaa.gov/cdo-web/)</span>, the <span class="co">[</span><span class="ot">EPA</span><span class="co">](https://www.epa.gov/data)</span>, <span class="co">[</span><span class="ot">GBIF</span><span class="co">](https://www.gbif.org)</span>, the <span class="co">[</span><span class="ot">Dryad</span><span class="co">](https://datadryad.org)</span> and <span class="co">[</span><span class="ot">ESA</span><span class="co">](https://esapubs.org/archive/)</span> data archives, <span class="co">[</span><span class="ot">TidyTuesday</span><span class="co">](https://github.com/rfordatascience/tidytuesday)</span>, or your state or VCU open-data portal.</span>
-<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>Load it reproducibly --- either upload it to Google Sheets and read the published CSV URL, or download it into your course project folder and read it from there. Do not read it from your Downloads folder or your Desktop.</span>
-<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a><span class="fu">### Your document must have</span></span>
-<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Methods** --- a *Data* paragraph followed by the chunk that reads the CSV and `select()`s (and renames) the columns you will use, then an *Analysis* paragraph followed by the chunk that does the work. The Analysis chunk must be a single piped workflow using **at least `select()`, `mutate()`, `group_by()`, and `summarize()`**, and the *Analysis* paragraph must say which variable needed the <span class="in">`mutate()`</span> and why.</span>
-<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**A reporting-values chunk** --- <span class="in">`format()`</span> the two or three numbers you quote in the Results, and give each a short name.</span>
-<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Results** --- one paragraph that reports those numbers as bare inline `` `r ` `` values (no `format()` in the prose) and that points the reader to your table **using Quarto&#39;s chunk-label cross-reference system**: a <span class="in">`#| label: tbl-...`</span> and a <span class="in">`#| tbl-cap:`</span> in the table chunk, and <span class="in">`@tbl-...`</span> in the sentence. Do not write &quot;the table below&quot; or type the table number by hand.<span class="ot">[^ref-tables]</span></span>
-<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**One publication-quality table**, built with `kable()` and `kableExtra`, giving --- for each quantitative variable --- its **minimum, mean, and maximum**, with one row per level of your categorical variable.</span>
-<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>Then answer briefly, a sentence or two each:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> dyerlab-html</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Idea</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>One of the central habits of reproducible research is that the **words and the code that produce them are written together**.<span class="ot">[^ref-flows]</span> A paragraph of *Methods* is followed immediately by the chunk that carries out what it describes. A sentence in *Results* is backed by a table generated in the chunk beside it, and every number that appears in the running text is read straight from a variable in memory with an inline `<span class="in">` `</span>r ` `` expression --- never typed by hand.</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="ot">[^ref-flows]: </span>For more on building a manipulation workflow one line at a time, see the narrative section <span class="co">[</span><span class="ot">Flows</span><span class="co">](https://dyerlabteaching.github.io/Tidyverse/narrative.html#flows)</span>.</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>This assignment has you practice that habit while you exercise the verbs of data manipulation --- <span class="in">`select()`</span>, <span class="in">`filter()`</span>, <span class="in">`arrange()`</span>, <span class="in">`mutate()`</span>, <span class="in">`group_by()`</span>, and <span class="in">`summarize()`</span> --- chained together with the pipe. Read the worked example on the Rice Rivers Center data, then reproduce its structure on a data set you find yourself.</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## A Worked Example</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### Methods</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Data.** We used the atmospheric and water-quality record from the </span><span class="co">[</span><span class="ot">Rice Rivers Center</span><span class="co">](https://ricerivers.vcu.edu)</span><span class="at">, stored as a CSV in the course data repository. Each row is one set of instrument readings taken at a 15-minute interval from January through March 2014. We pulled three columns --- the timestamp, air temperature (°F), and water temperature (°C) --- renaming them to something readable as we selected.</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidyverse )</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( lubridate )</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( knitr )</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( kableExtra )</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv&quot;</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>( url ) <span class="sc">|&gt;</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>( <span class="at">Time =</span> DateTime,</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>          AirTempF,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> H2O_TempC ) <span class="ot">-&gt;</span> rice</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Analysis.** The timestamp arrived as text, so we parsed it into a real date-time with </span><span class="in">`mdy_hms()`</span><span class="at"> and derived the calendar month from it. Air temperature was recorded in °F while water temperature was in °C, so we converted air temperature to °C to put both on the same scale. We then grouped the records by month and summarized each temperature by its minimum, mean, and maximum.</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Time =</span> <span class="fu">mdy_hms</span>( Time, <span class="at">tz =</span> <span class="st">&quot;EST&quot;</span> ),</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>( Time, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span> ),</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> (AirTempF <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Min</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> ),</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Air Mean</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> ),</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Air Max</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> ),</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Min</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>( <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ),</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Mean</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ),</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Max</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>( <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ) ) <span class="ot">-&gt;</span> monthly</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preparing the reporting values</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>Before writing the Results, pull the handful of numbers you are going to quote out of the summary and format them here, giving each a short name. Naming them in one place keeps the Results prose clean --- the sentence carries a short word like <span class="in">`warmest_air`</span> rather than a <span class="in">`format(..., digits = 3)`</span> call wedged into the middle of it --- and when the data change you edit only this chunk, never the prose.</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>n_months    <span class="ot">&lt;-</span> <span class="fu">nrow</span>( monthly )</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>warmest_air <span class="ot">&lt;-</span> <span class="fu">format</span>( <span class="fu">max</span>( monthly<span class="sc">$</span><span class="st">`</span><span class="at">Air Mean</span><span class="st">`</span> ), <span class="at">digits =</span> <span class="dv">3</span> )</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>coldest_air <span class="ot">&lt;-</span> <span class="fu">format</span>( <span class="fu">min</span>( monthly<span class="sc">$</span><span class="st">`</span><span class="at">Air Mean</span><span class="st">`</span> ), <span class="at">digits =</span> <span class="dv">3</span> )</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a><span class="fu">### Results</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Over the </span><span class="in">`r n_months`</span><span class="at"> months represented in the data, mean monthly air temperature at the Rice Rivers Center ranged from </span><span class="in">`r coldest_air`</span><span class="at"> °C in the coldest month to </span><span class="in">`r warmest_air`</span><span class="at"> °C in the warmest (@tbl-monthly). Water temperature climbed across the same months but over a narrower range, as the full monthly summary shows.</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-monthly</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: &quot;Minimum, mean, and maximum monthly air and water temperature (°C) at the Rice Rivers Center, 2014.&quot;</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>monthly <span class="sc">|&gt;</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>( <span class="st">&quot;striped&quot;</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>( <span class="fu">c</span>( <span class="st">&quot; &quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;Air Temp (°C)&quot;</span> <span class="ot">=</span> <span class="dv">3</span>, <span class="st">&quot;Water Temp (°C)&quot;</span> <span class="ot">=</span> <span class="dv">3</span> ) )</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>Here is the literal source of that Results paragraph --- note that every number is an inline expression:</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{verbatim}</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a><span class="in">Over the `r n_months` months represented in the data, mean monthly air temperature at the Rice Rivers Center ranged from `r coldest_air` °C in the coldest month to `r warmest_air` °C in the warmest (@tbl-monthly). Water temperature climbed across the same months but over a narrower range.</span></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## Your Assignment</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>Find your own data set and build the same kind of grouped summary from it.<span class="ot">[^ref-verbs]</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### The data set you find must</span></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>be a single **rectangular CSV** --- one observation (a measurement, a site visit, a specimen, a record) per row, holding raw values, not a table someone has already summarized;</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>have **at least four variables**, and among them at least one **categorical variable** you can group by (a site, species, treatment, year, month, land-cover class, sampling gear, ...), at least two **quantitative variables** worth summarizing, and at least one variable that **needs a `mutate()` before it is usable** --- a date or time stored as text that you parse with <span class="in">`lubridate`</span>, a measurement in the wrong unit that you convert, or a value you derive from other columns;</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>have **at least 30 rows**, so the group summaries mean something;</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>be about something connected to your own research or interests;</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>be **public and citable**. Good places to look: <span class="co">[</span><span class="ot">data.gov</span><span class="co">](https://data.gov)</span>, the USGS <span class="co">[</span><span class="ot">Water Data</span><span class="co">](https://waterdata.usgs.gov)</span> portal, NOAA&#39;s <span class="co">[</span><span class="ot">Climate Data Online</span><span class="co">](https://www.ncei.noaa.gov/cdo-web/)</span>, the <span class="co">[</span><span class="ot">EPA</span><span class="co">](https://www.epa.gov/data)</span>, <span class="co">[</span><span class="ot">GBIF</span><span class="co">](https://www.gbif.org)</span>, the <span class="co">[</span><span class="ot">Dryad</span><span class="co">](https://datadryad.org)</span> and <span class="co">[</span><span class="ot">ESA</span><span class="co">](https://esapubs.org/archive/)</span> data archives, <span class="co">[</span><span class="ot">TidyTuesday</span><span class="co">](https://github.com/rfordatascience/tidytuesday)</span>, or your state or VCU open-data portal.</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>Load it reproducibly --- either upload it to Google Sheets and read the published CSV URL, or download it into your course project folder and read it from there. Do not read it from your Downloads folder or your Desktop.</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### Your document must have</span></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Methods** --- a *Data* paragraph followed by the chunk that reads the CSV and `select()`s (and renames) the columns you will use, then an *Analysis* paragraph followed by the chunk that does the work. The Analysis chunk must be a single piped workflow using **at least `select()`, `mutate()`, `group_by()`, and `summarize()`**, and the *Analysis* paragraph must say which variable needed the <span class="in">`mutate()`</span> and why.</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**A reporting-values chunk** --- <span class="in">`format()`</span> the two or three numbers you quote in the Results, and give each a short name.</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Results** --- one paragraph that reports those numbers as bare inline `` `r ` `` values (no `format()` in the prose) and that points the reader to your table **using Quarto&#39;s chunk-label cross-reference system**: a <span class="in">`#| label: tbl-...`</span> and a <span class="in">`#| tbl-cap:`</span> in the table chunk, and <span class="in">`@tbl-...`</span> in the sentence. Do not write &quot;the table below&quot; or type the table number by hand.<span class="ot">[^ref-tables]</span></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**One publication-quality table**, built with `kable()` and `kableExtra`, giving --- for each quantitative variable --- its **minimum, mean, and maximum**, with one row per level of your categorical variable.</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>Then answer briefly, a sentence or two each:</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Five of the six manipulation verbs hand back a data frame with the same rows they were given; one does not. Which one, and what does it return instead?</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your table has one row per group because of <span class="in">`group_by()`</span>. What would the same <span class="in">`summarize()`</span> call produce if you deleted the <span class="in">`group_by()`</span> line, and why?</span>
 <span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Five of the six manipulation verbs hand back a data frame with the same rows they were given; one does not. Which one, and what does it return instead?</span>
-<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Your table has one row per group because of <span class="in">`group_by()`</span>. What would the same <span class="in">`summarize()`</span> call produce if you deleted the <span class="in">`group_by()`</span> line, and why?</span>
-<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a><span class="ot">[^ref-verbs]: </span>The mechanics --- renaming inside <span class="in">`select()`</span>, parsing dates with <span class="in">`mutate()`</span>, <span class="in">`group_by() |&gt; summarize()`</span>, and formatting tables with <span class="in">`kableExtra`</span> --- are all in the module <span class="co">[</span><span class="ot">narrative</span><span class="co">](https://dyerlabteaching.github.io/Tidyverse/narrative.html)</span> and <span class="co">[</span><span class="ot">slides</span><span class="co">](https://dyerlabteaching.github.io/Tidyverse/slides.html)</span>.</span>
-<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a><span class="ot">[^ref-tables]: </span>The label / caption / <span class="in">`@tbl-`</span> cross-reference system is explained in the narrative section <span class="co">[</span><span class="ot">Cross-Referencing Tables in Text</span><span class="co">](https://dyerlabteaching.github.io/Tidyverse/narrative.html#cross-referencing-tables-in-text)</span>. It is **not** in the slides --- you will need to read the narrative for it.</span>
-<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## What You Turn In</span></span>
-<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>**One file: the rendered, self-contained `.html`.** Not the <span class="in">`.qmd`</span>, and not a copy of this page. Make a *new* Quarto document that contains only your own work --- your Methods and Results sections with their chunks, the reporting-values chunk, your table, and your brief answers to the two questions.</span>
-<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>The worked example above is a model to imitate, not text to paste into your document.</span>
-<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### Making the document</span></span>
-<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>In RStudio: **File ▸ New File ▸ Quarto Document…**</span>
-<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>In the dialog, enter a title and your name, leave the engine set to **Knitr**, and click **Create**.</span>
-<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Delete everything RStudio puts below the header (the &quot;Quarto&quot; boilerplate and its example chunk).</span>
-<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Replace the header it generated with the one below.</span>
-<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Save the file into your course project folder as <span class="in">`Tidyverse-Homework.qmd`</span>.</span>
-<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Write your content, then click **Render** to produce the <span class="in">`.html`</span>. That HTML file is what you submit.</span>
-<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a><span class="fu">### The full YAML header</span></span>
-<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
-<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Tidyverse Homework&quot;</span></span>
-<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Your Name&quot;</span></span>
-<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>  A sentence or two saying what the document does: the data, the grouped summary, and what you found.</span>
-<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-tools</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`title` / `author` / `date` / `abstract`** --- complete front matter, including a short summary where a scientific paper would put its abstract. <span class="in">`date: today`</span> fills itself in at render time.</span>
-<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`format: html`** --- render to a single web page I can open in any browser.</span>
-<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`self-contained: true`** --- bundle every image, style, and script *into* that one `.html` file. Without it the file depends on a sibling `*_files/` folder that never makes it into the upload, and your figures and formatting arrive broken.</span>
-<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`code-tools: true`** --- adds the &quot;&lt;/&gt; Code&quot; button in the top-right that lets a reader view the full source. **This is not optional.** If I cannot see the code behind a wrong answer, I cannot tell whether you were one typo away or lost the plot entirely --- which means I cannot give partial credit, point out where it went sideways, or help you fix it.</span>
-<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>Use this same header layout for every document you turn in this course.</span>
-<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="fu">## How This Is Graded</span></span>
-<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>This assignment is scored with the **Online Homework Rubric** on the Canvas site --- the same rubric used for every online homework in this course. It covers online access to the published document, front matter, formatting, and whether the document stands on its own; the remaining points come from the assignment-specific work above.</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a><span class="ot">[^ref-verbs]: </span>The mechanics --- renaming inside <span class="in">`select()`</span>, parsing dates with <span class="in">`mutate()`</span>, <span class="in">`group_by() |&gt; summarize()`</span>, and formatting tables with <span class="in">`kableExtra`</span> --- are all in the module <span class="co">[</span><span class="ot">narrative</span><span class="co">](https://dyerlabteaching.github.io/Tidyverse/narrative.html)</span> and <span class="co">[</span><span class="ot">slides</span><span class="co">](https://dyerlabteaching.github.io/Tidyverse/slides.html)</span>.</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a><span class="ot">[^ref-tables]: </span>The label / caption / <span class="in">`@tbl-`</span> cross-reference system is explained in the narrative section <span class="co">[</span><span class="ot">Cross-Referencing Tables in Text</span><span class="co">](https://dyerlabteaching.github.io/Tidyverse/narrative.html#cross-referencing-tables-in-text)</span>. It is **not** in the slides --- you will need to read the narrative for it.</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="fu">## What You Turn In</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>**One file: the rendered, self-contained `.html`.** Not the <span class="in">`.qmd`</span>, and not a copy of this page. Make a *new* Quarto document that contains only your own work --- your Methods and Results sections with their chunks, the reporting-values chunk, your table, and your brief answers to the two questions.</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>The worked example above is a model to imitate, not text to paste into your document.</span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### Making the document</span></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>In RStudio: **File ▸ New File ▸ Quarto Document…**</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>In the dialog, enter a title and your name, leave the engine set to **Knitr**, and click **Create**.</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Delete everything RStudio puts below the header (the &quot;Quarto&quot; boilerplate and its example chunk).</span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Replace the header it generated with the one below.</span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Save the file into your course project folder as <span class="in">`Tidyverse-Homework.qmd`</span>.</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Write your content, then click **Render** to produce the <span class="in">`.html`</span>. That HTML file is what you submit.</span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a><span class="fu">### The full YAML header</span></span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a><span class="in">```yaml</span></span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Tidyverse Homework&quot;</span></span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Your Name&quot;</span></span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>  A sentence or two saying what the document does: the data, the grouped summary, and what you found.</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-tools</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`title` / `author` / `date` / `abstract`** --- complete front matter, including a short summary where a scientific paper would put its abstract. <span class="in">`date: today`</span> fills itself in at render time.</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`format: html`** --- render to a single web page I can open in any browser.</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`self-contained: true`** --- bundle every image, style, and script *into* that one `.html` file. Without it the file depends on a sibling `*_files/` folder that never makes it into the upload, and your figures and formatting arrive broken.</span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**`code-tools: true`** --- adds the &quot;&lt;/&gt; Code&quot; button in the top-right that lets a reader view the full source. **This is not optional.** If I cannot see the code behind a wrong answer, I cannot tell whether you were one typo away or lost the plot entirely --- which means I cannot give partial credit, point out where it went sideways, or help you fix it.</span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>Use this same header layout for every document you turn in this course.</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a><span class="fu">## How This Is Graded</span></span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>This assignment is scored with the **Online Homework Rubric** on the Canvas site --- the same rubric used for every online homework in this course. It covers online access to the published document, front matter, formatting, and whether the document stands on its own; the remaining points come from the assignment-specific work above.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
