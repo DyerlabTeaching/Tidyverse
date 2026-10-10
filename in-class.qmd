@@ -1,10 +1,7 @@
 ---
 title: "In Class Activity - Tidyverse"
 author: "Dyer"
-format: 
-  html:
-    self-contained: true
-    code-tools: true
+format: dyerlab-html
 execute:
   echo: true
 abstract: This in-class activity will be used in the lecture to facilitate the use of several aspects relevant to applying the 'verbs' of data manipulation using the `tidyverse` library.
@@ -19,7 +16,7 @@ abstract: This in-class activity will be used in the lecture to facilitate the u
 
 ## The Data
 
-For this topic we will use some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu). These data represent both atmospheric and water data collected from instrumentation on-site. I have stored these data in a spreadsheet that is shared on Google Drive as a CSV file.
+For this topic we will use some example data from the [Rice Rivers Center](https://ricerivers.vcu.edu). These data represent both atmospheric and water data collected from instrumentation on-site. These data are stored as a CSV file in the [course data repository](https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv).
 
 ```{r}
 library( tidyverse )
@@ -27,7 +24,7 @@ library( lubridate )
 library( knitr )
 library( kableExtra )
 
-url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
+url <- "https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv"
 rice <- read_csv( url )
 summary( rice )
 ```

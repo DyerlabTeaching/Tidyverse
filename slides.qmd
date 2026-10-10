@@ -1,7 +1,7 @@
 ---
 title: "Tidyverse"
 subtitle: "&nbsp;"
-format: revealjs
+format: dyerlab-revealjs
 author: Rodney Dyer, PhD
 title-slide-attributes: 
   data-background-image: "media/Tidyverse.png"
@@ -210,18 +210,14 @@ The data we will be working with consist of data from the [Rice Rivers Center](h
 
 ## The Raw Data
 
-The raw data are published from a [Google Spreadsheet ](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s).
-
-<center>
-![](media/Selfie_GoogleSheets.png)
-</center>
+The raw data are a CSV file in the [course data repository](https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv).
 
 ## The Data in `R`
 
 So, let us load it in here.
 
 ```{r}
-url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
+url <- "https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv"
 rice <- read_csv( url )
 names( rice )
 ```

@@ -1,6 +1,6 @@
 # Tidyverse
 
-![](https://raw.githubusercontent.com/DyerlabTeaching/Tidyverse/main/media/Tidyverse.png)
+![](https://dyerlabteaching.github.io/Tidyverse/media/Tidyverse.png)
 
 ## Impetus
 
@@ -28,7 +28,7 @@ The tidyverse is a constellation of libraries created to make data manipulation 
 
 - The [slides](https://dyerlabteaching.github.io/Tidyverse/slides.html) on basic tidyverse use.
 - A larger [narrative](https://dyerlabteaching.github.io/Tidyverse/narrative.html) going into more depth on the specifics of the topic.
-- The data set we will use for this is the Rice Rivers Center data set (from 2014). You can see it here as a normal [Google Sheets](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/edit?usp=sharing) or as a [CSV](https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv) file.
+- The data set we will use for this is the Rice Rivers Center data set (from 2014). You can download it as a [CSV](https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv) file.
 - A [cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf) going over the basic analysis verb functions from `dplyr`.
 - An [in-class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) document that we will work through in person to learn about tabular output.
 

@@ -5,10 +5,7 @@ author: "YOUR NAME HERE"
 date: today
 abstract: |
   A sentence or two saying what the document does: the data set you found, the grouped summary you built with the tidyverse verbs, and what it shows.
-format:
-  html:
-    self-contained: true
-    code-tools: true
+format: dyerlab-html
 ---
 
 ## The Idea
@@ -23,7 +20,7 @@ This assignment has you practice that habit while you exercise the verbs of data
 
 ### Methods
 
-> **Data.** We used the atmospheric and water-quality record from the [Rice Rivers Center](https://ricerivers.vcu.edu), published as a CSV from a Google Sheet. Each row is one set of instrument readings taken at a 15-minute interval through 2014. We pulled three columns --- the timestamp, air temperature (°F), and water temperature (°C) --- renaming them to something readable as we selected.
+> **Data.** We used the atmospheric and water-quality record from the [Rice Rivers Center](https://ricerivers.vcu.edu), stored as a CSV in the course data repository. Each row is one set of instrument readings taken at a 15-minute interval from January through March 2014. We pulled three columns --- the timestamp, air temperature (°F), and water temperature (°C) --- renaming them to something readable as we selected.
 
 ```{r}
 #| message: false
@@ -33,7 +30,7 @@ library( lubridate )
 library( knitr )
 library( kableExtra )
 
-url <- "https://docs.google.com/spreadsheets/d/1Mk1YGH9LqjF7drJE-td1G_JkdADOU0eMlrP01WFBT8s/pub?gid=0&single=true&output=csv"
+url <- "https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv"
 
 read_csv( url ) |>
   select( Time = DateTime,

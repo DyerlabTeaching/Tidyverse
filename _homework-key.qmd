@@ -4,7 +4,7 @@ author: "Rodney J. Dyer"
 date: today
 abstract: |
   A worked answer to the Tidyverse homework. Using the `mtcars` data distributed with `readr` as a stand-in for a data set a student would find, we parse the file, derive fuel economy in metric units with `mutate()`, and summarize fuel use and power by cylinder count in a publication-quality table.
-format: html
+format: dyerlab-html
 ---
 
 ```{r}
