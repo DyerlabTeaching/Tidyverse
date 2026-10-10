@@ -54,7 +54,7 @@ To do this, we have the following general workflow.
 
 
 
-## Data Operators {.smaller background-image="https://live.staticflickr.com/65535/50362129663_0d640ad239_k_d.jpg" background-size="cover" background-position="right"}
+## Data Operators {.smaller background-image="media/flickr_50362129663.jpg" background-size="cover" background-position="right"}
 
 :::: {.columns}
 
@@ -70,7 +70,7 @@ There are a finite number of action verbs that can be used on raw data.  They ar
 ::::
 
 
-## Select {.smaller background-image="https://live.staticflickr.com/65535/50362827791_a32934b310_k_d.jpg" background-size="cover" background-position="right"}
+## Select {.smaller background-image="media/flickr_50362827791.jpg" background-size="cover" background-position="right"}
 
 :::: {.columns}
 
@@ -81,7 +81,7 @@ Identify only subset of data columns that you are interested in using.
 ::::
 
 
-## Filter {.smaller background-image="https://live.staticflickr.com/65535/50362989322_6aa00c8398_k_d.jpg" background-size="cover" background-position="right"}
+## Filter {.smaller background-image="media/flickr_50362989322.jpg" background-size="cover" background-position="right"}
 
 :::: {.columns}
 
@@ -94,7 +94,7 @@ Use only some subset of rows in the data based upon qualities within the columns
 
 
 
-## Arrange {.smaller background-image="https://live.staticflickr.com/65535/50362129893_61851436c8_k_d.jpg" background-size="cover" background-position="right"}
+## Arrange {.smaller background-image="media/flickr_50362129893.jpg" background-size="cover" background-position="right"}
 
 :::: {.columns}
 
@@ -106,7 +106,7 @@ Reorder the data using values in one or more columns to sort.
 
 
 
-## Mutate {.smaller background-image="https://live.staticflickr.com/65535/50362827946_d8d5508dfd_k_d.jpg" background-size="cover" background-position="right"}
+## Mutate {.smaller background-image="media/flickr_50362827946.jpg" background-size="cover" background-position="right"}
 
 :::: {.columns}
 
@@ -118,7 +118,7 @@ Convert one data type to another, scaling, combining, or making any other deriva
 
 
 
-## Summarize {.smaller background-image="https://live.staticflickr.com/65535/50362989492_d4e281b741_k_d.jpg" background-size="cover" background-position="right"}
+## Summarize {.smaller background-image="media/flickr_50362989492.jpg" background-size="cover" background-position="right"}
 
 :::: {.columns}
 
@@ -128,7 +128,7 @@ Perform operations on the data to characterize trends in the raw data as summary
 
 ::::
 
-## Group {.smaller background-image="https://live.staticflickr.com/65535/50362869456_c869b2a0a9_k_d.jpg" background-size="cover" background-position="right"}
+## Group {.smaller background-image="media/flickr_50362869456.jpg" background-size="cover" background-position="right"}
 
 :::: {.columns}
 
@@ -247,7 +247,7 @@ summary( df )
 
 ::: {.column width="50%"}
 ::: {.fragment}
-![Figure 1: Popup help for column names in `RStudio` for a data frame in memory](https://live.staticflickr.com/65535/50359964467_03232a3716_w_d.jpg)
+![Figure 1: Popup help for column names in `RStudio` for a data frame in memory](media/figure_1_popup_help_for_column_names_in.jpg)
 :::
 :::
 
