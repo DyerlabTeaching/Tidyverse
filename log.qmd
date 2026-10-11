@@ -24,6 +24,13 @@ format: dyerlab-html
 ## 2026.09.03
 - BIOL516: Started on Tidyverse and got to [here](https://dyerlabteaching.github.io/Tidyverse/slides.html#/group-summarize)
 
+## 2025.09.16
+- Population Genetics: Finished up on In-Class Activity, went over the rubric, and turned them loose on the homework.
+- Data Literacy: Lecture slides.
+
+## 2025.09.11
+- Population Genetics: Got through the lecture component and started on the in-class activity.
+
 
 
 
