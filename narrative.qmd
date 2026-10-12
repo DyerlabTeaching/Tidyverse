@@ -3,12 +3,17 @@ title: "Tidyverse"
 format: dyerlab-narrative-html
 ---
 
-![](media/dplyr.png)
+<!-- BEGIN module:header — generated from module.yml; edit that, not this -->
+
+![](media/module_image.jpg){fig-alt="A pepsis wasp, also known as the tarantula hawk."}
+
+> The ability to quickly and easily manipulate and rework data is the base foundation for all the work you will be doing in `R`.  There is no more fundamental (and important) skill required than being able to quickly and easily take raw data and reconfigure it properly for inclusion into an analysis, summary, graphic, or table.  Using features of the `tidyverse` library are key.
+
+<!-- END module:header -->
 
 ## The Tidyverse Approach
 
 This is the first introduction to tidyverse and is the key skill necessary to become proficient at data analysis.  
-
 
 
 ```{r}
@@ -71,7 +76,6 @@ head(df)
 ```
 
 
-
 Select can also be used to reorder the columns in a `data.frame` object.  Here are the names of the data columns as initially loaded.
 
 ```{r}
@@ -106,7 +110,6 @@ names( df )[1:4]
 ```
 
 
-
 ### Filter
 
 The function `filter()` works to select records (rows) based upon some criteria.  <mark>So for example, if I am interested in just records when the airtemp was freezing (and the raw data are in °F).</mark>  The range of values in the original data was:
@@ -132,8 +135,6 @@ rice |>
           Turbidity_ntu < 15) -> df
 nrow(df)
 ```
-
-
 
 
 ### Mutate
@@ -211,7 +212,6 @@ rice |>
              Mean = mean( AirTempF ),
              Maximum = max( AirTempF ) )
 ```
-
 
 
 ### Group & Summarize

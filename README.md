@@ -1,6 +1,10 @@
 # Tidyverse
 
-![](https://dyerlabteaching.github.io/Tidyverse/media/Tidyverse.png)
+<!-- BEGIN module:header — generated from module.yml; edit that, not this -->
+
+![A pepsis wasp, also known as the tarantula hawk.](https://dyerlabteaching.github.io/Tidyverse/media/module_image.jpg)
+
+<!-- END module:header -->
 
 ## Impetus
 
@@ -26,11 +30,15 @@ The tidyverse is a constellation of libraries created to make data manipulation 
 
 ## Content
 
-- The [slides](https://dyerlabteaching.github.io/Tidyverse/slides.html) on basic tidyverse use.
-- A larger [narrative](https://dyerlabteaching.github.io/Tidyverse/narrative.html) going into more depth on the specifics of the topic.
+<!-- BEGIN module:resources — generated from module.yml; edit that, not this -->
+
+- The [slides](https://dyerlabteaching.github.io/Tidyverse/slides.html) for this topic.
+- A longer [narrative](https://dyerlabteaching.github.io/Tidyverse/narrative.html) that goes into more depth.
+- An [in-class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) activity.
 - The data set we will use for this is the Rice Rivers Center data set (from 2014). You can download it as a [CSV](https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv) file.
 - A [cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf) going over the basic analysis verb functions from `dplyr`.
-- An [in-class](https://dyerlabteaching.github.io/Tidyverse/in-class.html) document that we will work through in person to learn about tabular output.
+
+<!-- END module:resources -->
 
 ## Assessment
 
