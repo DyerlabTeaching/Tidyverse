@@ -312,22 +312,19 @@ Rodney Dyer, PhD
 <h2>The Pipe Operator</h2>
 <p>In <code>R</code> we use this grammar.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>data <span class="sc">%&gt;%</span> <span class="fu">Y</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>It is also possible to use this pipe character:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>data <span class="sc">|&gt;</span> <span class="fu">Y</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>data <span class="sc">|&gt;</span> <span class="fu">Y</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To take the values in <code>data</code> and pass them <strong>as if you entered the data as the first argument</strong> to the function <code>Y()</code>.</p>
+<p>You will also see <code>%&gt;%</code> (from the <code>magrittr</code> package) in older code and online examples. It does the same thing here, but we use the native <code>|&gt;</code>, which is built into <code>R</code>.</p>
 </section>
 <section id="chain-pipe" class="slide level2">
 <h2>Chain-pipe</h2>
-<p>Pipes can be chained together into a single operation (you can mix and match pipe types but I find myself basically using the shorter one because I’m a lazy programmer).</p>
+<p>Pipes can be chained together into a single operation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>data <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href=""></a>  <span class="fu">func1</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href=""></a>  <span class="fu">func2</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href=""></a>  <span class="fu">func3</span>() <span class="ot">-&gt;</span> newData</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>data <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href=""></a>  <span class="fu">func1</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href=""></a>  <span class="fu">func2</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href=""></a>  <span class="fu">func3</span>() <span class="ot">-&gt;</span> newData</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section>
 <section>
@@ -350,9 +347,9 @@ Rodney Dyer, PhD
 <h2>The Data in <code>R</code></h2>
 <p>So, let us load it in here.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>url <span class="ot">&lt;-</span> <span class="st">"https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv"</span></span>
-<span id="cb4-2"><a href=""></a>rice <span class="ot">&lt;-</span> <span class="fu">read_csv</span>( url )</span>
-<span id="cb4-3"><a href=""></a><span class="fu">names</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>url <span class="ot">&lt;-</span> <span class="st">"https://dyerlabteaching.github.io/CourseData/Environmental/RiceRivers_2014.csv"</span></span>
+<span id="cb3-2"><a href=""></a>rice <span class="ot">&lt;-</span> <span class="fu">read_csv</span>( url )</span>
+<span id="cb3-3"><a href=""></a><span class="fu">names</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "DateTime"                       "RecordID"                      
  [3] "PAR"                            "WindSpeed_mph"                 
@@ -373,8 +370,8 @@ Rodney Dyer, PhD
 <h2>Column Selection</h2>
 <p>Using the column numbers instead of names.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>df <span class="ot">&lt;-</span> rice[ <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">13</span>)]</span>
-<span id="cb6-2"><a href=""></a><span class="fu">summary</span>( df )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>df <span class="ot">&lt;-</span> rice[ <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">13</span>)]</span>
+<span id="cb5-2"><a href=""></a><span class="fu">summary</span>( df )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      DateTime         PAR              WindDir             PH      
  Length   :8199   Min.   :   0.000   Min.   :  0.00   Min.   :6.43  
@@ -421,9 +418,9 @@ Rodney Dyer, PhD
 <h2>Select Tidy</h2>
 <p>In <code>tidyverse</code> we can use the column names and do not need to be quoted.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href=""></a>  <span class="fu">select</span>( DateTime ) <span class="ot">-&gt;</span> df</span>
-<span id="cb8-3"><a href=""></a><span class="fu">head</span>( df )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">select</span>( DateTime ) <span class="ot">-&gt;</span> df</span>
+<span id="cb7-3"><a href=""></a><span class="fu">head</span>( df )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 1
   DateTime            
@@ -441,9 +438,9 @@ Rodney Dyer, PhD
 <h2>Selecting Several</h2>
 <p>The <code>select()</code> function allows you to choose many columns of data to work with.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>rice <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href=""></a>  <span class="fu">select</span>( DateTime, AirTempF ) <span class="ot">-&gt;</span> df </span>
-<span id="cb10-3"><a href=""></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href=""></a>  <span class="fu">select</span>( DateTime, AirTempF ) <span class="ot">-&gt;</span> df </span>
+<span id="cb9-3"><a href=""></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   DateTime             AirTempF
@@ -461,7 +458,7 @@ Rodney Dyer, PhD
 <h2>Selecting to Rearrange</h2>
 <p>There are times when we want to</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">names</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">names</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "DateTime"                       "RecordID"                      
  [3] "PAR"                            "WindSpeed_mph"                 
@@ -482,9 +479,9 @@ Rodney Dyer, PhD
 <h2>Selecting to Rearrange</h2>
 <p>Love the <code>everything()</code> function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href=""></a>  <span class="fu">select</span>( RecordID, ODO_mgl, PH, <span class="fu">everything</span>() ) <span class="ot">-&gt;</span> df</span>
-<span id="cb14-3"><a href=""></a><span class="fu">names</span>( df )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">select</span>( RecordID, ODO_mgl, PH, <span class="fu">everything</span>() ) <span class="ot">-&gt;</span> df</span>
+<span id="cb13-3"><a href=""></a><span class="fu">names</span>( df )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "RecordID"                       "ODO_mgl"                       
  [3] "PH"                             "DateTime"                      
@@ -505,7 +502,7 @@ Rodney Dyer, PhD
 <h2>Filter</h2>
 <p>The function <code>filter()</code> works to select records (rows) based upon some criteria.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">range</span>( rice<span class="sc">$</span>AirTempF )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">range</span>( rice<span class="sc">$</span>AirTempF )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  3.749 74.870</code></pre>
 </div>
@@ -513,9 +510,9 @@ Rodney Dyer, PhD
 <div class="fragment">
 <p>&nbsp;</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href=""></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&lt;</span> <span class="dv">32</span> ) <span class="ot">-&gt;</span> df</span>
-<span id="cb18-3"><a href=""></a><span class="fu">range</span>( df<span class="sc">$</span>AirTempF )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&lt;</span> <span class="dv">32</span> ) <span class="ot">-&gt;</span> df</span>
+<span id="cb17-3"><a href=""></a><span class="fu">range</span>( df<span class="sc">$</span>AirTempF )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  3.749 31.990</code></pre>
 </div>
@@ -525,7 +522,7 @@ Rodney Dyer, PhD
 <section id="combinations-of-filters" class="slide level2">
 <h2>Combinations of Filters</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">nrow</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">nrow</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8199</code></pre>
 </div>
@@ -533,11 +530,11 @@ Rodney Dyer, PhD
 <div class="fragment">
 <p>&nbsp;</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href=""></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&gt;</span> <span class="dv">32</span>, </span>
-<span id="cb22-3"><a href=""></a>          <span class="sc">!</span><span class="fu">is.na</span>(PH), </span>
-<span id="cb22-4"><a href=""></a>          Turbidity_ntu <span class="sc">&lt;</span> <span class="dv">15</span>) <span class="ot">-&gt;</span> df</span>
-<span id="cb22-5"><a href=""></a><span class="fu">nrow</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href=""></a>  <span class="fu">filter</span>( AirTempF <span class="sc">&gt;</span> <span class="dv">32</span>, </span>
+<span id="cb21-3"><a href=""></a>          <span class="sc">!</span><span class="fu">is.na</span>(PH), </span>
+<span id="cb21-4"><a href=""></a>          Turbidity_ntu <span class="sc">&lt;</span> <span class="dv">15</span>) <span class="ot">-&gt;</span> df</span>
+<span id="cb21-5"><a href=""></a><span class="fu">nrow</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1449</code></pre>
 </div>
@@ -548,7 +545,7 @@ Rodney Dyer, PhD
 <h2>Arrange</h2>
 <p>We can sort entire <code>data.frame</code> objects based upon the values in one or more of the columns using the <code>arrange()</code> function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>rice<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>rice<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.87</code></pre>
 </div>
@@ -556,9 +553,9 @@ Rodney Dyer, PhD
 <div class="fragment">
 <p>&nbsp;</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href=""></a>  <span class="fu">arrange</span>( WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
-<span id="cb26-3"><a href=""></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href=""></a>  <span class="fu">arrange</span>( WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
+<span id="cb25-3"><a href=""></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
@@ -569,9 +566,9 @@ Rodney Dyer, PhD
 <h2>Reverse Sorting Order</h2>
 <p>To reverse the order, use the negative operator on the column name object in the function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href=""></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
-<span id="cb28-3"><a href=""></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href=""></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph ) <span class="ot">-&gt;</span> df </span>
+<span id="cb27-3"><a href=""></a>df<span class="sc">$</span>WindSpeed_mph[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 30.65</code></pre>
 </div>
@@ -581,15 +578,15 @@ Rodney Dyer, PhD
 <h2>Cominations of Sorting</h2>
 <p>You can also sort using several criteria.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href=""></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph, WindDir ) <span class="ot">-&gt;</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href=""></a>  <span class="fu">arrange</span>( <span class="sc">-</span>WindSpeed_mph, WindDir ) <span class="ot">-&gt;</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="mutations" class="slide level2">
 <h2>Mutations</h2>
 <p>The <code>mutate()</code> function creates new columns of data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">class</span>( rice<span class="sc">$</span>DateTime )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">class</span>( rice<span class="sc">$</span>DateTime )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
@@ -598,17 +595,17 @@ Rodney Dyer, PhD
 <section id="mutations-1" class="slide level2">
 <h2>Mutations</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">library</span>( lubridate )</span>
-<span id="cb33-2"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href=""></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">"EST"</span>) ) <span class="ot">-&gt;</span> df</span>
-<span id="cb33-4"><a href=""></a><span class="fu">class</span>( df<span class="sc">$</span>Date )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">library</span>( lubridate )</span>
+<span id="cb32-2"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href=""></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">"EST"</span>) ) <span class="ot">-&gt;</span> df</span>
+<span id="cb32-4"><a href=""></a><span class="fu">class</span>( df<span class="sc">$</span>Date )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "POSIXct" "POSIXt" </code></pre>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">summary</span>( df<span class="sc">$</span>Date )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">summary</span>( df<span class="sc">$</span>Date )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 Min.               1st Qu.                Median 
 "2014-01-01 00:00:00" "2014-01-22 08:22:30" "2014-02-12 16:45:00" 
@@ -622,10 +619,10 @@ Rodney Dyer, PhD
 <h2>Simultaneous Mutations</h2>
 <p>You can make several mutations in one call <em>or</em> you can pipe several mutation events at one time.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a href=""></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">"EST"</span>), </span>
-<span id="cb37-3"><a href=""></a>          <span class="at">Month =</span> <span class="fu">month</span>(Date, <span class="at">label =</span> <span class="cn">TRUE</span>) ) <span class="ot">-&gt;</span> df</span>
-<span id="cb37-4"><a href=""></a><span class="fu">summary</span>( df<span class="sc">$</span>Month )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href=""></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>(DateTime, <span class="at">tz =</span> <span class="st">"EST"</span>), </span>
+<span id="cb36-3"><a href=""></a>          <span class="at">Month =</span> <span class="fu">month</span>(Date, <span class="at">label =</span> <span class="cn">TRUE</span>) ) <span class="ot">-&gt;</span> df</span>
+<span id="cb36-4"><a href=""></a><span class="fu">summary</span>( df<span class="sc">$</span>Month )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec 
 2976 2688 2535    0    0    0    0    0    0    0    0    0 </code></pre>
@@ -636,9 +633,9 @@ Rodney Dyer, PhD
 <h2>Summarize</h2>
 <p>The <code>summarize()</code> function derives inferences from the current <code>data.frame</code> and produces a new one.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href=""></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF), </span>
-<span id="cb39-3"><a href=""></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(H2O_TempC, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href=""></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF), </span>
+<span id="cb38-3"><a href=""></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(H2O_TempC, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   `Air Temp` `Water Temp`
@@ -651,16 +648,16 @@ Rodney Dyer, PhD
 <h2>Group &amp; Summarize</h2>
 <p>The <code>group_by()</code> function allows you to arbitrarily pull together subset of data and prepare them to be worked on by something like <code>summary()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb41-2"><a href=""></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, </span>
-<span id="cb41-3"><a href=""></a>                          <span class="at">tz=</span><span class="st">"EST"</span>),</span>
-<span id="cb41-4"><a href=""></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, </span>
-<span id="cb41-5"><a href=""></a>                         <span class="at">abbr =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb41-6"><a href=""></a>                         <span class="at">label=</span><span class="cn">TRUE</span>) ) <span class="sc">|&gt;</span></span>
-<span id="cb41-7"><a href=""></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
-<span id="cb41-8"><a href=""></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF), </span>
-<span id="cb41-9"><a href=""></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, </span>
-<span id="cb41-10"><a href=""></a>                                  <span class="at">na.rm=</span><span class="cn">TRUE</span>) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href=""></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, </span>
+<span id="cb40-3"><a href=""></a>                          <span class="at">tz=</span><span class="st">"EST"</span>),</span>
+<span id="cb40-4"><a href=""></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, </span>
+<span id="cb40-5"><a href=""></a>                         <span class="at">abbr =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb40-6"><a href=""></a>                         <span class="at">label=</span><span class="cn">TRUE</span>) ) <span class="sc">|&gt;</span></span>
+<span id="cb40-7"><a href=""></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
+<span id="cb40-8"><a href=""></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF), </span>
+<span id="cb40-9"><a href=""></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, </span>
+<span id="cb40-10"><a href=""></a>                                  <span class="at">na.rm=</span><span class="cn">TRUE</span>) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   Month    `Air Temp` `Water Temp`
@@ -692,7 +689,7 @@ Rodney Dyer, PhD
 <h2>Quoted Names</h2>
 <p>There are times when working with data that we may want to use reasonable names.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">names</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="fu">names</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "DateTime"                       "RecordID"                      
  [3] "PAR"                            "WindSpeed_mph"                 
@@ -713,17 +710,17 @@ Rodney Dyer, PhD
 <h2>Quoted Names</h2>
 <p>If the names are set reasonably in the workflow, then they will be piped directly into tables and figures correctly. Here is a fully formed output from <code>R</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb45-2"><a href=""></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, </span>
-<span id="cb45-3"><a href=""></a>                          <span class="at">tz=</span><span class="st">"EST"</span>),</span>
-<span id="cb45-4"><a href=""></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, </span>
-<span id="cb45-5"><a href=""></a>                         <span class="at">abbr =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb45-6"><a href=""></a>                         <span class="at">label=</span><span class="cn">TRUE</span>),</span>
-<span id="cb45-7"><a href=""></a>          <span class="at">AirTemp =</span> (AirTempF<span class="dv">-32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span> ) <span class="sc">|&gt;</span></span>
-<span id="cb45-8"><a href=""></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
-<span id="cb45-9"><a href=""></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Ambient Air</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTemp), </span>
-<span id="cb45-10"><a href=""></a>             <span class="st">`</span><span class="at">Water Surface</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, </span>
-<span id="cb45-11"><a href=""></a>                                  <span class="at">na.rm=</span><span class="cn">TRUE</span>) ) <span class="ot">-&gt;</span> df </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href=""></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, </span>
+<span id="cb44-3"><a href=""></a>                          <span class="at">tz=</span><span class="st">"EST"</span>),</span>
+<span id="cb44-4"><a href=""></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, </span>
+<span id="cb44-5"><a href=""></a>                         <span class="at">abbr =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb44-6"><a href=""></a>                         <span class="at">label=</span><span class="cn">TRUE</span>),</span>
+<span id="cb44-7"><a href=""></a>          <span class="at">AirTemp =</span> (AirTempF<span class="dv">-32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb44-8"><a href=""></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
+<span id="cb44-9"><a href=""></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Ambient Air</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTemp), </span>
+<span id="cb44-10"><a href=""></a>             <span class="st">`</span><span class="at">Water Surface</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, </span>
+<span id="cb44-11"><a href=""></a>                                  <span class="at">na.rm=</span><span class="cn">TRUE</span>) ) <span class="ot">-&gt;</span> df </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="tabular-output" class="slide level2">
@@ -735,10 +732,10 @@ Rodney Dyer, PhD
 <h2>Using <code>kable</code></h2>
 <p>Simply pipe the data into the <code>kable()</code> function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="fu">library</span>( knitr )</span>
-<span id="cb46-2"><a href=""></a></span>
-<span id="cb46-3"><a href=""></a>df <span class="sc">|&gt;</span></span>
-<span id="cb46-4"><a href=""></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a><span class="fu">library</span>( knitr )</span>
+<span id="cb45-2"><a href=""></a></span>
+<span id="cb45-3"><a href=""></a>df <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href=""></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top">
 <thead>
@@ -772,11 +769,11 @@ Rodney Dyer, PhD
 <section id="options-to-kable" class="slide level2 smaller">
 <h2>Options to <code>kable</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>df <span class="sc">|&gt;</span></span>
-<span id="cb47-2"><a href=""></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">2</span>, </span>
-<span id="cb47-3"><a href=""></a>         <span class="at">caption =</span> <span class="st">"Air and water temperatures measured at the Rice Rivers Center."</span>) <span class="ot">-&gt;</span> kbl</span>
-<span id="cb47-4"><a href=""></a></span>
-<span id="cb47-5"><a href=""></a>kbl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>df <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href=""></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">2</span>, </span>
+<span id="cb46-3"><a href=""></a>         <span class="at">caption =</span> <span class="st">"Air and water temperatures measured at the Rice Rivers Center."</span>) <span class="ot">-&gt;</span> kbl</span>
+<span id="cb46-4"><a href=""></a></span>
+<span id="cb46-5"><a href=""></a>kbl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top">
 <caption>Air and water temperatures measured at the Rice Rivers Center.</caption>
@@ -817,10 +814,10 @@ Rodney Dyer, PhD
 <section id="basic-style" class="slide level2 smaller">
 <h2>Basic Style</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="fu">library</span>( kableExtra )</span>
-<span id="cb48-2"><a href=""></a></span>
-<span id="cb48-3"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
-<span id="cb48-4"><a href=""></a>  <span class="fu">kable_styling</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="fu">library</span>( kableExtra )</span>
+<span id="cb47-2"><a href=""></a></span>
+<span id="cb47-3"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
+<span id="cb47-4"><a href=""></a>  <span class="fu">kable_styling</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="table caption-top" style="margin-left: auto; margin-right: auto;">
 <caption>Air and water temperatures measured at the Rice Rivers Center.</caption>
@@ -855,8 +852,8 @@ Rodney Dyer, PhD
 <section id="paper-style" class="slide level2 smaller">
 <h2>Paper Style</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
-<span id="cb49-2"><a href=""></a>  <span class="fu">kable_paper</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
+<span id="cb48-2"><a href=""></a>  <span class="fu">kable_paper</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="lightable-paper caption-top" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
 <caption>Air and water temperatures measured at the Rice Rivers Center.</caption>
@@ -891,8 +888,8 @@ Rodney Dyer, PhD
 <section id="classic-style" class="slide level2 smaller">
 <h2>Classic Style</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
-<span id="cb50-2"><a href=""></a>  <span class="fu">kable_classic</span>( <span class="at">full_width =</span> <span class="cn">FALSE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
+<span id="cb49-2"><a href=""></a>  <span class="fu">kable_classic</span>( <span class="at">full_width =</span> <span class="cn">FALSE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="lightable-classic caption-top" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Air and water temperatures measured at the Rice Rivers Center.</caption>
@@ -927,9 +924,9 @@ Rodney Dyer, PhD
 <section id="fancy-material-styles" class="slide level2 smaller">
 <h2>Fancy Material Styles</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
-<span id="cb51-2"><a href=""></a>  <span class="fu">kable_material</span>( <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), </span>
-<span id="cb51-3"><a href=""></a>                  <span class="at">full_width =</span> <span class="cn">FALSE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
+<span id="cb50-2"><a href=""></a>  <span class="fu">kable_material</span>( <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), </span>
+<span id="cb50-3"><a href=""></a>                  <span class="at">full_width =</span> <span class="cn">FALSE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="lightable-material lightable-striped lightable-hover caption-top" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Air and water temperatures measured at the Rice Rivers Center.</caption>
@@ -964,9 +961,9 @@ Rodney Dyer, PhD
 <section id="quoted-names-more-fancy-headings" class="slide level2 smaller">
 <h2>Quoted Names &amp; More Fancy Headings</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
-<span id="cb52-2"><a href=""></a>  <span class="fu">kable_paper</span>( <span class="at">full_width=</span><span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-3"><a href=""></a>  <span class="fu">add_header_above</span>( <span class="fu">c</span>(<span class="st">" "</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">"Temperature (°C)"</span> <span class="ot">=</span> <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>kbl <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href=""></a>  <span class="fu">kable_paper</span>( <span class="at">full_width=</span><span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a href=""></a>  <span class="fu">add_header_above</span>( <span class="fu">c</span>(<span class="st">" "</span><span class="ot">=</span><span class="dv">1</span>, <span class="st">"Temperature (°C)"</span> <span class="ot">=</span> <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="lightable-paper caption-top" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>Air and water temperatures measured at the Rice Rivers Center.</caption>
