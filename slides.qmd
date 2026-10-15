@@ -169,29 +169,22 @@ In `R` we use this grammar.
 
 ```{r}
 #| eval: false
-data %>% Y()
-```
-
-It is also possible to use this pipe character:
-
-```{r}
-#| eval: false 
 data |> Y()
 ```
 
-
-
 To take the values in `data` and pass them **as if you entered the data as the first argument** to the function `Y()`.
+
+You will also see `%>%` (from the `magrittr` package) in older code and online examples.  It does the same thing here, but we use the native `|>`, which is built into `R`.
 
 ## Chain-pipe
 
-Pipes can be chained together into a single operation (you can mix and match pipe types but I find myself basically using the shorter one because I'm a lazy programmer).
+Pipes can be chained together into a single operation.
 
 ```{r}
 #| eval: false
 data |>
   func1() |>
-  func2() %>%
+  func2() |>
   func3() -> newData
 ```
 
@@ -286,7 +279,7 @@ head( df )
 The `select()` function allows you to choose many columns of data to work with.
 
 ```{r}
-rice %>%
+rice |>
   select( DateTime, AirTempF ) -> df 
 head(df)
 ```
