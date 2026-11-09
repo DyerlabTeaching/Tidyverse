@@ -109,8 +109,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The ability to quickly and easily manipulate and rework data is the base foundation for all the work you will be doing in <code>R</code>. There is no more fundamental (and important) skill required than being able to quickly and easily take raw data and reconfigure it properly for inclusion into an analysis, summary, graphic, or table. Using features of the <code>tidyverse</code> library are key.</p>
 </blockquote>
 <!-- END module:header -->
-<section id="the-tidyverse-approach" class="level2">
-<h2 class="anchored" data-anchor-id="the-tidyverse-approach">The Tidyverse Approach</h2>
+<section id="the-tidyverse-approach" class="level2 application">
+<h2 class="application anchored" data-anchor-id="the-tidyverse-approach">The Tidyverse Approach</h2>
 <p>This is the first introduction to tidyverse and is the key skill necessary to become proficient at data analysis.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( tidyverse )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -209,8 +209,8 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 </ul>
 </section>
 </section>
-<section id="verbs-of-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="verbs-of-analysis">Verbs of Analysis</h2>
+<section id="verbs-of-analysis" class="level2 application">
+<h2 class="application anchored" data-anchor-id="verbs-of-analysis">Verbs of Analysis</h2>
 <p>When we perform any type of data manipulation, we use specific verbs. There is a limited lexicon for us to use, but the key here is how we perform these actions, and in which order they are deployed for a huge diversity in outcomes. For now, these basic verbs include:</p>
 <ul>
 <li><em>Select:</em> Used to grab or reorder columns of data.</li>
@@ -452,8 +452,8 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 <p>As you read the code, notice how easy it is to understand what is going on because of both the pipes <strong>and</strong> because of the way I am formatting the code itself.</p>
 </section>
 </section>
-<section id="publication-quality-tables" class="level2">
-<h2 class="anchored" data-anchor-id="publication-quality-tables">Publication-Quality Tables</h2>
+<section id="publication-quality-tables" class="level2 application">
+<h2 class="application anchored" data-anchor-id="publication-quality-tables">Publication-Quality Tables</h2>
 <p>So far every result has come back as raw <code>R</code> console output. That is fine while you are building a workflow, but a document that someone is meant to <em>read</em> needs proper tables — captioned, numbered, and referred to <em>by number</em> in the running text, the way a table appears in a journal article.</p>
 <section id="from-a-data-frame-to-a-table" class="level3">
 <h3 class="anchored" data-anchor-id="from-a-data-frame-to-a-table">From a data frame to a table</h3>
@@ -572,8 +572,8 @@ Table&nbsp;1: Mean monthly air and water temperature at the Rice Rivers Center.
 <p>The same system works for figures (give the chunk a <code>fig-</code> label) and for equations, sections, and more. It is also the reason you should never write “see the table below”: position and hand-typed numbers both break the moment the document changes.</p>
 </section>
 </section>
-<section id="flows" class="level2">
-<h2 class="anchored" data-anchor-id="flows">Flows</h2>
+<section id="flows" class="level2 application">
+<h2 class="application anchored" data-anchor-id="flows">Flows</h2>
 <p>This last part really showed off the process of multi-step data manipulations using the pipe operator and the several verbs we introduced. These are both efficient in terms of typing as well as efficient in the way of producing research that makes sense to look at.</p>
 <p>Here are some strategies that I use when building up these manipulation workflows.</p>
 <ol type="1">
