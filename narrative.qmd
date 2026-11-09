@@ -11,7 +11,7 @@ format: dyerlab-narrative-html
 
 <!-- END module:header -->
 
-## The Tidyverse Approach
+## The Tidyverse Approach {.application}
 
 This is the first introduction to tidyverse and is the key skill necessary to become proficient at data analysis.  
 
@@ -45,7 +45,7 @@ If you look at the summary of the data above, you will see several things, inclu
 - <mark>Some measurements are in Standard and some in Imperial with units in the same file include both °F and °C, as well as measurements in meters, feet, and inches.</mark>  In fact, there is duplication of data columns in different units (guess what kind of correlation they might have...)
 
 
-## Verbs of Analysis
+## Verbs of Analysis {.application}
 
 When we perform any type of data manipulation, we use specific verbs.  There is a limited lexicon for us to use, but the key here is how we perform these actions, and in which order they are deployed for a huge diversity in outcomes.  For now, these basic verbs include:
 
@@ -234,7 +234,7 @@ rice |>
 As you read the code, notice how easy it is to understand what is going on because of both the pipes **and** because of the way I am formatting the code itself.
 
 
-## Publication-Quality Tables
+## Publication-Quality Tables {.application}
 
 So far every result has come back as raw `R` console output.  That is fine while you are building a workflow, but a document that someone is meant to *read* needs proper tables --- captioned, numbered, and referred to *by number* in the running text, the way a table appears in a journal article.
 
@@ -282,7 +282,7 @@ With the label in place, you refer to the table anywhere in your prose by writin
 The same system works for figures (give the chunk a `fig-` label) and for equations, sections, and more.  It is also the reason you should never write "see the table below": position and hand-typed numbers both break the moment the document changes.
 
 
-## Flows
+## Flows {.application}
 
 This last part really showed off the process of multi-step data manipulations using the pipe operator and the several verbs we introduced.  These are both efficient in terms of typing as well as efficient in the way of producing research that makes sense to look at.
 
