@@ -151,14 +151,14 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( rice )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      DateTime       RecordID          PAR           WindSpeed_mph   
- Length   :8199   Min.   :43816   Min.   :   0.000   Min.   : 0.000  
- N.unique :8199   1st Qu.:45866   1st Qu.:   0.000   1st Qu.: 2.467  
- N.blank  :   0   Median :47915   Median :   0.046   Median : 4.090  
- Min.nchar:  19   Mean   :47915   Mean   : 241.984   Mean   : 5.446  
- Max.nchar:  21   3rd Qu.:49964   3rd Qu.: 337.900   3rd Qu.: 7.292  
-                  Max.   :52014   Max.   :1957.000   Max.   :30.650  
-                                                                     
+<pre><code>   DateTime            RecordID          PAR           WindSpeed_mph   
+ Length:8199        Min.   :43816   Min.   :   0.000   Min.   : 0.000  
+ Class :character   1st Qu.:45866   1st Qu.:   0.000   1st Qu.: 2.467  
+ Mode  :character   Median :47915   Median :   0.046   Median : 4.090  
+                    Mean   :47915   Mean   : 241.984   Mean   : 5.446  
+                    3rd Qu.:49964   3rd Qu.: 337.900   3rd Qu.: 7.292  
+                    Max.   :52014   Max.   :1957.000   Max.   :30.650  
+                                                                       
     WindDir          AirTempF       RelHumidity        BP_HG      
  Min.   :  0.00   Min.   : 3.749   Min.   :15.37   Min.   :29.11  
  1st Qu.: 37.31   1st Qu.:31.545   1st Qu.:42.25   1st Qu.:29.87  
@@ -174,7 +174,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
  Mean   :0.0008412   Mean   : 5.529   Mean   :0.1611   Mean   :0.0759  
  3rd Qu.:0.0000000   3rd Qu.: 7.410   3rd Qu.:0.1760   3rd Qu.:0.0800  
  Max.   :0.3470000   Max.   :13.300   Max.   :0.2110   Max.   :0.1000  
-                     NAs    :1        NAs    :1        NAs    :1       
+                     NA's   :1        NA's   :1        NA's   :1       
        PH           PH_mv        Turbidity_ntu       Chla_ugl    
  Min.   :6.43   Min.   :-113.8   Min.   :  6.20   Min.   :  1.3  
  1st Qu.:7.50   1st Qu.: -47.8   1st Qu.: 15.50   1st Qu.:  3.7  
@@ -182,7 +182,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
  Mean   :7.60   Mean   : -44.5   Mean   : 24.54   Mean   :137.3  
  3rd Qu.:7.69   3rd Qu.: -38.9   3rd Qu.: 30.30   3rd Qu.:302.6  
  Max.   :9.00   Max.   :  28.5   Max.   :187.70   Max.   :330.1  
- NAs    :1      NAs    :1        NAs    :1        NAs    :1      
+ NA's   :1      NA's   :1        NA's   :1        NA's   :1      
    BGAPC_CML        BGAPC_rfu         ODO_sat         ODO_mgl     
  Min.   :   188   Min.   :  0.10   Min.   : 87.5   Min.   :10.34  
  1st Qu.:   971   1st Qu.:  0.50   1st Qu.: 99.2   1st Qu.:12.34  
@@ -190,7 +190,7 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
  Mean   :153571   Mean   : 72.91   Mean   :102.0   Mean   :12.88  
  3rd Qu.:345211   3rd Qu.:163.60   3rd Qu.:104.1   3rd Qu.:13.34  
  Max.   :345471   Max.   :163.70   Max.   :120.8   Max.   :14.99  
- NAs    :1        NAs    :1        NAs    :1       NAs    :1      
+ NA's   :1        NA's   :1        NA's   :1       NA's   :1      
     Depth_ft        Depth_m      SurfaceWaterElev_m_levelNad83m
  Min.   :12.15   Min.   :3.705   Min.   :-32.53                
  1st Qu.:14.60   1st Qu.:4.451   1st Qu.:-31.78                
@@ -459,14 +459,8 @@ dbl (22): RecordID, PAR, WindSpeed_mph, WindDir, AirTempF, RelHumidity, BP_H...
 <h3 class="anchored" data-anchor-id="from-a-data-frame-to-a-table">From a data frame to a table</h3>
 <p>The <code>kable()</code> function in the <code>knitr</code> package turns a <code>data.frame</code> into a formatted table. You pipe the data straight into it, usually as the last step of a workflow.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( knitr )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'knitr' was built under R version 4.6.1</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( kableExtra )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'kableExtra' was built under R version 4.6.1</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( knitr )</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( kableExtra )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'kableExtra'</code></pre>
@@ -476,15 +470,15 @@ Attaching package: 'kableExtra'</code></pre>
 
     group_rows</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, <span class="at">tz =</span> <span class="st">"EST"</span> ),</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span> ) ) <span class="sc">|&gt;</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF ),</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ) ) <span class="ot">-&gt;</span> monthlyTemps</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>monthlyTemps <span class="sc">|&gt;</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>rice <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">Date =</span> <span class="fu">mdy_hms</span>( DateTime, <span class="at">tz =</span> <span class="st">"EST"</span> ),</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Month =</span> <span class="fu">month</span>( Date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span> ) ) <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>( Month ) <span class="sc">|&gt;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="st">`</span><span class="at">Air Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( AirTempF ),</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">Water Temp</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>( H2O_TempC, <span class="at">na.rm =</span> <span class="cn">TRUE</span> ) ) <span class="ot">-&gt;</span> monthlyTemps</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>monthlyTemps <span class="sc">|&gt;</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -524,9 +518,9 @@ Attaching package: 'kableExtra'</code></pre>
 <li>a <strong>caption</strong>, set with the <code>#| tbl-cap:</code> chunk option.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>monthlyTemps <span class="sc">|&gt;</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>( <span class="st">"striped"</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>monthlyTemps <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>( <span class="at">digits =</span> <span class="dv">1</span> ) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_paper</span>( <span class="st">"striped"</span>, <span class="at">full_width =</span> <span class="cn">FALSE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="tbl-monthly" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-monthly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
